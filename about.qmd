@@ -1,0 +1,19 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: solana
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/azaidi06
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/azaidi06/
+    - icon: github
+      text: Github
+      href: https://github.com/azaidi06
+
+---
+
+About this blog
