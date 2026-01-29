@@ -1,39 +1,638 @@
 /* css styles */
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* ===== CSS Variables for Easy Theming ===== */
+:root {
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+  --accent-color: #667eea;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 20px 40px rgba(102, 126, 234, 0.2);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===== Base Styles ===== */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Navbar styling */
+/* ===== Animated Background Gradient ===== */
+.quarto-title-banner {
+  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.quarto-title-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes patternFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* ===== Navbar Styling with Scroll Effects ===== */
 .navbar {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-bottom: 1px solid #eaeaea;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.4s var(--transition-smooth);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+.navbar:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.navbar-brand:hover {
+  transform: scale(1.02);
+}
+
+.navbar .nav-link {
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  transition: all 0.3s var(--transition-smooth);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.navbar .nav-link:hover::after {
+  width: 80%;
+}
+
+.navbar .nav-link:hover {
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Dark mode navbar */
 body.quarto-dark .navbar {
-  background-color: rgba(34, 34, 34, 0.9) !important;
-  border-bottom: 1px solid #333;
+  background-color: rgba(20, 20, 30, 0.9) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Card Styling (Grid View) */
+body.quarto-dark .navbar:hover {
+  background-color: rgba(20, 20, 30, 0.95) !important;
+}
+
+/* ===== Hero Section / Title Block ===== */
+.quarto-title-block {
+  animation: fadeInUp 0.8s var(--transition-smooth) forwards;
+}
+
+.quarto-title-block .title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.3)); }
+  100% { filter: drop-shadow(0 0 40px rgba(255,255,255,0.5)); }
+}
+
+/* ===== Card Styling with Advanced Effects ===== */
 .quarto-grid-item {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 12px;
+  position: relative;
+  border-radius: 16px;
   border: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s var(--transition-smooth);
+  overflow: hidden;
+  animation: fadeInUp 0.6s var(--transition-smooth) backwards;
+}
+
+/* Staggered animation delays for cards */
+.quarto-grid-item:nth-child(1) { animation-delay: 0.1s; }
+.quarto-grid-item:nth-child(2) { animation-delay: 0.2s; }
+.quarto-grid-item:nth-child(3) { animation-delay: 0.3s; }
+.quarto-grid-item:nth-child(4) { animation-delay: 0.4s; }
+.quarto-grid-item:nth-child(5) { animation-delay: 0.5s; }
+.quarto-grid-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Card gradient border on hover */
+.quarto-grid-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s var(--transition-smooth);
+  pointer-events: none;
+}
+
+.quarto-grid-item:hover::before {
+  opacity: 1;
 }
 
 .quarto-grid-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--card-shadow-hover);
 }
 
-/* Typography tweaks */
+/* Card image effects */
+.quarto-grid-item .thumbnail {
+  overflow: hidden;
+}
+
+.quarto-grid-item img {
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.quarto-grid-item:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* Card content styling */
+.quarto-grid-item .card-body {
+  padding: 1.5rem;
+}
+
+.quarto-grid-item .card-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+.quarto-grid-item:hover .card-title {
+  color: var(--accent-color);
+}
+
+.quarto-grid-item .listing-description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Dark mode cards */
+body.quarto-dark .quarto-grid-item {
+  background: rgba(30, 30, 40, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.quarto-dark .quarto-grid-item:hover {
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+}
+
+/* ===== List View Styling ===== */
+.quarto-listing-default .list-item {
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s var(--transition-smooth);
+  animation: fadeInLeft 0.5s var(--transition-smooth) backwards;
+}
+
+.quarto-listing-default .list-item:nth-child(odd) { animation-delay: 0.1s; }
+.quarto-listing-default .list-item:nth-child(even) { animation-delay: 0.2s; }
+
+.quarto-listing-default .list-item:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.12);
+}
+
+body.quarto-dark .quarto-listing-default .list-item {
+  background: rgba(30, 30, 40, 0.6);
+}
+
+/* ===== Category Pills ===== */
+.quarto-category {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  color: var(--accent-color);
+  transition: all 0.3s var(--transition-smooth);
+  border: 1px solid transparent;
+}
+
+.quarto-category:hover {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== Scroll Progress Indicator ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ===== Typography Enhancements ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 h1.title {
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
+}
+
+/* Animated section headers */
+#quarto-content h2,
+#quarto-content h3 {
+  position: relative;
+  display: inline-block;
+}
+
+#quarto-content h2::after,
+#quarto-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 3px;
+  transition: width 0.3s var(--transition-smooth);
+}
+
+#quarto-content h2:hover::after,
+#quarto-content h3:hover::after {
+  width: 100%;
+}
+
+/* ===== Links with Underline Animation ===== */
+#quarto-content a:not(.nav-link):not(.btn):not(.quarto-category) {
+  position: relative;
+  text-decoration: none;
+  color: var(--accent-color);
+  transition: color 0.3s var(--transition-smooth);
+}
+
+#quarto-content a:not(.nav-link):not(.btn):not(.quarto-category)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  transition: width 0.3s var(--transition-smooth);
+}
+
+#quarto-content a:not(.nav-link):not(.btn):not(.quarto-category):hover::after {
+  width: 100%;
+}
+
+/* ===== Buttons ===== */
+.btn-primary,
+.btn {
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s var(--transition-smooth);
+  border: none;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover,
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ===== Footer ===== */
+.page-footer {
+  background: linear-gradient(180deg, transparent, rgba(102, 126, 234, 0.03));
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s var(--transition-smooth);
+}
+
+body.quarto-dark .page-footer {
+  background: linear-gradient(180deg, transparent, rgba(102, 126, 234, 0.05));
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #5a6fd6, #6b4190);
+}
+
+body.quarto-dark ::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== Scroll Reveal Classes (for JS) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--transition-smooth);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s var(--transition-smooth);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s var(--transition-smooth);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== Reading Time & Date Badges ===== */
+.listing-reading-time,
+.listing-date {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* ===== Image Hover Shine Effect ===== */
+.quarto-grid-item .thumbnail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s var(--transition-smooth);
+}
+
+.quarto-grid-item:hover .thumbnail::after {
+  left: 100%;
+}
+
+/* ===== Responsive Enhancements ===== */
+@media (max-width: 768px) {
+  .quarto-grid-item:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+
+  .navbar .nav-link:hover {
+    transform: none;
+  }
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+  text-align: center;
+  padding: 0;
+  margin: -1rem 0 2rem 0;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-tagline {
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--transition-smooth) 0.3s forwards;
+}
+
+/* Section titles */
+.section-title {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 4px;
+}
+
+/* ===== Cursor Glow Effect (optional enhancement) ===== */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.15), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== Floating Elements Animation ===== */
+.float-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-element:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.float-element:nth-child(3) {
+  animation-delay: 2s;
+}
+
+/* ===== Glass Card Variant ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+}
+
+body.quarto-dark .glass-card {
+  background: rgba(30, 30, 40, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Tooltip Styles ===== */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  padding: 0.5rem 1rem;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* ===== Focus Styles for Accessibility ===== */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* ===== Selection Styles ===== */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: inherit;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .scroll-progress,
+  .navbar::before,
+  .cursor-glow {
+    display: none;
+  }
 }
