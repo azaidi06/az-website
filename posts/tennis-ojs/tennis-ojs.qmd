@@ -1,0 +1,683 @@
+---
+title: "Tennis Serve Analysis (Interactive)"
+description: "Explore serve statistics for top ATP and WTA players with interactive filters and visualizations"
+author: "Ahmad Zaidi"
+date: "2026-02-02"
+categories: [tennis, sports analytics, visualization]
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-location: left
+execute:
+  echo: false
+  warning: false
+---
+
+```{python}
+#| label: setup
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+import json
+
+# Load data
+DATA_PATH = '../../data/top25'
+
+# Load ATP data
+atp_players = pd.read_csv(f'{DATA_PATH}/atp/atp_top25_players.csv')
+atp_matches = pd.read_csv(f'{DATA_PATH}/atp/atp_top25_matches.csv')
+atp_rankings = pd.read_csv(f'{DATA_PATH}/atp/atp_top25_rankings.csv')
+
+# Load WTA data
+wta_players = pd.read_csv(f'{DATA_PATH}/wta/wta_top25_players.csv')
+wta_matches = pd.read_csv(f'{DATA_PATH}/wta/wta_top25_matches.csv')
+wta_rankings = pd.read_csv(f'{DATA_PATH}/wta/wta_top25_rankings.csv')
+
+# Process player names
+for df in [atp_players, wta_players]:
+    df['full_name'] = df['name_first'] + ' ' + df['name_last']
+
+# Get most recent rankings
+latest_atp_date = atp_rankings['ranking_date'].max()
+latest_wta_date = wta_rankings['ranking_date'].max()
+latest_atp = atp_rankings[atp_rankings['ranking_date'] == latest_atp_date][['player', 'rank']]
+latest_wta = wta_rankings[wta_rankings['ranking_date'] == latest_wta_date][['player', 'rank']]
+
+# Merge rankings
+atp_players = atp_players.merge(latest_atp, left_on='player_id', right_on='player', how='left')
+wta_players = wta_players.merge(latest_wta, left_on='player_id', right_on='player', how='left')
+atp_players.drop(columns=['player'], inplace=True)
+wta_players.drop(columns=['player'], inplace=True)
+
+# Add tour indicator
+atp_players['tour'], wta_players['tour'] = 'ATP', 'WTA'
+atp_matches['tour'], wta_matches['tour'] = 'ATP', 'WTA'
+
+# Parse dates
+atp_matches['tourney_date'] = pd.to_datetime(atp_matches['tourney_date'].astype(str), format='%Y%m%d')
+wta_matches['tourney_date'] = pd.to_datetime(wta_matches['tourney_date'].astype(str), format='%Y%m%d')
+
+# Filter to matches with serve data
+serve_cols = ['w_ace', 'w_df', 'w_svpt', 'w_1stIn', 'w_1stWon', 'w_2ndWon', 'w_SvGms', 'w_bpSaved', 'w_bpFaced']
+atp_serve = atp_matches.dropna(subset=serve_cols).copy()
+wta_serve = wta_matches.dropna(subset=serve_cols).copy()
+```
+
+```{python}
+#| label: compute-stats
+
+def filter_by_date_range(matches_df, start_date=None, end_date=None):
+    """Filter matches by date range."""
+    df = matches_df.copy()
+    if start_date is not None:
+        df = df[df['tourney_date'] >= pd.Timestamp(start_date)]
+    if end_date is not None:
+        df = df[df['tourney_date'] <= pd.Timestamp(end_date)]
+    return df
+
+def calculate_min_matches(start_date, end_date, base_min=20):
+    """Calculate appropriate min_matches threshold based on date range."""
+    if start_date is None or end_date is None:
+        return base_min
+    days = (pd.Timestamp(end_date) - pd.Timestamp(start_date)).days
+    if days <= 365:
+        return max(5, base_min // 4)
+    elif days <= 365 * 2:
+        return max(8, base_min // 3)
+    elif days <= 365 * 3:
+        return max(10, base_min // 2)
+    return base_min
+
+def calculate_player_stats(matches_df, players_df, start_date=None, end_date=None):
+    """Calculate all stats for each player."""
+    matches_df = filter_by_date_range(matches_df, start_date, end_date)
+    min_matches = calculate_min_matches(start_date, end_date, base_min=20)
+
+    results = []
+    for _, player in players_df.iterrows():
+        pid = player['player_id']
+        name = player['full_name']
+        rank = player['rank']
+
+        # Get wins and losses
+        wins = matches_df[matches_df['winner_id'] == pid]
+        losses = matches_df[matches_df['loser_id'] == pid]
+
+        # Combine serve stats
+        w_stats = wins[['w_ace', 'w_df', 'w_svpt', 'w_1stIn', 'w_1stWon', 'w_bpSaved', 'w_bpFaced']].copy()
+        w_stats.columns = ['aces', 'df', 'svpt', '1stIn', '1stWon', 'bpSaved', 'bpFaced']
+
+        l_stats = losses[['l_ace', 'l_df', 'l_svpt', 'l_1stIn', 'l_1stWon', 'l_bpSaved', 'l_bpFaced']].copy()
+        l_stats.columns = ['aces', 'df', 'svpt', '1stIn', '1stWon', 'bpSaved', 'bpFaced']
+
+        all_stats = pd.concat([w_stats, l_stats]).dropna()
+
+        if len(all_stats) >= min_matches:
+            # Calculate ace and DF rates
+            ace_rate = (all_stats['aces'] / all_stats['svpt']).mean() * 100
+            df_rate = (all_stats['df'] / all_stats['svpt']).mean() * 100
+
+            # Calculate 1st serve stats
+            first_serve_pct = (all_stats['1stIn'] / all_stats['svpt']).mean() * 100
+            first_serve_won = (all_stats['1stWon'] / all_stats['1stIn']).mean() * 100
+
+            # Calculate break point stats (need aggregated stats)
+            bp_faced = all_stats['bpFaced'].sum()
+            bp_saved = all_stats['bpSaved'].sum()
+
+            # BP conversion (from opponent's perspective)
+            opp_bp_faced = wins['l_bpFaced'].sum() + losses['w_bpFaced'].sum()
+            opp_bp_saved = wins['l_bpSaved'].sum() + losses['w_bpSaved'].sum()
+            bp_converted = opp_bp_faced - opp_bp_saved
+
+            bp_save_pct = (bp_saved / bp_faced * 100) if bp_faced > 0 else None
+            bp_convert_pct = (bp_converted / opp_bp_faced * 100) if opp_bp_faced > 0 else None
+
+            results.append({
+                'player': name.split()[-1],  # Last name only
+                'full_name': name,
+                'rank': int(rank) if pd.notna(rank) else 99,
+                'matches': len(all_stats),
+                'ace_rate': round(ace_rate, 1),
+                'df_rate': round(df_rate, 1),
+                'first_serve_pct': round(first_serve_pct, 1),
+                'first_serve_won': round(first_serve_won, 1),
+                'bp_save_pct': round(bp_save_pct, 1) if bp_save_pct else None,
+                'bp_convert_pct': round(bp_convert_pct, 1) if bp_convert_pct else None,
+            })
+
+    df = pd.DataFrame(results)
+    if df.empty:
+        return df
+    return df.sort_values('rank').reset_index(drop=True)
+
+def calculate_surface_stats(matches_df, players_df, start_date=None, end_date=None):
+    """Calculate serve stats by surface for each player."""
+    matches_df = filter_by_date_range(matches_df, start_date, end_date)
+
+    results = []
+    for _, player in players_df.iterrows():
+        pid = player['player_id']
+        name = player['full_name'].split()[-1]
+        rank = player['rank']
+
+        for surface in ['Hard', 'Clay', 'Grass']:
+            surf_matches = matches_df[matches_df['surface'] == surface]
+            wins = surf_matches[surf_matches['winner_id'] == pid]
+            losses = surf_matches[surf_matches['loser_id'] == pid]
+
+            all_aces = pd.concat([wins['w_ace'], losses['l_ace']])
+            all_svpt = pd.concat([wins['w_svpt'], losses['l_svpt']])
+
+            if len(all_aces.dropna()) >= 10:
+                ace_rate = (all_aces / all_svpt).mean() * 100
+                results.append({
+                    'player': name,
+                    'rank': int(rank) if pd.notna(rank) else 99,
+                    'surface': surface,
+                    'ace_rate': round(ace_rate, 1),
+                    'matches': len(all_aces.dropna())
+                })
+
+    return pd.DataFrame(results)
+
+def calculate_tour_averages(matches_df, start_date=None, end_date=None):
+    """Calculate tour-wide serve averages."""
+    matches = filter_by_date_range(matches_df, start_date, end_date)
+    if matches.empty:
+        return {}
+
+    return {
+        'aces_per_match': round(matches['w_ace'].mean() + matches['l_ace'].mean(), 1),
+        'first_serve_in_pct': round((matches['w_1stIn'] / matches['w_svpt']).mean() * 100, 1),
+        'first_serve_won_pct': round((matches['w_1stWon'] / matches['w_1stIn']).mean() * 100, 1),
+        'second_serve_won_pct': round((matches['w_2ndWon'] / (matches['w_svpt'] - matches['w_1stIn'])).mean() * 100, 1),
+    }
+
+def calculate_surface_averages(matches_df, start_date=None, end_date=None):
+    """Calculate tour averages by surface."""
+    matches = filter_by_date_range(matches_df, start_date, end_date)
+
+    results = []
+    for surface in ['Hard', 'Clay', 'Grass']:
+        surf = matches[matches['surface'] == surface].dropna(subset=['w_ace', 'w_svpt'])
+        if len(surf) >= 50:
+            results.append({
+                'surface': surface,
+                'aces_per_match': round((surf['w_ace'] + surf['l_ace']).mean(), 1),
+                'first_won_pct': round((surf['w_1stWon'] / surf['w_1stIn']).mean() * 100, 1),
+            })
+
+    return results
+
+# Compute stats for all time periods
+def compute_all_data():
+    """Compute all stats for export to OJS."""
+    # Time periods
+    today = datetime.today()
+    periods = {
+        'all_time': (None, None),
+        'last_5_years': (today - timedelta(days=365*5), today),
+        'last_1_year': (today - timedelta(days=365), today),
+    }
+
+    all_data = {
+        'atp': {},
+        'wta': {},
+    }
+
+    for period_name, (start, end) in periods.items():
+        # ATP stats
+        atp_stats = calculate_player_stats(atp_serve, atp_players, start, end)
+        atp_surface = calculate_surface_stats(atp_serve, atp_players, start, end)
+        atp_avg = calculate_tour_averages(atp_serve, start, end)
+        atp_surf_avg = calculate_surface_averages(atp_serve, start, end)
+
+        # WTA stats
+        wta_stats = calculate_player_stats(wta_serve, wta_players, start, end)
+        wta_surface = calculate_surface_stats(wta_serve, wta_players, start, end)
+        wta_avg = calculate_tour_averages(wta_serve, start, end)
+        wta_surf_avg = calculate_surface_averages(wta_serve, start, end)
+
+        all_data['atp'][period_name] = {
+            'players': atp_stats.to_dict('records'),
+            'surface': atp_surface.to_dict('records'),
+            'tour_avg': atp_avg,
+            'surface_avg': atp_surf_avg,
+        }
+
+        all_data['wta'][period_name] = {
+            'players': wta_stats.to_dict('records'),
+            'surface': wta_surface.to_dict('records'),
+            'tour_avg': wta_avg,
+            'surface_avg': wta_surf_avg,
+        }
+
+    return all_data
+
+# Compute and export
+tennis_data = compute_all_data()
+```
+
+```{python}
+#| label: export-to-ojs
+from IPython.display import display
+ojs_define(tennis_data = tennis_data)
+```
+
+## Interactive Dashboard
+
+Use the filters below to explore serve statistics across tours and time periods.
+
+::: {.panel-sidebar}
+
+### Filters
+
+```{ojs}
+//| label: filters
+
+viewof tour = Inputs.radio(["ATP", "WTA"], {value: "ATP", label: "Tour"})
+
+viewof period = Inputs.select(
+  ["all_time", "last_5_years", "last_1_year"],
+  {
+    value: "all_time",
+    label: "Time Period",
+    format: x => ({
+      "all_time": "All Time",
+      "last_5_years": "Last 5 Years",
+      "last_1_year": "Last 1 Year"
+    })[x]
+  }
+)
+
+// Get available players for selected tour/period
+availablePlayers = {
+  const tourKey = tour.toLowerCase();
+  const data = tennis_data[tourKey][period];
+  return data.players.map(p => p.player);
+}
+
+viewof playerFilter = Inputs.select(
+  ["Top 5", "Top 10", "All Players"],
+  {value: "Top 5", label: "Player Filter"}
+)
+
+// Calculate default selected players based on filter
+defaultPlayers = {
+  const n = playerFilter === "Top 5" ? 5 : playerFilter === "Top 10" ? 10 : availablePlayers.length;
+  return availablePlayers.slice(0, n);
+}
+
+viewof selectedPlayers = Inputs.checkbox(
+  availablePlayers,
+  {value: defaultPlayers, label: "Select Players"}
+)
+
+viewof highlightPlayer = Inputs.select(
+  ["None", ...selectedPlayers],
+  {value: "None", label: "Highlight Player"}
+)
+```
+
+:::
+
+::: {.panel-fill}
+
+```{ojs}
+//| label: reactive-data
+
+// Get data for selected tour and period
+currentData = {
+  const tourKey = tour.toLowerCase();
+  return tennis_data[tourKey][period];
+}
+
+// Filter players based on selection
+filteredPlayers = currentData.players.filter(p => selectedPlayers.includes(p.player))
+
+// Calculate averages for the filtered group
+groupAverages = {
+  const players = filteredPlayers;
+  if (players.length === 0) return {};
+
+  return {
+    ace_rate: d3.mean(players, d => d.ace_rate),
+    df_rate: d3.mean(players, d => d.df_rate),
+    first_serve_pct: d3.mean(players, d => d.first_serve_pct),
+    first_serve_won: d3.mean(players, d => d.first_serve_won),
+    bp_save_pct: d3.mean(players.filter(d => d.bp_save_pct), d => d.bp_save_pct),
+    bp_convert_pct: d3.mean(players.filter(d => d.bp_convert_pct), d => d.bp_convert_pct),
+  };
+}
+
+// Surface data filtered by selected players
+filteredSurface = currentData.surface.filter(s => selectedPlayers.includes(s.player))
+
+// Colors
+tourColor = tour === "ATP" ? "#1f77b4" : "#e377c2"
+```
+
+### Tour Averages
+
+```{ojs}
+//| label: tour-averages
+
+html`<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+  <div style="background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;">
+    <div style="font-size: 2rem; font-weight: bold;">${currentData.tour_avg.aces_per_match}</div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">Aces/Match</div>
+  </div>
+  <div style="background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;">
+    <div style="font-size: 2rem; font-weight: bold;">${currentData.tour_avg.first_serve_in_pct}%</div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">1st Serve In</div>
+  </div>
+  <div style="background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;">
+    <div style="font-size: 2rem; font-weight: bold;">${currentData.tour_avg.first_serve_won_pct}%</div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">1st Serve Won</div>
+  </div>
+  <div style="background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;">
+    <div style="font-size: 2rem; font-weight: bold;">${currentData.tour_avg.second_serve_won_pct}%</div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">2nd Serve Won</div>
+  </div>
+</div>`
+```
+
+### Ace Production: Risk vs Reward
+
+Big servers hit more aces but often double fault more too.
+
+```{ojs}
+//| label: ace-scatter
+
+Plot.plot({
+  width: 800,
+  height: 450,
+  marginRight: 60,
+  grid: true,
+  x: {label: "Ace Rate %", domain: [0, d3.max(filteredPlayers, d => d.ace_rate) * 1.1]},
+  y: {label: "Double Fault Rate %", domain: [0, d3.max(filteredPlayers, d => d.df_rate) * 1.1]},
+  marks: [
+    // Average reference lines
+    Plot.ruleX([groupAverages.ace_rate], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    Plot.ruleY([groupAverages.df_rate], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    // Points
+    Plot.dot(filteredPlayers, {
+      x: "ace_rate",
+      y: "df_rate",
+      r: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 8,
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "gold" : tourColor,
+      stroke: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "white",
+      strokeWidth: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 3 : 1,
+      title: d => `${d.player} (#${d.rank})\nAce Rate: ${d.ace_rate}%\nDF Rate: ${d.df_rate}%\nMatches: ${d.matches}`,
+    }),
+    // Labels
+    Plot.text(filteredPlayers, {
+      x: "ace_rate",
+      y: "df_rate",
+      text: "player",
+      dy: -12,
+      fontSize: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 10,
+      fontWeight: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "bold" : "normal",
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "black",
+    }),
+  ]
+})
+```
+
+### First Serve: Accuracy vs Effectiveness
+
+Getting the first serve in is important, but winning the point matters more.
+
+```{ojs}
+//| label: first-serve-scatter
+
+Plot.plot({
+  width: 800,
+  height: 450,
+  marginRight: 60,
+  grid: true,
+  x: {label: "1st Serve In %", domain: [d3.min(filteredPlayers, d => d.first_serve_pct) * 0.95, d3.max(filteredPlayers, d => d.first_serve_pct) * 1.02]},
+  y: {label: "1st Serve Won %", domain: [d3.min(filteredPlayers, d => d.first_serve_won) * 0.95, d3.max(filteredPlayers, d => d.first_serve_won) * 1.02]},
+  marks: [
+    // Average reference lines
+    Plot.ruleX([groupAverages.first_serve_pct], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    Plot.ruleY([groupAverages.first_serve_won], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    // Points
+    Plot.dot(filteredPlayers, {
+      x: "first_serve_pct",
+      y: "first_serve_won",
+      r: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 8,
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "gold" : tourColor,
+      stroke: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "white",
+      strokeWidth: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 3 : 1,
+      title: d => `${d.player} (#${d.rank})\n1st Serve In: ${d.first_serve_pct}%\n1st Serve Won: ${d.first_serve_won}%`,
+    }),
+    // Labels
+    Plot.text(filteredPlayers, {
+      x: "first_serve_pct",
+      y: "first_serve_won",
+      text: "player",
+      dy: -12,
+      fontSize: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 10,
+      fontWeight: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "bold" : "normal",
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "black",
+    }),
+  ]
+})
+```
+
+### Break Point Performance
+
+Clutch players both save break points on serve and convert them on return.
+
+```{ojs}
+//| label: bp-scatter
+
+// Filter to players with BP data
+bpPlayers = filteredPlayers.filter(p => p.bp_save_pct && p.bp_convert_pct)
+
+Plot.plot({
+  width: 800,
+  height: 450,
+  marginRight: 60,
+  grid: true,
+  x: {label: "BP Save %", domain: [d3.min(bpPlayers, d => d.bp_save_pct) * 0.95, d3.max(bpPlayers, d => d.bp_save_pct) * 1.02]},
+  y: {label: "BP Convert %", domain: [d3.min(bpPlayers, d => d.bp_convert_pct) * 0.95, d3.max(bpPlayers, d => d.bp_convert_pct) * 1.02]},
+  marks: [
+    // Average reference lines
+    Plot.ruleX([groupAverages.bp_save_pct], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    Plot.ruleY([groupAverages.bp_convert_pct], {stroke: "gray", strokeDasharray: "4,4", strokeOpacity: 0.5}),
+    // Points
+    Plot.dot(bpPlayers, {
+      x: "bp_save_pct",
+      y: "bp_convert_pct",
+      r: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 8,
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "gold" : tourColor,
+      stroke: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "white",
+      strokeWidth: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 3 : 1,
+      title: d => `${d.player} (#${d.rank})\nBP Save: ${d.bp_save_pct}%\nBP Convert: ${d.bp_convert_pct}%`,
+    }),
+    // Labels
+    Plot.text(bpPlayers, {
+      x: "bp_save_pct",
+      y: "bp_convert_pct",
+      text: "player",
+      dy: -12,
+      fontSize: d => highlightPlayer !== "None" && d.player === highlightPlayer ? 12 : 10,
+      fontWeight: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "bold" : "normal",
+      fill: d => highlightPlayer !== "None" && d.player === highlightPlayer ? "darkred" : "black",
+    }),
+  ]
+})
+```
+
+### Surface Analysis
+
+Grass favors servers (fast, low bounce). Clay neutralizes the serve (slow, high bounce).
+
+```{ojs}
+//| label: surface-chart
+
+// Surface averages bar chart
+surfaceColors = ({Hard: "#1f77b4", Clay: "#d62728", Grass: "#2ca02c"})
+
+Plot.plot({
+  width: 700,
+  height: 350,
+  marginBottom: 40,
+  x: {label: "Surface", padding: 0.3},
+  y: {label: "Aces per Match", domain: [0, d3.max(currentData.surface_avg, d => d.aces_per_match) * 1.2]},
+  marks: [
+    Plot.barY(currentData.surface_avg, {
+      x: "surface",
+      y: "aces_per_match",
+      fill: d => surfaceColors[d.surface],
+      title: d => `${d.surface}\nAces/Match: ${d.aces_per_match}\n1st Won: ${d.first_won_pct}%`
+    }),
+    Plot.text(currentData.surface_avg, {
+      x: "surface",
+      y: "aces_per_match",
+      text: d => d.aces_per_match,
+      dy: -8,
+      fontSize: 14,
+      fontWeight: "bold"
+    })
+  ]
+})
+```
+
+### Player Surface Profiles
+
+How does each player's serve performance vary across surfaces?
+
+```{ojs}
+//| label: surface-heatmap
+
+// Pivot surface data for heatmap
+surfacePivot = {
+  const players = [...new Set(filteredSurface.map(d => d.player))];
+  const surfaces = ["Hard", "Clay", "Grass"];
+
+  // Create pivot with player/rank pairs
+  const result = [];
+  for (const player of players) {
+    const playerData = filteredSurface.filter(d => d.player === player);
+    if (playerData.length > 0) {
+      const row = {
+        player: player,
+        rank: playerData[0].rank
+      };
+      for (const surface of surfaces) {
+        const surfData = playerData.find(d => d.surface === surface);
+        row[surface] = surfData ? surfData.ace_rate : null;
+      }
+      result.push(row);
+    }
+  }
+
+  // Sort by rank and take top 12
+  return result.sort((a, b) => a.rank - b.rank).slice(0, 12);
+}
+
+// Flatten for heatmap
+heatmapData = {
+  const data = [];
+  const surfaces = ["Hard", "Clay", "Grass"];
+  for (const row of surfacePivot) {
+    for (const surface of surfaces) {
+      if (row[surface] !== null) {
+        data.push({
+          player: row.player,
+          surface: surface,
+          ace_rate: row[surface]
+        });
+      }
+    }
+  }
+  return data;
+}
+
+Plot.plot({
+  width: 600,
+  height: 400,
+  marginLeft: 80,
+  marginBottom: 40,
+  color: {
+    scheme: tour === "ATP" ? "blues" : "RdPu",
+    legend: true,
+    label: "Ace Rate %"
+  },
+  x: {label: "Surface", padding: 0.1},
+  y: {label: null, padding: 0.1},
+  marks: [
+    Plot.cell(heatmapData, {
+      x: "surface",
+      y: "player",
+      fill: "ace_rate",
+      title: d => `${d.player}\n${d.surface}: ${d.ace_rate}%`
+    }),
+    Plot.text(heatmapData, {
+      x: "surface",
+      y: "player",
+      text: d => d.ace_rate ? `${d.ace_rate}%` : "",
+      fill: d => d.ace_rate > 8 ? "white" : "black",
+      fontSize: 11
+    })
+  ]
+})
+```
+
+:::
+
+## Highlighted Player Comparison
+
+```{ojs}
+//| label: highlight-comparison
+
+highlightedStats = {
+  if (highlightPlayer === "None") return null;
+  return filteredPlayers.find(p => p.player === highlightPlayer);
+}
+
+html`${highlightPlayer !== "None" && highlightedStats ? html`
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+  <h4 style="margin-top: 0;">${highlightedStats.full_name} (#${highlightedStats.rank}) vs Selected Players</h4>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.ace_rate > groupAverages.ace_rate ? 'green' : 'red'};">
+      <div style="font-size: 0.75rem; color: #666;">Ace Rate</div>
+      <div style="font-size: 1.4rem; font-weight: bold;">${highlightedStats.ace_rate}%</div>
+      <div style="font-size: 0.8rem; color: ${highlightedStats.ace_rate > groupAverages.ace_rate ? 'green' : 'red'};">
+        ${(highlightedStats.ace_rate - groupAverages.ace_rate).toFixed(1)}% vs avg (${groupAverages.ace_rate.toFixed(1)}%)
+      </div>
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.first_serve_won > groupAverages.first_serve_won ? 'green' : 'red'};">
+      <div style="font-size: 0.75rem; color: #666;">1st Serve Won</div>
+      <div style="font-size: 1.4rem; font-weight: bold;">${highlightedStats.first_serve_won}%</div>
+      <div style="font-size: 0.8rem; color: ${highlightedStats.first_serve_won > groupAverages.first_serve_won ? 'green' : 'red'};">
+        ${(highlightedStats.first_serve_won - groupAverages.first_serve_won).toFixed(1)}% vs avg (${groupAverages.first_serve_won.toFixed(1)}%)
+      </div>
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.bp_save_pct > groupAverages.bp_save_pct ? 'green' : 'red'};">
+      <div style="font-size: 0.75rem; color: #666;">BP Save</div>
+      <div style="font-size: 1.4rem; font-weight: bold;">${highlightedStats.bp_save_pct}%</div>
+      <div style="font-size: 0.8rem; color: ${highlightedStats.bp_save_pct > groupAverages.bp_save_pct ? 'green' : 'red'};">
+        ${(highlightedStats.bp_save_pct - groupAverages.bp_save_pct).toFixed(1)}% vs avg (${groupAverages.bp_save_pct.toFixed(1)}%)
+      </div>
+    </div>
+  </div>
+</div>
+` : html`<p style="color: #666; font-style: italic;">Select a player to highlight from the sidebar to see detailed comparison.</p>`}`
+```
+
+## Key Takeaways
+
+- **Winners outserve losers** across all metrics, with the biggest gaps in 1st serve win % and break point save %
+- **ATP players hit 2x more aces** than WTA players on average
+- **Break point save %** is the most predictive stat - it combines serving ability with clutch performance
+- **Surface matters**: Grass produces the most aces; clay neutralizes serve advantages
+
+---
+
+*Data source: [Tennis Abstract](http://www.tennisabstract.com/) | Dashboard built with Quarto and Observable JS*

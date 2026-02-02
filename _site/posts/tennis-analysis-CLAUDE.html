@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>claude – Ali Zaidi</title>
+<title>tennis-analysis-claude – Ali Zaidi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d329e753491efaeac79c98c4b193a686.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-9ccec12e75040a7b2e6f2e8a12f431ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d329e753491efaeac79c98c4b193a686.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9ccec12e75040a7b2e6f2e8a12f431ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -242,11 +277,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Ali Zaidi</span>
     </a>
   </div>
@@ -257,15 +292,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resume.html"> 
+    <a class="nav-link" href="../resume.html"> 
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item compact">
@@ -292,59 +327,174 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<section id="claude.md" class="level1">
-<h1>CLAUDE.md</h1>
-<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
-<section id="build-commands" class="level2">
-<h2 class="anchored" data-anchor-id="build-commands">Build Commands</h2>
-<p>This is a Quarto static website. Key commands:</p>
+<section id="tennis-analysis-claude.md" class="level1">
+<h1>Tennis Analysis CLAUDE.md</h1>
+<p>Project-specific instructions for tennis analysis notebooks and data.</p>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
+<p><strong>Raw Data:</strong> Jeff Sackmann’s Tennis Abstract repositories (CC BY-NC-SA 4.0) - ATP: <code>data/tennis_atp/</code> (git submodule) - WTA: <code>data/tennis_wta/</code> (git submodule)</p>
+<p><strong>Extracted Subsets:</strong> - <code>data/top10/</code> - Top 10 players (Dec 30, 2024 rankings) - <code>data/top25/</code> - Top 25 players</p>
+<section id="data-files-structure" class="level3">
+<h3 class="anchored" data-anchor-id="data-files-structure">Data Files Structure</h3>
+<p>Each tour directory (<code>atp/</code>, <code>wta/</code>) contains: - <code>*_topN_players.csv</code> - Player biographical data - <code>*_topN_rankings.csv</code> - Complete ranking history - <code>*_topN_matches.csv</code> - All matches involving these players</p>
+</section>
+<section id="key-columns" class="level3">
+<h3 class="anchored" data-anchor-id="key-columns">Key Columns</h3>
+<p><strong>Players:</strong> | Column | Description | |——–|————-| | <code>player_id</code> | Unique identifier (use for joins) | | <code>name_first</code>, <code>name_last</code> | Name components | | <code>full_name</code> | Created as <code>name_first + ' ' + name_last</code> | | <code>hand</code> | L/R | | <code>dob</code> | Date of birth (YYYYMMDD format) | | <code>ioc</code> | Country code | | <code>height</code> | In centimeters |</p>
+<p><strong>Matches:</strong> | Column | Description | |——–|————-| | <code>tourney_date</code> | Tournament date (YYYYMMDD, parse to datetime) | | <code>surface</code> | Hard, Clay, Grass, Carpet | | <code>tourney_level</code> | G=Grand Slam, M=Masters, A=ATP 500/250, F=Finals, D=Davis/BJK Cup | | <code>winner_id</code>, <code>loser_id</code> | Player IDs | | <code>score</code> | Match score string | | <code>minutes</code> | Match duration |</p>
+<p><strong>Serve Statistics (prefixed <code>w_</code> for winner, <code>l_</code> for loser):</strong> | Column | Description | |——–|————-| | <code>*_ace</code> | Aces | | <code>*_df</code> | Double faults | | <code>*_svpt</code> | Total serve points | | <code>*_1stIn</code> | First serves in | | <code>*_1stWon</code> | Points won on first serve | | <code>*_2ndWon</code> | Points won on second serve | | <code>*_bpSaved</code> | Break points saved | | <code>*_bpFaced</code> | Break points faced |</p>
+</section>
+</section>
+<section id="notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="notebooks">Notebooks</h2>
+<section id="poststennis-edatennis-eda.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="poststennis-edatennis-eda.ipynb"><code>posts/tennis-eda/tennis-eda.ipynb</code></h3>
+<p>Interactive dashboard with Top 10 player analysis: - Player overview and win rates - Rankings history with range slider - Surface performance heatmaps - Head-to-head matrices - Serve analysis - Tournament level performance</p>
+</section>
+<section id="postsserve-analysisserve-analysis.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="postsserve-analysisserve-analysis.ipynb"><code>posts/serve-analysis/serve-analysis.ipynb</code></h3>
+<p>Deep dive into serve statistics with Top 25 players: - Tour averages comparison - Winner vs loser differentials - Ace production scatter plots - First serve accuracy vs effectiveness - Break point performance - Surface impact on serve stats</p>
+</section>
+</section>
+<section id="code-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="code-patterns">Code Patterns</h2>
+<section id="data-loading" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading">Data Loading</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="op">=</span> <span class="st">'../../data/top25'</span>  <span class="co"># or top10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>atp_players <span class="op">=</span> pd.read_csv(<span class="ss">f'</span><span class="sc">{</span>DATA_PATH<span class="sc">}</span><span class="ss">/atp/atp_top25_players.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>atp_matches <span class="op">=</span> pd.read_csv(<span class="ss">f'</span><span class="sc">{</span>DATA_PATH<span class="sc">}</span><span class="ss">/atp/atp_top25_matches.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wta_players <span class="op">=</span> pd.read_csv(<span class="ss">f'</span><span class="sc">{</span>DATA_PATH<span class="sc">}</span><span class="ss">/wta/wta_top25_players.csv'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>wta_matches <span class="op">=</span> pd.read_csv(<span class="ss">f'</span><span class="sc">{</span>DATA_PATH<span class="sc">}</span><span class="ss">/wta/wta_top25_matches.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Always create full_name</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> df <span class="kw">in</span> [atp_players, wta_players]:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'full_name'</span>] <span class="op">=</span> df[<span class="st">'name_first'</span>] <span class="op">+</span> <span class="st">' '</span> <span class="op">+</span> df[<span class="st">'name_last'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse dates</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>atp_matches[<span class="st">'tourney_date'</span>] <span class="op">=</span> pd.to_datetime(atp_matches[<span class="st">'tourney_date'</span>].astype(<span class="bu">str</span>), <span class="bu">format</span><span class="op">=</span><span class="st">'%Y%m</span><span class="sc">%d</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="filtering-for-serve-data" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-for-serve-data">Filtering for Serve Data</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>serve_cols <span class="op">=</span> [<span class="st">'w_ace'</span>, <span class="st">'w_df'</span>, <span class="st">'w_svpt'</span>, <span class="st">'w_1stIn'</span>, <span class="st">'w_1stWon'</span>, <span class="st">'w_2ndWon'</span>, <span class="st">'w_SvGms'</span>, <span class="st">'w_bpSaved'</span>, <span class="st">'w_bpFaced'</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>atp_serve_matches <span class="op">=</span> atp_matches.dropna(subset<span class="op">=</span>serve_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="player-statistics-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="player-statistics-pattern">Player Statistics Pattern</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_stats(matches_df, players_df):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> []</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, player <span class="kw">in</span> players_df.iterrows():</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        pid, name <span class="op">=</span> player[<span class="st">'player_id'</span>], player[<span class="st">'full_name'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get wins and losses separately</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        wins <span class="op">=</span> matches_df[matches_df[<span class="st">'winner_id'</span>] <span class="op">==</span> pid][[<span class="st">'w_col1'</span>, <span class="st">'w_col2'</span>]].copy()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        wins.columns <span class="op">=</span> [<span class="st">'col1'</span>, <span class="st">'col2'</span>]  <span class="co"># Normalize column names</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        losses <span class="op">=</span> matches_df[matches_df[<span class="st">'loser_id'</span>] <span class="op">==</span> pid][[<span class="st">'l_col1'</span>, <span class="st">'l_col2'</span>]].copy()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        losses.columns <span class="op">=</span> [<span class="st">'col1'</span>, <span class="st">'col2'</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        all_matches <span class="op">=</span> pd.concat([wins, losses]).dropna()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(all_matches) <span class="op">&gt;=</span> <span class="dv">20</span>:  <span class="co"># Minimum match threshold</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            results.append({</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Player'</span>: name.split()[<span class="op">-</span><span class="dv">1</span>],  <span class="co"># Last name only for display</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Stat'</span>: calculate_something(all_matches)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="adding-rank-if-needed-for-sorting" class="level3">
+<h3 class="anchored" data-anchor-id="adding-rank-if-needed-for-sorting">Adding Rank (if needed for sorting)</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV row order may not equal ranking - add explicit rank if available</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>atp_players[<span class="st">'rank'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(atp_players) <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="visualization-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-patterns">Visualization Patterns</h2>
+<section id="tour-colors" class="level3">
+<h3 class="anchored" data-anchor-id="tour-colors">Tour Colors</h3>
 <ul>
-<li><code>quarto preview</code> - Start local development server with hot reload</li>
-<li><code>quarto render</code> - Build full site to <code>_site/</code> directory</li>
-<li><code>quarto render [file.qmd]</code> - Render a single file</li>
+<li><strong>ATP:</strong> <code>#1f77b4</code> (blue)</li>
+<li><strong>WTA:</strong> <code>#e377c2</code> (pink)</li>
 </ul>
 </section>
-<section id="project-structure" class="level2">
-<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
-<p><strong>Framework:</strong> Quarto 1.7.33 static site generator</p>
-<p><strong>Main Pages:</strong> - <code>index.qmd</code> - Landing page with hero section - <code>about.qmd</code> - About page using Jolla template - <code>blog.qmd</code> - Blog listing page (grid layout) - <code>resume.qmd</code> - CV with HTML + PDF output</p>
-<p><strong>Blog Posts:</strong> Located in <code>posts/</code> directory. Each post is either a <code>.qmd</code> file or Jupyter notebook (<code>.ipynb</code>). Post-level config in <code>posts/_metadata.yml</code> sets <code>freeze: true</code> (caches computational output) and enables title block banners.</p>
-<p><strong>Output:</strong> Built site goes to <code>_site/</code> (gitignored except for committed files)</p>
+<section id="panel-tabsets-for-atpwta" class="level3">
+<h3 class="anchored" data-anchor-id="panel-tabsets-for-atpwta">Panel Tabsets for ATP/WTA</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## ATP</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>```python code here```</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## WTA</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>```python code here```</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="configuration" class="level2">
-<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
-<ul>
-<li><code>_quarto.yml</code> - Site config: navbar, footer, dual themes (cosmo light/darkly dark)</li>
-<li><code>styles.css</code> - Custom CSS for hero sections, cards, animations, dark mode overrides</li>
-<li><code>cv.css</code> - Resume-specific styling</li>
-</ul>
+<section id="interactive-scatter-with-player-selection" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-scatter-with-player-selection">Interactive Scatter with Player Selection</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_scatter_with_filters(df, color, x_col, y_col, x_label, y_label, div_id):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> go.Figure()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        fig.add_trace(go.Scatter(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span>[row[x_col]], y<span class="op">=</span>[row[y_col]],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            mode<span class="op">=</span><span class="st">'markers+text'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span>[row[<span class="st">'Player'</span>]], textposition<span class="op">=</span><span class="st">'top center'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span>color),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            name<span class="op">=</span>row[<span class="st">'Player'</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        ))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add reference lines at mean</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    fig.add_hline(y<span class="op">=</span>df[y_col].mean(), line_dash<span class="op">=</span><span class="st">'dash'</span>, line_color<span class="op">=</span><span class="st">'gray'</span>, opacity<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    fig.add_vline(x<span class="op">=</span>df[x_col].mean(), line_dash<span class="op">=</span><span class="st">'dash'</span>, line_color<span class="op">=</span><span class="st">'gray'</span>, opacity<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Use with custom div_id for JavaScript targeting</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> fig.to_html(full_html<span class="op">=</span><span class="va">False</span>, include_plotlyjs<span class="op">=</span><span class="va">False</span>, div_id<span class="op">=</span><span class="st">'my-chart-id'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>display(HTML(html))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="styling-notes" class="level2">
-<h2 class="anchored" data-anchor-id="styling-notes">Styling Notes</h2>
-<ul>
-<li>Uses AOS.js for scroll animations</li>
-<li>Custom fonts: Space Grotesk (headings), Inter (body)</li>
-<li>Responsive design with Bootstrap grid from Quarto</li>
-<li>Theme toggle between light/dark modes</li>
-</ul>
+<section id="global-player-selection-widget" class="level3">
+<h3 class="anchored" data-anchor-id="global-player-selection-widget">Global Player Selection Widget</h3>
+<p>When multiple charts need synchronized player filtering, use: 1. Calculate all stats upfront in a single cell 2. Create canonical player list (intersection of all charts) 3. Add HTML/JS widget with <code>display(HTML(widget_html))</code> 4. Use <code>Plotly.restyle(el, {visible: visibility_array})</code> to sync charts</p>
 </section>
-<section id="deployment" class="level2">
-<h2 class="anchored" data-anchor-id="deployment">Deployment</h2>
-<ul>
-<li>Main branch: <code>main</code></li>
-<li>Deployment branch: <code>gh-pages</code> (GitHub Pages)</li>
-</ul>
+</section>
+<section id="extract-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="extract-scripts">Extract Scripts</h2>
+<section id="dataextract_top10.py" class="level3">
+<h3 class="anchored" data-anchor-id="dataextract_top10.py"><code>data/extract_top10.py</code></h3>
+<p>Extracts top 10 player data. Modify <code>ATP_TOP_10</code> and <code>WTA_TOP_10</code> lists with player IDs.</p>
+</section>
+<section id="dataextract_top25.py" class="level3">
+<h3 class="anchored" data-anchor-id="dataextract_top25.py"><code>data/extract_top25.py</code></h3>
+<p>Same pattern for top 25 players.</p>
+<p>To run:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> extract_top25.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="testing" class="level2">
+<h2 class="anchored" data-anchor-id="testing">Testing</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render single notebook</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render posts/serve-analysis/serve-analysis.ipynb <span class="at">--execute</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview site</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="common-issues" class="level2">
+<h2 class="anchored" data-anchor-id="common-issues">Common Issues</h2>
+<ol type="1">
+<li><p><strong>Missing serve data:</strong> Many older matches lack serve statistics. Filter with <code>dropna(subset=serve_cols)</code>.</p></li>
+<li><p><strong>Player ID mismatches:</strong> Always join on <code>player_id</code>, not name (names can have variants).</p></li>
+<li><p><strong>Date parsing:</strong> Dates are stored as YYYYMMDD integers. Use <code>format='%Y%m%d'</code> with <code>pd.to_datetime()</code>.</p></li>
+<li><p><strong>JavaScript in f-strings:</strong> When embedding JS in Python f-strings, escape braces <code>{{</code> and <code>}}</code>. For template literals with <code>${}</code>, use string concatenation: <code>'.' + tour + '-player'</code> instead of template syntax.</p></li>
+<li><p><strong>Plotly in Quarto:</strong> Use <code>fig.to_html(full_html=False, include_plotlyjs=False, div_id='unique-id')</code> for charts that need JavaScript interaction. Quarto includes Plotly globally.</p></li>
+</ol>
 
 
 </section>
@@ -781,5 +931,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

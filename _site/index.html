@@ -410,9 +410,9 @@ ul.task-list li input[type="checkbox"] {
 body:not(.quarto-dark) .gradient-bg {
   #background: linear-gradient(-45deg, #0a2f1f, #1a4a32, #0d3320, #152f20);
   /* A shifting, cool blue-grey. Matches well with Navy/Indigo dark modes. */
-  #background: linear-gradient(-45deg, #eef2f6, #e3e8ef, #dbe4ef, #e5eaf2);
+  background: linear-gradient(-45deg, #eef2f6, #e3e8ef, #dbe4ef, #e5eaf2);
   /* A shifting, soft violet-grey. Matches well with Deep Purple/Violet dark modes. */
-  background: linear-gradient(-45deg, #f3f3f8, #e8e8f0, #f0f0f6, #e2e2ea)
+  #background: linear-gradient(-45deg, #f3f3f8, #e8e8f0, #f0f0f6, #e2e2ea)
   /* A deeper, more distinct grey. Good for high contrast against white containers. */
   #background: linear-gradient(-45deg, #e2e8f0, #cbd5e1, #e2e8f0, #dae1e7);
   background-size: 400% 400%;
@@ -515,17 +515,50 @@ body:not(.quarto-dark) .gradient-bg {
 
 @media (max-width: 600px) {
   .cards-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.75rem 1rem 0.75rem;
+  }
+
+  .feature-card-v2 {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .card-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0.4rem;
+    border-radius: 8px;
+  }
+
+  .card-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .feature-card-v2 h3 {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .feature-card-v2 p {
+    display: none;
+  }
+
+  .card-arrow {
+    display: none;
   }
 
   .hero-section-v2 {
-    padding: 2rem;
-    margin: 1rem;
-    justify-content: center;
+    height: 35vh;
+    min-height: 200px;
+    padding: 1rem;
+    margin: 60px 0.75rem 0.75rem 0.75rem;
+    border-radius: 16px;
   }
 
   .hero-title-v2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .hero-content-v2 {
@@ -533,12 +566,21 @@ body:not(.quarto-dark) .gradient-bg {
     text-align: center;
     margin-left: 0;
     padding-right: 0;
+    gap: 1rem;
   }
 
   .hero-divider {
-    width: 80px;
+    width: 60px;
     height: 1px;
     background: rgba(255,255,255,0.5);
+  }
+
+  .hero-subtitle-v2 {
+    gap: 0.3rem;
+  }
+
+  .hero-subtitle-v2 span {
+    font-size: 0.65rem;
   }
 }
 
