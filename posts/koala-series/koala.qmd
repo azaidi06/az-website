@@ -1,0 +1,17 @@
+---
+title: "A series of Koalas"
+date: "2022-11-6"
+categories: [Art, Random, Fun]
+image: images/koala_fedora.png
+draft: false
+---
+By Stable Diffusion
+
+# Sunrise
+![](images/koala_sunrise.png)
+
+# Just hanging out
+![](images/koala_branch.png)
+
+# <3
+![](images/koala_pair.png)

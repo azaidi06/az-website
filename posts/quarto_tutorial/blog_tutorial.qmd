@@ -1,0 +1,33 @@
+---
+title: "Making a blog"
+description: Blogging made easy, for anyone!
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        toc-title: Contents
+        toc-location: body
+        number-sections: true
+        number-depth: 3
+date: "2022-11-6"
+categories: [Tutorial, Programming]
+image: images/blog_img.png
+draft: false
+---
+
+# Why would you ever want to write a blog?
+
+Creating a blog is [often hailed](https://www.fast.ai/posts/2019-05-13-blogging-advice.html) as an essential step in ones machine learning journey -- but this can most likely be abstracted to ones software development journey. 
+<br><br>
+When I started learning how to code a few years ago, the idea of creating a blog while ALSO trying to learn all these new things seemed daunting. In hindsight, it would have been appropriate to start right away. Most of what I worked on or touched has basically disappeared into the ether. Sure, there's some neat kaggle notebooks I could point people to, but overall the delivery mechanism just isn't there. How would I even go about showing this to someone? *Here's a bunch of URLs to Kaggle notebooks and Github repos*
+
+<br>
+
+# Where would you even begin to start a blog?
+If you wanted to bypass doing any setup work - you could create profile on Medium (or something similar) and start posting there. While I'm sure it's an excellent option, creating your own blog provides the opportunity to customize everything and be in control. At some point (a few years ago) I decided I should heed this advice, but I also convinced myself that I needed to create the website from scratch with Django. After about a day or two of (what felt like) banging my head, I came to my senses and gave up.
+<br><br>
+
+Luckily, with [Quarto](https://quarto.org) things couldn't be easier! This post is based on the work of other wonderful posts that I found on the Fast.AI forums ([one](https://nabiafshan.github.io/fastai/blog/create_blog.html)) ([two](https://nabiafshan.github.io/fastai/blog/create_blog.html)) -- along with some perusing of the Quarto docs.
+
+
+# How can you build one with Quarto?

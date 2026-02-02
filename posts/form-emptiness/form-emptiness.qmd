@@ -1,0 +1,9 @@
+---
+title: "Stable Diffusion & The Book of Form and Emptiness"
+date: "2022-11-6"
+categories: [Books, Machine Learning, Fun]
+image: images/book_cover.png
+draft: true
+---
+
+The images that you can see in the Series of Koalas and the Series of Cats were generated with an alogrithm (Stable Diffusion). 

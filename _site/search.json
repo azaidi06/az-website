@@ -2,43 +2,169 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Ali Zaidi",
     "section": "",
-    "text": "About this blog\n\n\n\n\n\n\n\n\n\n\nWelcome To My Website\n\n1 min\n\n\n\n\n\nJan 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n2025 Travel\n\n1 min\n\n\n\n\n\nDec 23, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Product Leader and Applied AI Engineer building data-driven products that deliver real value. I thrive in environments where I can bridge technical execution with product strategy.\n\n\n\n\n\nProduct Leadership\n\n\nVision, roadmap, and stakeholder alignment for technical products\n\n\n\n\n\n\nApplied AI\n\n\nProduction ML systems with Python, PyTorch, and cloud infrastructure\n\n\n\n\n\n\nFull Stack Data\n\n\nEnd-to-end pipelines from data engineering to visualization\n\n\n\n\n\n\nData Science\n\n\nComputer Vision, NLP, LLMs, Data Engineering\n\n\n\n\n\n\nSoftware Engineering\n\n\nAPIs, CI/CD, Docker, Python Packages\n\n\n\n\n\n\nCloud & Infrastructure\n\n\nAWS, HPC/SLURM, Scalable Systems"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "2025 Travel",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Ali Zaidi",
     "section": "",
-    "text": "This will feature some selected travel shots\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "BringingData toLife\n    \n    \n      Applied Data Scientist \n      Software Engineer \n      Product Leader"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Website",
+    "objectID": "blog.html#blog",
+    "href": "blog.html#blog",
+    "title": "Ali Zaidi",
+    "section": "Blog",
+    "text": "Blog"
+  },
+  {
+    "objectID": "posts/quarto_tutorial/blog_tutorial.html",
+    "href": "posts/quarto_tutorial/blog_tutorial.html",
+    "title": "Making a blog",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "1 Why would you ever want to write a blog?\nCreating a blog is often hailed as an essential step in ones machine learning journey – but this can most likely be abstracted to ones software development journey.  When I started learning how to code a few years ago, the idea of creating a blog while ALSO trying to learn all these new things seemed daunting. In hindsight, it would have been appropriate to start right away. Most of what I worked on or touched has basically disappeared into the ether. Sure, there’s some neat kaggle notebooks I could point people to, but overall the delivery mechanism just isn’t there. How would I even go about showing this to someone? Here’s a bunch of URLs to Kaggle notebooks and Github repos\n\n\n\n2 Where would you even begin to start a blog?\nIf you wanted to bypass doing any setup work - you could create profile on Medium (or something similar) and start posting there. While I’m sure it’s an excellent option, creating your own blog provides the opportunity to customize everything and be in control. At some point (a few years ago) I decided I should heed this advice, but I also convinced myself that I needed to create the website from scratch with Django. After about a day or two of (what felt like) banging my head, I came to my senses and gave up. \nLuckily, with Quarto things couldn’t be easier! This post is based on the work of other wonderful posts that I found on the Fast.AI forums (one) (two) – along with some perusing of the Quarto docs.\n\n\n3 How can you build one with Quarto?"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Ali Zaidi",
+    "section": "",
+    "text": "Product Leader & Applied AI Engineer\nazaidi06@gmail.com | linkedin.com/in/azaidi06 | github.com/azaidi06"
+  },
+  {
+    "objectID": "resume.html#work-experience",
+    "href": "resume.html#work-experience",
+    "title": "Ali Zaidi",
+    "section": "Work Experience",
+    "text": "Work Experience\n\nCofounder & Head of Data Science\nEagleSwing August 2025 – Present\n\nEnd-to-End Product Architecture\n\n\n\nComputer Systems Engineer 2\nLawrence Berkeley National Laboratory June 2022 – September 2025\n\nLLM Research & Optimization\n\n\n\nComputer Systems Engineer 1\nLawrence Berkeley National Laboratory June 2021 – May 2022\n\nGenomic Deep Learning\nDistributed Training\n\n\n\nMachine Learning Intern\nLawrence Berkeley National Laboratory November 2020 – May 2021\n\nProtein Folding Analysis\nCluster Management\n\n\n\nSenior Project Manager\nFuze November 2019 – May 2021\n\nSenior manager handling major clients + mentoring junior staff\n\n\n\nProgram Manager\nPharmaceutics International Inc. March 2014 – July 2016\n\nFDA drug submission + responses (2014-2016)\nInternal R&D manager (2014-2015)\nManaged client Softgel + Hard Shell R&D and manufacturing operations"
+  },
+  {
+    "objectID": "resume.html#publications-miscellaneous",
+    "href": "resume.html#publications-miscellaneous",
+    "title": "Curriculum Vitae",
+    "section": "Publications & Miscellaneous",
+    "text": "Publications & Miscellaneous\n\nPaper: Zero-shot data citation function classification using Transformer-based large language models (LLMs) (4 Nov 2025)\nPaper: Cases of Refractory Anemia with Ringed Sideroblasts Who Responded to Chloroquine (7 Aug 2014)"
+  },
+  {
+    "objectID": "resume.html#core-skills",
+    "href": "resume.html#core-skills",
+    "title": "Curriculum Vitae",
+    "section": "Core Skills",
+    "text": "Core Skills\n\nDeep Learning (Pytorch, Keras & PyTorch Lightning)\nMachine Learning (XGBoost, SciKit Learn)\nData Engineering (Numpy, Pandas, SQL)\nComputer Vision\n\nConvolutional models (PyTorch)\nSegmentation models (OpenMM Lab)\nTraditional Language Models (LSTM)\nCurrent Language Models (Transformer based – Huggingface etc)"
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Ali Zaidi",
+    "section": "Education",
+    "text": "Education\n\nBachelors of Science – Finance\nUniversity of Maryland College Park May 2012\n\n\nPost Baccalaureate – Pre-Medicine\nUniversity of Maryland College Park May 2013"
+  },
+  {
+    "objectID": "posts/cats-series/cats.html",
+    "href": "posts/cats-series/cats.html",
+    "title": "A series of Cats",
+    "section": "",
+    "text": "By Stable Diffusion\n\nYum\n\n\n\nFun\n\n\n\nWho said cats can’t play tennis?\n\n\n\n\n\nWe love using our paws"
+  },
+  {
+    "objectID": "posts/nb_tutorial/nb_tutorial.html",
+    "href": "posts/nb_tutorial/nb_tutorial.html",
+    "title": "Authoring delightful documents with Notebooks!",
+    "section": "",
+    "text": "Code\nTo use a jupyter notebook like this, include the following as raw a cell at the top of your notebook:&lt;br&gt;\ntitle: \"Authoring delightful documents with Notebooks!\"&lt;br&gt;\nauthor: \"Ali Zaidi\"&lt;br&gt;\ndate: \"2022-10-21\"&lt;br&gt;\ncategories: []&lt;br&gt;\ntoc: true&lt;br&gt;\ntoc-depth: 3&lt;br&gt;\ntoc-title: Contents&lt;br&gt;\nimage: \"notebook.png\"&lt;br&gt;\nnumber-sections: true&lt;br&gt;\nformat:&lt;br&gt;\n    html:&lt;br&gt;\n        code-fold: true&lt;br&gt;\n        code-tools: true&lt;br&gt;\nkeep-ipynb: true &lt;br&gt;\njupyter: python3&lt;br&gt;"
+  },
+  {
+    "objectID": "posts/nb_tutorial/nb_tutorial.html#seeing-our-first-plot",
+    "href": "posts/nb_tutorial/nb_tutorial.html#seeing-our-first-plot",
+    "title": "Authoring delightful documents with Notebooks!",
+    "section": "1.1 Seeing our first plot",
+    "text": "1.1 Seeing our first plot\n\n1.1.1 Random level in\nJust to show toc-depth field (table of content)\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\nx = np.arange(10)\ny = np.random.randint(0, 10, 10)\nplt.plot(x,y)\nplt.title('A random plot!')\nplt.xlabel('our x axis :-p')\nplt.ylabel('our y values');\n\n\n\n\n\na simple plot!\n\n\n\n\n\n\nCode\nnp.array([x,y]).T.shape\n\n\n(10, 2)"
+  },
+  {
+    "objectID": "posts/nb_tutorial/nb_tutorial.html#dataframes-as-well",
+    "href": "posts/nb_tutorial/nb_tutorial.html#dataframes-as-well",
+    "title": "Authoring delightful documents with Notebooks!",
+    "section": "1.2 Dataframes as well!",
+    "text": "1.2 Dataframes as well!\n\n\n\n\n\n\n\n\n\ny1\ny2\ny3\n\n\n\n\n0\n5.0\n8.0\n2.5\n\n\n1\n6.0\n9.0\n3.0\n\n\n2\n8.0\n11.0\n4.0\n\n\n3\n1.0\n4.0\n0.5\n\n\n4\n6.0\n9.0\n3.0\n\n\n5\n4.0\n7.0\n2.0\n\n\n6\n4.0\n7.0\n2.0\n\n\n7\n3.0\n6.0\n1.5\n\n\n8\n3.0\n6.0\n1.5\n\n\n9\n3.0\n6.0\n1.5"
+  },
+  {
+    "objectID": "posts/koala-series/koala.html",
+    "href": "posts/koala-series/koala.html",
+    "title": "A series of Koalas",
+    "section": "",
+    "text": "By Stable Diffusion\n\nSunrise\n\n\n\nJust hanging out\n\n\n\n&lt;3"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Ali Zaidi",
     "section": "",
-    "text": "Covering topics in tech, data, sports and photography\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Website\n\n\n\n\n\n\n\n\nJan 20, 2026\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n2025 Travel\n\n\n\n\n\n\n\n\nDec 23, 2025\n\n1 min\n\n\n\n\nNo matching items"
+    "text": "BringingData toLife\n    \n    \n      Applied Data Scientist \n      Software Engineer \n      Product Leader\n    \n  \n\n\n\n\n\nAbout Me\n\nBackground, skills, and expertise\n\n\n\n\n\n\n\nPersonal Blog\n\nThoughts, tutorials, and photos\n\n\n\n\n\n\n\nProfessional Resume\n\nExperience and qualifications\n\n\n\n\n\n\nAreas of Interest\n\nSoftware, Science, Healthcare"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Ali Zaidi",
+    "objectID": "CLAUDE.html",
+    "href": "CLAUDE.html",
+    "title": "CLAUDE.md",
     "section": "",
-    "text": "Covering topics in tech, data, and whatever else is on my mind at the moment"
+    "text": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.\n\n\nThis is a Quarto static website. Key commands:\n\nquarto preview - Start local development server with hot reload\nquarto render - Build full site to _site/ directory\nquarto render [file.qmd] - Render a single file\n\n\n\n\nFramework: Quarto 1.7.33 static site generator\nMain Pages: - index.qmd - Landing page with hero section - about.qmd - About page using Jolla template - blog.qmd - Blog listing page (grid layout) - resume.qmd - CV with HTML + PDF output\nBlog Posts: Located in posts/ directory. Each post is either a .qmd file or Jupyter notebook (.ipynb). Post-level config in posts/_metadata.yml sets freeze: true (caches computational output) and enables title block banners.\nOutput: Built site goes to _site/ (gitignored except for committed files)\n\n\n\n\n_quarto.yml - Site config: navbar, footer, dual themes (cosmo light/darkly dark)\nstyles.css - Custom CSS for hero sections, cards, animations, dark mode overrides\ncv.css - Resume-specific styling\n\n\n\n\n\nUses AOS.js for scroll animations\nCustom fonts: Space Grotesk (headings), Inter (body)\nResponsive design with Bootstrap grid from Quarto\nTheme toggle between light/dark modes\n\n\n\n\n\nMain branch: main\nDeployment branch: gh-pages (GitHub Pages)"
   },
   {
-    "objectID": "index.html#covering-topics-in-tech-data-and-sports",
-    "href": "index.html#covering-topics-in-tech-data-and-sports",
+    "objectID": "CLAUDE.html#build-commands",
+    "href": "CLAUDE.html#build-commands",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "This is a Quarto static website. Key commands:\n\nquarto preview - Start local development server with hot reload\nquarto render - Build full site to _site/ directory\nquarto render [file.qmd] - Render a single file"
+  },
+  {
+    "objectID": "CLAUDE.html#project-structure",
+    "href": "CLAUDE.html#project-structure",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Framework: Quarto 1.7.33 static site generator\nMain Pages: - index.qmd - Landing page with hero section - about.qmd - About page using Jolla template - blog.qmd - Blog listing page (grid layout) - resume.qmd - CV with HTML + PDF output\nBlog Posts: Located in posts/ directory. Each post is either a .qmd file or Jupyter notebook (.ipynb). Post-level config in posts/_metadata.yml sets freeze: true (caches computational output) and enables title block banners.\nOutput: Built site goes to _site/ (gitignored except for committed files)"
+  },
+  {
+    "objectID": "CLAUDE.html#configuration",
+    "href": "CLAUDE.html#configuration",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "_quarto.yml - Site config: navbar, footer, dual themes (cosmo light/darkly dark)\nstyles.css - Custom CSS for hero sections, cards, animations, dark mode overrides\ncv.css - Resume-specific styling"
+  },
+  {
+    "objectID": "CLAUDE.html#styling-notes",
+    "href": "CLAUDE.html#styling-notes",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Uses AOS.js for scroll animations\nCustom fonts: Space Grotesk (headings), Inter (body)\nResponsive design with Bootstrap grid from Quarto\nTheme toggle between light/dark modes"
+  },
+  {
+    "objectID": "CLAUDE.html#deployment",
+    "href": "CLAUDE.html#deployment",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Main branch: main\nDeployment branch: gh-pages (GitHub Pages)"
+  },
+  {
+    "objectID": "resume.html#skills",
+    "href": "resume.html#skills",
+    "title": "Ali Zaidi",
+    "section": "Skills",
+    "text": "Skills\nData Science: Computer Vision, NLP, LLMs, Data Engineering\nSoftware: Python, PyTorch, FastAPI, Docker, Git/CI-CD\nCloud: AWS, HPC/SLURM, Scalable Inference Systems"
+  },
+  {
+    "objectID": "resume.html#publications",
+    "href": "resume.html#publications",
+    "title": "Ali Zaidi",
+    "section": "Publications",
+    "text": "Publications\n\nZero-shot data citation function classification using Transformer-based large language models (Nov 2025)\nCases of Refractory Anemia with Ringed Sideroblasts Who Responded to Chloroquine (Aug 2014)"
+  },
+  {
+    "objectID": "old_index.html",
+    "href": "old_index.html",
     "title": "Ali Zaidi",
     "section": "",
-    "text": "Covering topics in tech, data, and whatever else is on my mind at the moment"
+    "text": "BringingData toLife\n    \n    \n      Applied Data Scientist \n      Software Engineer \n      Product Leader\n    \n  \n\n\n\n\n\nAbout Me\n\nBackground, skills, and expertise\n\n\n\n\n\n\n\nPersonal Blog\n\nThoughts, tutorials, and photos\n\n\n\n\n\n\n\nProfessional Resume\n\nExperience and qualifications\n\n\n\n\n\n\nAreas of Interest\n\nSoftware, Science, Healthcare"
   }
 ]

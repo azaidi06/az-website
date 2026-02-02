@@ -1,0 +1,82 @@
+---
+sidebar: false
+toc: false
+format:
+  html:
+    page-layout: article
+---
+```{=html}
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="hero-title">
+      Bringing<br>Data to<br>Life</div>
+    
+    <div class="hero-subtitle">
+      Applied Data Scientist <br>
+      Software Engineer <br>
+      Product Leader
+    </div>
+  </div>
+</div>
+```
+::: {.grid .feature-grid}
+
+::: {.g-col-12 .g-col-md-6}
+<a href="about.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+### About Me
+<p>Background, skills, and expertise</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<a href="blog.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+### Personal Blog
+<p>Thoughts, tutorials, and photos</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<a href="resume.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+### Professional Resume
+<p>Experience and qualifications</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+### Areas of Interest
+<p>Software, Science, Healthcare</p>
+</div>
+:::
+
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,   // Animation duration in ms
+    easing: 'ease-out-cubic',
+    once: true,      // Whether animation should happen only once while scrolling down
+    offset: 50       // Offset (in px) from the original trigger point
+  });
+</script>
+
+<script>
+  // Navbar Scroll Effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) { // If scrolled more than 50px
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>

@@ -1,24 +1,12 @@
 [
   {
-    "listing": "/about.html",
+    "listing": "/blog.html",
     "items": [
-      "/posts/welcome/index.html",
-      "/posts/post-with-code/index.html"
-    ]
-  },
-  {
-    "listing": "/posts/post-with-code/index.html",
-    "items": []
-  },
-  {
-    "listing": "/posts/welcome/index.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
-    "items": [
-      "/posts/welcome/index.html",
-      "/posts/post-with-code/index.html"
+      "/posts/quarto_tutorial/blog_tutorial.html",
+      "/posts/form-emptiness/form-emptiness.html",
+      "/posts/koala-series/koala.html",
+      "/posts/cats-series/cats.html",
+      "/posts/nb_tutorial/nb_tutorial.html"
     ]
   }
 ]

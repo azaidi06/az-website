@@ -6,14 +6,21 @@ website:
   title: "Ali Zaidi"
   navbar:
     right:
-      - about.qmd
+      - text: "About Me"
+        href: about.qmd
+      - text: "Blog"
+        href: blog.qmd
+      - text: "Resume"
+        href: resume.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/azaidi06
       - icon: twitter
-        href: https://twitter.com/
+        href: https://twitter.com/azaidi06
+      - icon: linkedin
+        href: https://www.linkedin.com/in/azaidi06
   page-footer:
     right: "Powered by Quarto"
-    left: "© 2026 Ali Zaidi"
+    left: "© 2022 Ali Zaidi"
 
 format:
   html:
@@ -21,17 +28,7 @@ format:
       light: cosmo
       dark: darkly
     css: styles.css
-    toc: true
+    toc: false
     code-copy: true
     smooth-scroll: true
     highlight-style: github
-
-# This configures the blog listing page
-listing:
-  contents: posts
-  sort: "date desc"
-  type: grid           # 'grid' looks more modern than 'default' list
-  categories: true
-  sort-ui: false
-  filter-ui: false
-  fields: [image, date, title, reading-time, description]

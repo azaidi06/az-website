@@ -1,8 +1,9 @@
 ---
-title: "About"
-image: profile.jpg
+#title: "About"
+image: images/clipped_bright_headshot.png
 about:
-  template: solana
+  template: jolla
+  image-width: 8em
   links:
     - icon: twitter
       text: Twitter
@@ -13,7 +14,65 @@ about:
     - icon: github
       text: Github
       href: https://github.com/azaidi06
-
 ---
 
-About this blog
+<div class="about-intro">
+Product Leader and Applied AI Engineer building data-driven products that deliver real value. I thrive in environments where I can bridge technical execution with product strategy.
+</div>
+
+::: {.grid .about-grid}
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Product Leadership</h4>
+<p>Vision, roadmap, and stakeholder alignment for technical products</p>
+</div>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Applied AI</h4>
+<p>Production ML systems with Python, PyTorch, and cloud infrastructure</p>
+</div>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Full Stack Data</h4>
+<p>End-to-end pipelines from data engineering to visualization</p>
+</div>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Data Science</h4>
+<p>Computer Vision, NLP, LLMs, Data Engineering</p>
+</div>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Software Engineering</h4>
+<p>APIs, CI/CD, Docker, Python Packages</p>
+</div>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<div class="about-card">
+<h4>Cloud & Infrastructure</h4>
+<p>AWS, HPC/SLURM, Scalable Systems</p>
+</div>
+:::
+
+:::
+
+<script>
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>

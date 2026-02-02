@@ -1,39 +1,393 @@
-/* css styles */
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+/* styles.css */
+
+/* 1. IMPORT FONTS */
+/* Space Grotesk for Headings (Tech/Modern feel), Inter for Body */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --hero-height: 50vh;
+  --radius-lg: 12px;
+  --transition-fast: 0.3s ease;
+}
 
 body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
 }
 
-/* Navbar styling */
-.navbar {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-bottom: 1px solid #eaeaea;
+/* 2. TYPOGRAPHY HIERARCHY */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em; /* Tight tracking for modern feel */
 }
 
+/* Hero text - ensure visibility in both light and dark modes */
+.hero-title,
+.hero-subtitle {
+  color: #ffffff;
+}
+
+h1.title {
+  font-weight: 800;
+}
+
+/* 3. HERO SECTION */
+.hero-section {
+  position: relative;
+  background-color: #2a2a2a; /* Fallback color while image loads */
+  background-image: url('images/wide_maroc.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* Flexbox for alignment instead of <br> tags */
+  display: flex;
+  align-items: center; /* Vertically center */
+  
+  justify-content: flex-end; /* Align text to right */
+  min-height: var(--hero-height);
+  padding: 6rem;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Overlay for better text readability if image is busy */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+}
+
+/* 1. Make the container a flex row to put items side-by-side */
+.hero-content {
+  position: relative; /* 'position: left' is invalid CSS */
+  z-index: 2;
+  text-align: left; /* Left align looks best for side-by-side */
+  max-width: 700px; /* Increased width to accommodate both elements */
+  
+  display: flex;          /* This puts Title and Subtitle next to each other */
+  flex-direction: row;    /* Explicitly set row */
+  align-items: center;    /* Vertically aligns the subtitle block with the title */
+  gap: 4.4rem;              /* Spacing between the Title and the Subtitle */
+}
+
+/* 2. Remove bottom margins so they align cleanly */
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.0rem;
+  line-height: 1.1;
+  font-weight: 300;
+  margin: 0;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+
+/* 3. Change the border from Top to Left to create a vertical divider */
+.hero-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+  
+  /* Reset previous top-border styles */
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+
+  /* Add new left-border styles */
+  padding-left: 1.0rem;
+  border-left: 1px solid rgba(255,255,255,0.5);
+  margin-left: 1.0rem;
+  /* Ensure the text inside stacks vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 2.0rem;
+  line-height: 4.0;
+  white-space: nowrap; 
+}
+
+/* 4. CARDS & GRID */
+/* Tight grid gap for feature cards */
+.feature-grid {
+  gap: 0.5rem !important;
+}
+
+.feature-card {
+  /* 1. VISUALS */
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  /* 2. LAYOUT - Fixed height for consistency */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80px !important;
+  min-height: 80px !important;
+  max-height: 80px !important;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* THE TITLE */
+.feature-card h3,
+.feature-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  /* Start with 0 margin so it looks centered and tight */
+  margin-bottom: 0;
+  transition: margin-bottom 0.3s ease;
+}
+
+/* Ensure links inside card titles match */
+.feature-card h3 a,
+.feature-card h4 a {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Card wrapper links */
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.card-link:hover {
+  text-decoration: none;
+}
+
+/* THE HIDDEN TEXT (New) */
+/* This targets paragraphs <p> inside the card */
+.feature-card p {
+  font-family: 'Inter', sans-serif;
+  max-height: 0;                /* Hidden height */
+  opacity: 0;                   /* Hidden visibility */
+  overflow: hidden;             /* Cut off anything that spills out */
+  margin: 0;                    /* No spacing */
+  transform: translateY(10px);  /* Push it down slightly */
+  transition: all 0.4s ease;
+}
+
+/* --- HOVER STATES --- */
+
+.feature-card:hover {
+  /* Visual Lift */
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(0,0,0,0.1);
+  /* Allow expansion on hover */
+  height: auto !important;
+  max-height: 200px !important;
+}
+
+.feature-card:hover h3,
+.feature-card:hover h4 {
+  margin-bottom: 1rem; /* Add space between title and text on hover */
+}
+
+.feature-card:hover p {
+  max-height: 400px;           /* Arbitrary limit large enough for text */
+  opacity: 1;                  /* Fade in */
+  transform: translateY(0);    /* Slide up */
+}
+
+/* 5. ABOUT PAGE STYLES */
+.about-intro {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #555;
+}
+
+body.quarto-dark .about-intro {
+  color: #a0a0a0;
+}
+
+.about-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 0.75rem !important;
+}
+
+.about-card {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  height: 100%;
+}
+
+.about-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem 0;
+  color: #1a1a1a;
+}
+
+.about-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+  color: #666;
+}
+
+body.quarto-dark .about-card {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.quarto-dark .about-card h4 {
+  color: #e0e0e0;
+}
+
+body.quarto-dark .about-card p {
+  color: #a0a0a0;
+}
+
+/* 6. LIGHT MODE TEXT COLORS */
+.feature-card h3,
+.feature-card h4 {
+  color: #1a1a1a;
+}
+
+.feature-card p {
+  color: #4a4a4a;
+}
+
+/* 7. DARK MODE OVERRIDES */
 body.quarto-dark .navbar {
-  background-color: rgba(34, 34, 34, 0.9) !important;
+  background-color: rgba(10, 10, 10, 0.8) !important;
   border-bottom: 1px solid #333;
 }
 
-/* Card Styling (Grid View) */
-.quarto-grid-item {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 12px;
-  border: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+body.quarto-dark .feature-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.quarto-grid-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+body.quarto-dark .feature-card:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
 }
 
-/* Typography tweaks */
-h1.title {
-  font-weight: 800;
-  letter-spacing: -0.025em;
+/* Utilities */
+.text-hero {
+    color: #666;
 }
+
+/* --- DARK MODE FIXES --- */
+
+/* 1. Target Quarto's Listing Grid Cards */
+body.quarto-dark .card, 
+body.quarto-dark .feature-card {
+  /* Make the background solid dark grey instead of transparent/glass */
+  /* This prevents the "muddy" look against the page background */
+  background-color: #1e1e1e !important; 
+  
+  /* Add a subtle lighter border to define the card edges */
+  border: 1px solid #333 !important;
+  
+  /* Remove default shadows that look weird in dark mode */
+  box-shadow: none;
+}
+
+/* 2. Fix Text Colors inside cards */
+body.quarto-dark .card-title,
+body.quarto-dark .card-text,
+body.quarto-dark .feature-card h3,
+body.quarto-dark .feature-card h4 {
+  color: #e0e0e0 !important; /* Off-white for readability */
+}
+
+body.quarto-dark .card-subtitle, 
+body.quarto-dark .listing-reading-time {
+  color: #a0a0a0 !important; /* Lighter grey for metadata */
+}
+
+/* 3. Hover Effects for Dark Mode */
+body.quarto-dark .card:hover,
+body.quarto-dark .feature-card:hover {
+  background-color: #252525 !important; /* Slightly lighter on hover */
+  border-color: #555 !important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+
+/* --- NAVBAR SCROLL EFFECT --- */
+
+/* 1. Default State: Fixed, Transparent, Overlaying content */
+#quarto-header .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1050; /* Ensure it stays above everything */
+  background-color: transparent !important; /* Force transparency */
+  border-bottom: none !important; /* No border initially */
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: none; /* remove blur if present initially */
+}
+
+/* 2. Scrolled State: Solid Color (Triggered by JS) */
+/* Light mode scrolled navbar */
+#quarto-header .navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #ddd !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Dark mode scrolled navbar */
+body.quarto-dark #quarto-header .navbar.scrolled {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  border-bottom: 1px solid #333 !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* 3. Adjust Body flow */
+/* Since navbar is fixed, it no longer takes up space.
+   We ensure the body doesn't have a gap at the top. */
+body {
+  padding-top: 0 !important;
+}
+
+/* 4. Fix TOC positioning - push down below fixed navbar */
+#TOC,
+.sidebar,
+#quarto-sidebar,
+.quarto-sidebar {
+  top: 70px !important;
+  padding-top: 1rem;
+}
+
+/* Push down main content only on blog page */
+body.blog-page #quarto-content {
+  padding-top: 60px;
+}
+
