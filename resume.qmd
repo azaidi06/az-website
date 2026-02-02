@@ -2,15 +2,7 @@
 format:
   html:
     toc: true
-  pdf:
-    documentclass: article
-    geometry:
-      - margin=0.6in
-      - top=0.4in
-    fontsize: 10pt
-    linestretch: 1.0
 css: cv.css
-format-links: [pdf]
 ---
 
 ::: {.cv-header}
