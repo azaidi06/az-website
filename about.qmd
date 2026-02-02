@@ -17,54 +17,68 @@ about:
 ---
 
 <div class="about-intro">
-Product Leader and Applied AI Engineer building data-driven products that deliver real value. I thrive in environments where I can bridge technical execution with product strategy.
+I'm a Product Leader and Applied AI Engineer with a passion for building data-driven products that solve real problems. With experience spanning startups and enterprise environments, I specialize in bridging the gap between cutting-edge technical solutions and strategic product vision. I believe the best products emerge when deep technical understanding meets genuine user empathy.
 </div>
+
+## What I Do
+
+I work at the intersection of product strategy and hands-on engineering. Whether it's defining a product roadmap, architecting an ML pipeline, or diving into code to prototype a new feature, I'm comfortable operating across the full stack of product development. My approach combines rigorous data analysis with iterative experimentation to build products that users love.
+
+## Core Expertise
 
 ::: {.grid .about-grid}
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
 <h4>Product Leadership</h4>
-<p>Vision, roadmap, and stakeholder alignment for technical products</p>
+<p>Defining product vision, building roadmaps, and aligning cross-functional teams. Experienced in translating complex technical capabilities into clear value propositions for stakeholders and customers.</p>
 </div>
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
-<h4>Applied AI</h4>
-<p>Production ML systems with Python, PyTorch, and cloud infrastructure</p>
+<h4>Applied AI & ML</h4>
+<p>Building production-grade ML systems from research to deployment. Deep experience with PyTorch, TensorFlow, and modern LLM frameworks. Focus on practical solutions that scale.</p>
 </div>
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
 <h4>Full Stack Data</h4>
-<p>End-to-end pipelines from data engineering to visualization</p>
+<p>End-to-end ownership from data ingestion and transformation to analysis and visualization. Building reliable pipelines that turn raw data into actionable insights.</p>
 </div>
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
 <h4>Data Science</h4>
-<p>Computer Vision, NLP, LLMs, Data Engineering</p>
+<p>Expertise in Computer Vision, NLP, and generative AI. Strong foundation in statistical modeling, experiment design, and turning ambiguous problems into measurable solutions.</p>
 </div>
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
 <h4>Software Engineering</h4>
-<p>APIs, CI/CD, Docker, Python Packages</p>
+<p>Production-quality code with modern practices: RESTful APIs, CI/CD pipelines, containerization with Docker, and maintainable Python packages. Code that's built to last.</p>
 </div>
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
 <h4>Cloud & Infrastructure</h4>
-<p>AWS, HPC/SLURM, Scalable Systems</p>
+<p>Designing and deploying scalable systems on AWS and other cloud platforms. Experience with HPC/SLURM clusters for compute-intensive workloads and cost-optimized architectures.</p>
 </div>
 :::
 
 :::
+
+## Background
+
+My journey in tech has taken me through diverse roles where I've consistently focused on using data and technology to drive impact. I've led product initiatives from conception to launch, built ML systems processing millions of data points, and mentored teams on best practices for scalable software development. I'm driven by curiosity and a desire to continuously learn—whether that's exploring the latest advances in AI or understanding a new problem domain.
+
+## Let's Connect
+
+I'm always interested in discussing new opportunities, collaborating on interesting projects, or just chatting about the latest in AI and product development. Feel free to reach out through any of the links above.
 
 <script>
   window.addEventListener('scroll', function() {
