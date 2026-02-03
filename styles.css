@@ -391,3 +391,90 @@ body.blog-page #quarto-content {
   padding-top: 60px;
 }
 
+/* ============================================
+   UI/STYLING FIXES - Tutorial & Post Pages
+   ============================================ */
+
+/* 1. CONTENT PADDING - Push content below fixed navbar on all pages */
+#quarto-content {
+  padding-top: 80px;
+}
+
+/* 2. SOFTER HYPERLINKS IN DARK MODE */
+/* Override Darkly theme's bright blue links with muted grey-blue */
+body.quarto-dark a {
+  color: #9db5d1;
+}
+
+body.quarto-dark a:hover {
+  color: #b8cce4;
+}
+
+/* Links inside prose/content - subtle underlines */
+body.quarto-dark article a,
+body.quarto-dark .content a,
+body.quarto-dark #quarto-content a {
+  text-decoration: underline;
+  text-decoration-color: rgba(157, 181, 209, 0.4);
+}
+
+body.quarto-dark article a:hover,
+body.quarto-dark .content a:hover,
+body.quarto-dark #quarto-content a:hover {
+  text-decoration-color: rgba(157, 181, 209, 0.7);
+}
+
+/* Preserve navbar link styling */
+body.quarto-dark .navbar a,
+body.quarto-dark .nav-link {
+  text-decoration: none;
+}
+
+/* 3. RESPONSIVE BLOCKQUOTES - Fix mobile overflow for code blocks */
+blockquote {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+blockquote pre,
+blockquote code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  blockquote {
+    padding: 0.75rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.9rem;
+  }
+
+  blockquote pre {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Prevent code overflow on mobile */
+  pre, code {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* 4. SOLID NAVBAR ON CONTENT PAGES */
+/* Pages without hero sections should have solid navbar from the start */
+/* Target pages that don't have the hero-section class */
+body:not(:has(.hero-section)) #quarto-header .navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+body.quarto-dark:not(:has(.hero-section)) #quarto-header .navbar {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  border-bottom: 1px solid #333;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
