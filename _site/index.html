@@ -330,6 +330,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <h3>About Me</h3>
       <p>Background, skills, and expertise</p>
+      <p>Find out more!</p>
       <div class="card-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </div>
@@ -341,6 +342,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <h3>Personal Blog</h3>
       <p>Thoughts, tutorials, and photos</p>
+      <p>Data and meaningless meanderings</p>
       <div class="card-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </div>
@@ -352,17 +354,27 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <h3>Resume</h3>
       <p>Experience and qualifications</p>
+      <p>Work stuff, I guess</p>
       <div class="card-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </div>
     </a>
 
-    <div class="feature-card-v2" data-aos="fade-up" data-aos-delay="300">
+    <div class="feature-card-v2 portfolio-card" data-aos="fade-up" data-aos-delay="300">
       <div class="card-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
       </div>
-      <h3>Areas of Interest</h3>
-      <p>Software, Science, Healthcare</p>
+      <h3>Portfolio</h3>
+      <div class="portfolio-links">
+        <a href="http://options-dashboard.duckdns.org/Stock_Analysis" target="_blank" class="portfolio-link">
+          <span>Options Analysis</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="posts/scraping-tutorial/scraping-tutorial.html" class="portfolio-link">
+          <span>Web Scraping Tutorial</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -380,6 +392,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <style>
+/* Hide About Me, Blog, Resume from navbar on landing page (they're in the feature cards) */
+.navbar-nav .nav-item:not(.compact) {
+  display: none;
+}
+
 /* Dynamic Page Styles */
 .dynamic-page {
   min-height: 100vh;
@@ -609,6 +626,7 @@ body:not(.quarto-dark) .gradient-bg {
   background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
   opacity: 0;
   transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 .feature-card-v2:hover {
@@ -660,6 +678,27 @@ body:not(.quarto-dark) .gradient-bg {
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.4;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+}
+
+.feature-card-v2:hover p {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 1.0rem;
+}
+
+.feature-card-v2 p + p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+body:not(.quarto-dark) .feature-card-v2 p + p {
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .card-arrow {
@@ -674,6 +713,72 @@ body:not(.quarto-dark) .gradient-bg {
 .feature-card-v2:hover .card-arrow {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Portfolio card - expand on hover to show links */
+.portfolio-card {
+  cursor: default;
+}
+
+.portfolio-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+  margin-top: 0;
+}
+
+.portfolio-card:hover .portfolio-links {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+.portfolio-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.portfolio-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateX(4px);
+  text-decoration: none;
+}
+
+.portfolio-link svg {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-link:hover svg {
+  opacity: 1;
+}
+
+body:not(.quarto-dark) .portfolio-link {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body:not(.quarto-dark) .portfolio-link:hover {
+  background: rgba(113, 178, 128, 0.2);
+  color: #1a2e1a;
+}
+
+body:not(.quarto-dark) .portfolio-link svg {
+  stroke: #2d5a27;
 }
 
 /* Light mode card styles - green tones */
