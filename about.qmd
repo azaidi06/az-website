@@ -1,35 +1,32 @@
 ---
-#title: "About"
-image: images/clipped_bright_headshot.png
-about:
-  template: jolla
-  image-width: 8em
-  links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/azaidi06
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com/in/azaidi06/
-    - icon: github
-      text: Github
-      href: https://github.com/azaidi06
+pagetitle: "About"
+title: "Ali Zaidi"
+format:
+  html:
+    body-classes: about-page
 ---
 
-<div class="about-intro">
-I'm a Product Leader and Applied AI Engineer with a passion for building data-driven products that solve real problems. With experience spanning startups and enterprise environments, I specialize in bridging the gap between cutting-edge technical solutions and strategic product vision. I believe the best products emerge when deep technical understanding meets genuine user empathy.
+<div class="about-hero">
+<div class="about-photo">
+<img src="images/clipped_bright_headshot.png" alt="Ali Zaidi" />
+<div class="about-links">
+<a href="https://linkedin.com/in/azaidi06/" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+<a href="https://github.com/azaidi06" title="GitHub"><i class="bi bi-github"></i></a>
+<a href="https://x.com/aloysious_zaidi" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+<a href="mailto:azaidi06@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
 </div>
-
-## What I Do
-
-I work at the intersection of product strategy and hands-on engineering. Whether it's defining a product roadmap, architecting an ML pipeline, or diving into code to prototype a new feature, I'm comfortable operating across the full stack of product development. My approach combines rigorous data analysis with iterative experimentation to build products that users love.
-
-## Core Expertise
+</div>
+<div class="about-text">
+<p class="about-lead"><strong>Product Leader & Applied Data Scientist</strong></p>
+<p>I specialize in bridging cutting-edge technical solutions with product vision — spanning startups and enterprise environments. Whether it's defining a roadmap, architecting an ML pipeline, or prototyping a new feature, I operate across the full stack of product development.</p>
+</div>
+</div>
 
 ::: {.grid .about-grid}
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-rocket-takeoff"></i></div>
 <h4>Product Leadership</h4>
 <p>Defining product vision, building roadmaps, and aligning cross-functional teams. Experienced in translating complex technical capabilities into clear value propositions for stakeholders and customers.</p>
 </div>
@@ -37,6 +34,7 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-cpu"></i></div>
 <h4>Applied AI & ML</h4>
 <p>Building production-grade ML systems from research to deployment. Deep experience with PyTorch, TensorFlow, and modern LLM frameworks. Focus on practical solutions that scale.</p>
 </div>
@@ -44,6 +42,7 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-database"></i></div>
 <h4>Full Stack Data</h4>
 <p>End-to-end ownership from data ingestion and transformation to analysis and visualization. Building reliable pipelines that turn raw data into actionable insights.</p>
 </div>
@@ -51,6 +50,7 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-bar-chart-line"></i></div>
 <h4>Data Science</h4>
 <p>Expertise in Computer Vision, NLP, and generative AI. Strong foundation in statistical modeling, experiment design, and turning ambiguous problems into measurable solutions.</p>
 </div>
@@ -58,6 +58,7 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-code-slash"></i></div>
 <h4>Software Engineering</h4>
 <p>Production-quality code with modern practices: RESTful APIs, CI/CD pipelines, containerization with Docker, and maintainable Python packages. Code that's built to last.</p>
 </div>
@@ -65,6 +66,7 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 ::: {.g-col-6 .g-col-md-4}
 <div class="about-card">
+<div class="about-card-icon"><i class="bi bi-cloud"></i></div>
 <h4>Cloud & Infrastructure</h4>
 <p>Designing and deploying scalable systems on AWS and other cloud platforms. Experience with HPC/SLURM clusters for compute-intensive workloads and cost-optimized architectures.</p>
 </div>
@@ -72,13 +74,6 @@ I work at the intersection of product strategy and hands-on engineering. Whether
 
 :::
 
-## Background
-
-My journey in tech has taken me through diverse roles where I've consistently focused on using data and technology to drive impact. I've led product initiatives from conception to launch, built ML systems processing millions of data points, and mentored teams on best practices for scalable software development. I'm driven by curiosity and a desire to continuously learn—whether that's exploring the latest advances in AI or understanding a new problem domain.
-
-## Let's Connect
-
-I'm always interested in discussing new opportunities, collaborating on interesting projects, or just chatting about the latest in AI and product development. Feel free to reach out through any of the links above.
 
 <script>
   window.addEventListener('scroll', function() {

@@ -209,47 +209,166 @@ a.card-link:hover {
 }
 
 /* 5. ABOUT PAGE STYLES */
-.about-intro {
-  max-width: 600px;
-  margin: 0 auto 1.5rem auto;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  text-align: center;
-  color: #555;
+
+/* Hide Quarto's auto-generated title block on about page */
+body.about-page #title-block-header { display: none; }
+
+/* Reduce top padding on about page to reclaim vertical space */
+body.about-page #quarto-content { padding-top: 50px; }
+
+/* Name styled like h1 but as a div to prevent Quarto extraction */
+.about-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem 0;
 }
 
-body.quarto-dark .about-intro {
+/* Compact h2 on about page */
+body.about-page h2 {
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Side-by-side hero: photo left, text right --- */
+.about-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto 1rem auto;
+}
+
+.about-photo {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.about-photo img {
+  width: 9em;
+  height: 9em;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.about-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.about-links a {
+  color: #555;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.about-links a:hover {
+  color: #1a1a1a;
+}
+
+body.quarto-dark .about-links a {
   color: #a0a0a0;
+}
+
+body.quarto-dark .about-links a:hover {
+  color: #e0e0e0;
+}
+
+.about-text {
+  flex: 1;
+}
+
+/* .about-name styling is above in section 5 header */
+
+.about-text .about-lead {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.about-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+.about-text strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+body.quarto-dark .about-text p {
+  color: #a0a0a0;
+}
+
+body.quarto-dark .about-text .about-lead {
+  color: #c0c0c0;
+}
+
+body.quarto-dark .about-text strong {
+  color: #e0e0e0;
+}
+
+/* Stack vertically on mobile */
+@media (max-width: 600px) {
+  .about-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-name {
+    text-align: center;
+  }
 }
 
 .about-grid {
   max-width: 900px;
   margin: 0 auto;
-  gap: 0.75rem !important;
+  gap: 0.5rem !important;
 }
 
 .about-card {
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 0.8rem 0.6rem;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.about-card-icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  color: #555;
 }
 
 .about-card h4 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  margin: 0 0 0.4rem 0;
+  margin: 0 0 0.25rem 0;
   color: #1a1a1a;
 }
 
 .about-card p {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.35;
   margin: 0;
   color: #666;
 }
@@ -259,12 +378,29 @@ body.quarto-dark .about-card {
   border: 1px solid #333;
 }
 
+body.quarto-dark .about-card:hover {
+  background-color: #252525;
+  border-color: #555;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.quarto-dark .about-card-icon {
+  color: #a0a0a0;
+}
+
 body.quarto-dark .about-card h4 {
   color: #e0e0e0;
 }
 
 body.quarto-dark .about-card p {
   color: #a0a0a0;
+}
+
+/* Single-column cards on narrow screens */
+@media (max-width: 480px) {
+  .about-grid .g-col-6 {
+    grid-column: span 12 !important;
+  }
 }
 
 /* 6. LIGHT MODE TEXT COLORS */
@@ -389,5 +525,92 @@ body {
 /* Push down main content only on blog page */
 body.blog-page #quarto-content {
   padding-top: 60px;
+}
+
+/* ============================================
+   UI/STYLING FIXES - Tutorial & Post Pages
+   ============================================ */
+
+/* 1. CONTENT PADDING - Push content below fixed navbar on all pages */
+#quarto-content {
+  padding-top: 80px;
+}
+
+/* 2. SOFTER HYPERLINKS IN DARK MODE */
+/* Override Darkly theme's bright blue links with muted grey-blue */
+body.quarto-dark a {
+  color: #9db5d1;
+}
+
+body.quarto-dark a:hover {
+  color: #b8cce4;
+}
+
+/* Links inside prose/content - subtle underlines */
+body.quarto-dark article a,
+body.quarto-dark .content a,
+body.quarto-dark #quarto-content a {
+  text-decoration: underline;
+  text-decoration-color: rgba(157, 181, 209, 0.4);
+}
+
+body.quarto-dark article a:hover,
+body.quarto-dark .content a:hover,
+body.quarto-dark #quarto-content a:hover {
+  text-decoration-color: rgba(157, 181, 209, 0.7);
+}
+
+/* Preserve navbar link styling */
+body.quarto-dark .navbar a,
+body.quarto-dark .nav-link {
+  text-decoration: none;
+}
+
+/* 3. RESPONSIVE BLOCKQUOTES - Fix mobile overflow for code blocks */
+blockquote {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+blockquote pre,
+blockquote code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  blockquote {
+    padding: 0.75rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.9rem;
+  }
+
+  blockquote pre {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Prevent code overflow on mobile */
+  pre, code {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* 4. SOLID NAVBAR ON CONTENT PAGES */
+/* Pages without hero sections should have solid navbar from the start */
+/* Target pages that don't have the hero-section class */
+body:not(:has(.hero-section)) #quarto-header .navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+body.quarto-dark:not(:has(.hero-section)) #quarto-header .navbar {
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  border-bottom: 1px solid #333;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
