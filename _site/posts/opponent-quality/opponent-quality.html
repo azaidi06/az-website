@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -117,6 +118,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Opponent Quality Analysis – Ali Zaidi">
+<meta property="og:description" content="Interactive analysis of how top 25 ATP/WTA players perform against different quality opponents">
+<meta property="og:image" content="https://azaidi06.github.io/posts/opponent-quality/opponent-quality.png">
+<meta property="og:site_name" content="Ali Zaidi">
+<meta property="og:image:height" content="900">
+<meta property="og:image:width" content="1500">
+<meta name="twitter:title" content="Opponent Quality Analysis – Ali Zaidi">
+<meta name="twitter:description" content="Interactive analysis of how top 25 ATP/WTA players perform against different quality opponents">
+<meta name="twitter:image" content="https://azaidi06.github.io/posts/opponent-quality/opponent-quality.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="900">
+<meta name="twitter:image-width" content="1500">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -305,6 +318,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio.html"> 
+<span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../resume.html"> 
@@ -1905,6 +1922,16 @@ if (outputEl) {{
 </section>
 
 </main> <!-- /main -->
+<script>
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1990,7 +2017,7 @@ if (outputEl) {{
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/azaidi06\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2321,7 +2348,7 @@ if (outputEl) {{
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2022 Ali Zaidi</p>
+<p>© 2025 Ali Zaidi</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

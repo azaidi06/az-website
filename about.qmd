@@ -8,7 +8,7 @@ format:
 
 <div class="about-hero">
 <div class="about-photo">
-<img src="images/clipped_bright_headshot.png" alt="Ali Zaidi" />
+<img src="images/clipped_bright_headshot.webp" alt="Ali Zaidi" />
 <div class="about-links">
 <a href="https://linkedin.com/in/azaidi06/" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
 <a href="https://github.com/azaidi06" title="GitHub"><i class="bi bi-github"></i></a>
@@ -75,13 +75,3 @@ format:
 :::
 
 
-<script>
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-</script>

@@ -4,12 +4,15 @@ project:
 
 website:
   title: "Ali Zaidi"
+  favicon: images/favicon.svg
   navbar:
     right:
       - text: "About Me"
         href: about.qmd
       - text: "Blog"
         href: blog.qmd
+      - text: "Portfolio"
+        href: portfolio.qmd
       - text: "Resume"
         href: resume.qmd
       - icon: github
@@ -20,11 +23,16 @@ website:
         href: https://www.linkedin.com/in/azaidi06
   page-footer:
     right: "Powered by Quarto"
-    left: "© 2022 Ali Zaidi"
+    left: "© 2025 Ali Zaidi"
+  open-graph: true
+  twitter-card:
+    card-style: summary_large_image
+  site-url: https://azaidi06.github.io
+  description: "Personal portfolio of Ali Zaidi — Applied Data Scientist, Software Engineer, and Product Leader."
 
 format:
   html:
-    theme: 
+    theme:
       light: cosmo
       dark: darkly
     css: styles.css
@@ -32,3 +40,4 @@ format:
     code-copy: true
     smooth-scroll: true
     highlight-style: github
+    include-after-body: _navbar-scroll.html
