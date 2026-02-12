@@ -6,7 +6,10 @@ format:
     page-layout: article
     body-classes: blog-page
 listing:
-  contents: posts
+  contents:
+    - "posts/*/index.{qmd,ipynb}"
+    - "posts/*/*.{qmd,ipynb}"
+    - "!posts/tennis-analysis-CLAUDE.md"
   sort: "date desc"
   type: grid
   categories: false
