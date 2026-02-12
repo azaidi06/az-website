@@ -4,6 +4,7 @@ description: "Explore serve statistics for top ATP and WTA players with interact
 author: "Ahmad Zaidi"
 date: "2026-02-02"
 categories: [tennis, sports analytics, visualization]
+image: "preview.png"
 format:
   html:
     page-layout: full
