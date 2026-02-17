@@ -1,0 +1,472 @@
+---
+sidebar: false
+toc: false
+format:
+  html:
+    page-layout: custom
+---
+
+```{=html}
+<div class="dynamic-page">
+  <!-- Animated gradient background -->
+  <div class="gradient-bg"></div>
+
+  <!-- Floating controls -->
+  <div class="preview-controls">
+    <a href="index.html" class="preview-back">&larr; Back to Font Preview</a>
+    <div class="preview-label" id="font-label">Loading...</div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-section-v2">
+    <div class="hero-image-container">
+      <img src="../images/wide_maroc.jpg" alt="Hero background" class="hero-image">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content-v2">
+      <h1 class="hero-title-v2 heading-font">Bringing<br>Data to<br>Life</h1>
+      <div class="hero-divider"></div>
+      <div class="hero-subtitle-v2">
+        <span class="heading-font">Applied Data Scientist</span>
+        <span class="heading-font">Software Engineer</span>
+        <span class="heading-font">Product Leader</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Cards Container -->
+  <div class="cards-container">
+    <div class="feature-card-v2" data-aos="fade-up" data-aos-delay="0">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+      <h3 class="heading-font">About Me</h3>
+      <p class="body-font">Background, skills, and expertise</p>
+      <p class="heading-font">Find out more!</p>
+    </div>
+
+    <div class="feature-card-v2" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      </div>
+      <h3 class="heading-font">Personal Blog</h3>
+      <p class="body-font">Thoughts, tutorials, and photos</p>
+      <p class="heading-font">Data and meaningless meanderings</p>
+    </div>
+
+    <div class="feature-card-v2" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      </div>
+      <h3 class="heading-font">Resume</h3>
+      <p class="body-font">Experience and qualifications</p>
+      <p class="heading-font">Work stuff, I guess</p>
+    </div>
+
+    <div class="feature-card-v2" data-aos="fade-up" data-aos-delay="300">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </div>
+      <h3 class="heading-font">Portfolio</h3>
+      <p class="body-font">Projects and interactive analyses</p>
+      <p class="heading-font">See what I've built</p>
+    </div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+</div>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+/* ---- Preview controls ---- */
+.preview-controls {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.preview-back, .preview-label {
+  pointer-events: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.preview-back:hover {
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  text-decoration: none;
+}
+
+body:not(.quarto-dark) .preview-back,
+body:not(.quarto-dark) .preview-label {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #333;
+}
+
+body:not(.quarto-dark) .preview-back:hover {
+  background: rgba(255,255,255,0.95);
+  color: #000;
+}
+
+/* Hide navbar items */
+.navbar-nav .nav-item:not(.compact) {
+  display: none;
+}
+
+/* ---- Dynamic Page Styles ---- */
+.dynamic-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(-45deg, #0f0f23, #1a1a3e, #0d2137, #1a0a2e);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body:not(.quarto-dark) .gradient-bg {
+  background: linear-gradient(-45deg, #eef2f6, #e3e8ef, #dbe4ef, #e5eaf2);
+  background-size: 400% 400%;
+}
+
+/* Hero Section */
+.hero-section-v2 {
+  position: relative;
+  height: 50vh;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 6rem;
+  margin: 5rem 2rem 2rem 2rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.hero-image-container {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.hero-image {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.hero-content-v2 {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-left: 15%;
+}
+
+.hero-title-v2 {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 100px;
+  background: rgba(255,255,255,0.5);
+}
+
+.hero-subtitle-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-subtitle-v2 span {
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Cards */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 0 2rem 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .cards-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.75rem 1rem 0.75rem;
+  }
+  .feature-card-v2 { padding: 0.6rem 0.75rem; }
+  .card-icon { width: 28px; height: 28px; margin-bottom: 0.4rem; border-radius: 8px; }
+  .card-icon svg { width: 14px; height: 14px; }
+  .feature-card-v2 h3 { font-size: 0.85rem; margin-bottom: 0; }
+  .feature-card-v2 p { max-height: 100px; opacity: 0.8; font-size: 0.7rem; margin-top: 0.2rem; overflow: hidden; }
+  .feature-card-v2 p + p { display: none; }
+  .hero-section-v2 { height: 35vh; min-height: 200px; padding: 1rem; margin: 60px 0.75rem 0.75rem 0.75rem; border-radius: 16px; }
+  .hero-title-v2 { font-size: 1.5rem; }
+  .hero-content-v2 { flex-direction: column; text-align: center; margin-left: 0; padding-right: 0; gap: 1rem; }
+  .hero-divider { width: 60px; height: 1px; }
+  .hero-subtitle-v2 { gap: 0.3rem; }
+  .hero-subtitle-v2 span { font-size: 0.65rem; }
+}
+
+.feature-card-v2 {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  cursor: default;
+}
+
+.feature-card-v2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.feature-card-v2:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.1);
+  z-index: 10;
+}
+
+.feature-card-v2:hover::before { opacity: 1; }
+
+.card-icon {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.5s ease;
+}
+
+.feature-card-v2:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+}
+
+.feature-card-v2 h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem 0;
+  transition: all 0.3s ease;
+}
+
+.feature-card-v2:hover h3 { transform: translateX(5px); }
+
+.feature-card-v2 p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.4;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+}
+
+.feature-card-v2:hover p {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 1.0rem;
+}
+
+.feature-card-v2 p + p {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+body:not(.quarto-dark) .feature-card-v2 p + p { color: rgba(0, 0, 0, 0.4); }
+
+/* Light mode cards */
+body:not(.quarto-dark) .feature-card-v2 {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1a2e1a;
+}
+
+body:not(.quarto-dark) .feature-card-v2:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2), 0 0 40px rgba(113, 178, 128, 0.3);
+}
+
+body:not(.quarto-dark) .feature-card-v2 p { color: rgba(0, 0, 0, 0.6); }
+
+body:not(.quarto-dark) .card-icon {
+  background: linear-gradient(135deg, rgba(113, 178, 128, 0.25), rgba(45, 90, 39, 0.15));
+}
+
+body:not(.quarto-dark) .card-icon svg { stroke: #2d5a27; }
+
+/* Particles */
+.particles {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 10px; height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 20s infinite;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+.particle:nth-child(2) { left: 30%; animation-delay: 3s; animation-duration: 20s; }
+.particle:nth-child(3) { left: 50%; animation-delay: 6s; animation-duration: 30s; }
+.particle:nth-child(4) { left: 70%; animation-delay: 9s; animation-duration: 22s; }
+.particle:nth-child(5) { left: 90%; animation-delay: 12s; animation-duration: 28s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+
+#quarto-content { padding: 0 !important; }
+.dynamic-page + .quarto-title-block, #title-block-header { display: none; }
+</style>
+
+<script>
+  // Read font choices from URL params
+  const params = new URLSearchParams(window.location.search);
+  const headingFont = params.get('h') || 'Space Grotesk';
+  const bodyFont = params.get('b') || 'Inter';
+  const label = params.get('label') || (headingFont + ' + ' + bodyFont);
+
+  // Update label
+  document.getElementById('font-label').textContent = decodeURIComponent(label) + '  |  ' + headingFont + ' + ' + bodyFont;
+
+  // Load Google Fonts dynamically
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family='
+    + encodeURIComponent(headingFont).replace(/%20/g, '+') + ':wght@300;500;700&family='
+    + encodeURIComponent(bodyFont).replace(/%20/g, '+') + ':wght@300;400;600&display=swap';
+  document.head.appendChild(link);
+
+  // Apply fonts once loaded
+  link.onload = applyFonts;
+  // Also apply immediately in case fonts are cached
+  setTimeout(applyFonts, 100);
+  setTimeout(applyFonts, 500);
+
+  function applyFonts() {
+    document.querySelectorAll('.heading-font').forEach(el => {
+      el.style.fontFamily = "'" + headingFont + "', sans-serif";
+    });
+    document.querySelectorAll('.body-font').forEach(el => {
+      el.style.fontFamily = "'" + bodyFont + "', sans-serif";
+    });
+
+    // Also apply to elements by their CSS class
+    document.querySelectorAll('.hero-title-v2, .hero-subtitle-v2 span, .feature-card-v2 h3, .feature-card-v2 p + p').forEach(el => {
+      el.style.fontFamily = "'" + headingFont + "', sans-serif";
+    });
+    document.querySelectorAll('.feature-card-v2 p:first-of-type').forEach(el => {
+      el.style.fontFamily = "'" + bodyFont + "', sans-serif";
+    });
+  }
+
+  // Initialize AOS
+  AOS.init({ duration: 1000, easing: 'ease-out-cubic', once: true, offset: 50 });
+
+  // Parallax
+  window.addEventListener('scroll', function() {
+    const hero = document.querySelector('.hero-image');
+    if (hero) {
+      hero.style.transform = 'translateY(' + window.pageYOffset * 0.3 + 'px)';
+    }
+  });
+
+  // Card mouse effects
+  document.querySelectorAll('.feature-card-v2').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateX = (y - rect.height / 2) / 20;
+      const rotateY = (rect.width / 2 - x) / 20;
+      card.style.transform = `translateY(-10px) scale(1.02) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+</script>
+```

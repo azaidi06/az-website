@@ -79,6 +79,11 @@ format:
     </a>
   </div>
 
+  <!-- Temporary: Font preview link -->
+  <div style="text-align: center; padding: 0 2rem;">
+    <a href="font/index.html" style="display: inline-block; padding: 0.6rem 1.5rem; border-radius: 999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease; backdrop-filter: blur(10px);" onmouseover="this.style.background='rgba(255,255,255,0.2)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.7)'">Preview Font Pairings &rarr;</a>
+  </div>
+
   <!-- Floating particles for visual interest -->
   <div class="particles">
     <div class="particle"></div>

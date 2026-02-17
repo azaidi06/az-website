@@ -10,6 +10,7 @@
         "author: \"Ahmad Zaidi\"\n",
         "date: \"2026-02-02\"\n",
         "categories: [tennis, sports analytics, visualization]\n",
+        "image: \"preview.png\"\n",
         "format:\n",
         "  html:\n",
         "    page-layout: full\n",
@@ -20,7 +21,7 @@
         "  warning: false\n",
         "---"
       ],
-      "id": "a6aa7ea2"
+      "id": "2d94f00e"
     },
     {
       "cell_type": "code",
@@ -712,7 +713,7 @@
         "\n",
         "*Data source: [Tennis Abstract](http://www.tennisabstract.com/) | Dashboard built with Quarto and Observable JS*"
       ],
-      "id": "ad109501"
+      "id": "fb815e0d"
     }
   ],
   "metadata": {

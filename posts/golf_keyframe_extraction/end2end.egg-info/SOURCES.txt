@@ -1,0 +1,11 @@
+pyproject.toml
+end2end/__init__.py
+end2end/config.py
+end2end/detect.py
+end2end/run_batch.py
+end2end/visualize.py
+end2end.egg-info/PKG-INFO
+end2end.egg-info/SOURCES.txt
+end2end.egg-info/dependency_links.txt
+end2end.egg-info/requires.txt
+end2end.egg-info/top_level.txt

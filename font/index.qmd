@@ -1,0 +1,443 @@
+---
+sidebar: false
+toc: false
+format:
+  html:
+    page-layout: custom
+---
+
+```{=html}
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Sora:wght@300;500;700&family=DM+Sans:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;500;700&family=Nunito+Sans:wght@300;400;600;700&family=Outfit:wght@300;500;700&family=Unbounded:wght@300;500;700&family=Source+Sans+3:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600;700&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+.font-preview-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem 2rem;
+}
+
+.font-preview-page h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+body:not(.quarto-dark) .font-preview-page h1 { color: #1a1a1a; }
+
+.font-preview-page .page-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 2rem;
+}
+
+body:not(.quarto-dark) .font-preview-page .page-subtitle { color: #666; }
+
+.font-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .font-grid { grid-template-columns: 1fr; }
+}
+
+.font-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.font-card:hover {
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
+  text-decoration: none;
+  color: inherit;
+}
+
+body:not(.quarto-dark) .font-card {
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.8);
+}
+
+body:not(.quarto-dark) .font-card:hover {
+  border-color: rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.font-card-hero {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.font-card-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.font-card-hero .overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.font-card-hero .hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.font-card-hero .hero-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.font-card-hero .hero-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255,255,255,0.5);
+}
+
+.font-card-hero .hero-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.font-card-hero .hero-roles span {
+  font-size: 0.55rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.9);
+}
+
+.font-card-body {
+  padding: 1.25rem;
+}
+
+.font-card-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+body:not(.quarto-dark) .font-card-label { border-bottom-color: rgba(0,0,0,0.06); }
+
+.font-card-label .pairing-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+body:not(.quarto-dark) .font-card-label .pairing-name { color: #1a1a1a; }
+
+.font-card-label .font-names {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+}
+
+body:not(.quarto-dark) .font-card-label .font-names { color: #999; }
+
+.font-card-body .sample-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #e0e0e0;
+}
+
+body:not(.quarto-dark) .font-card-body .sample-heading { color: #1a1a1a; }
+
+.font-card-body .sample-text {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+body:not(.quarto-dark) .font-card-body .sample-text { color: #555; }
+
+.current-badge {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(113, 178, 128, 0.25);
+  color: #71b280;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+body:not(.quarto-dark) .current-badge {
+  background: rgba(45, 90, 39, 0.12);
+  color: #2d5a27;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover { color: #fff; }
+body:not(.quarto-dark) .back-link { color: #666; }
+body:not(.quarto-dark) .back-link:hover { color: #1a1a1a; }
+
+.click-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+body:not(.quarto-dark) .click-hint { color: #aaa; }
+</style>
+
+<div class="font-preview-page">
+  <a href="../index.html" class="back-link">&larr; Back to home</a>
+  <h1>Font Pairing Preview</h1>
+  <p class="page-subtitle">Click any card to see the full landing page rendered with that font pairing.</p>
+
+  <div class="font-grid">
+
+    <!-- 1. Current -->
+    <a href="preview.html?h=Space+Grotesk&b=Inter&label=Current" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Space Grotesk',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Space Grotesk',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Space Grotesk',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Space Grotesk',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name">Current <span class="current-badge">Active</span></span>
+          <span class="font-names">Space Grotesk + Inter</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Space Grotesk',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 2. Sora + DM Sans -->
+    <a href="preview.html?h=Sora&b=DM+Sans&label=Modern+Tech" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Sora',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Sora',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Sora',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Sora',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Sora',sans-serif;">Modern Tech</span>
+          <span class="font-names">Sora + DM Sans</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Sora',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'DM Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 3. Plus Jakarta Sans + Nunito Sans -->
+    <a href="preview.html?h=Plus+Jakarta+Sans&b=Nunito+Sans&label=Warm+%26+Friendly" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Plus Jakarta Sans',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Plus Jakarta Sans',sans-serif;">Warm & Friendly</span>
+          <span class="font-names">Plus Jakarta Sans + Nunito Sans</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Plus Jakarta Sans',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Nunito Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 4. Outfit + Inter -->
+    <a href="preview.html?h=Outfit&b=Inter&label=Clean+Minimal" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Outfit',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Outfit',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Outfit',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Outfit',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Outfit',sans-serif;">Clean Minimal</span>
+          <span class="font-names">Outfit + Inter</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Outfit',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 5. Unbounded + Source Sans 3 -->
+    <a href="preview.html?h=Unbounded&b=Source+Sans+3&label=Bold+Personality" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Unbounded',sans-serif;font-size:1.3rem;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Unbounded',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Unbounded',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Unbounded',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Unbounded',sans-serif;">Bold Personality</span>
+          <span class="font-names">Unbounded + Source Sans 3</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Unbounded',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 6. DM Sans + IBM Plex Sans -->
+    <a href="preview.html?h=DM+Sans&b=IBM+Plex+Sans&label=Polished+Corporate" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'DM Sans',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'DM Sans',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'DM Sans',sans-serif;">Software Engineer</span>
+            <span style="font-family:'DM Sans',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'DM Sans',sans-serif;">Polished Corporate</span>
+          <span class="font-names">DM Sans + IBM Plex Sans</span>
+        </div>
+        <div class="sample-heading" style="font-family:'DM Sans',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'IBM Plex Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 7. Manrope + Source Sans 3 -->
+    <a href="preview.html?h=Manrope&b=Source+Sans+3&label=Soft+Geometric" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Manrope',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Manrope',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Manrope',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Manrope',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Manrope',sans-serif;">Soft Geometric</span>
+          <span class="font-names">Manrope + Source Sans 3</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Manrope',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+    <!-- 8. Sora + Inter -->
+    <a href="preview.html?h=Sora&b=Inter&label=Minimal+Swap" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Sora',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Sora',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Sora',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Sora',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Sora',sans-serif;">Minimal Swap</span>
+          <span class="font-names">Sora + Inter</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Sora',sans-serif;">Tennis Serve Analysis</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="click-hint">Click any card to see the full landing page with that font pairing applied.</p>
+</div>
+```

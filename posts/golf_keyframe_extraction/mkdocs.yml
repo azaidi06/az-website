@@ -1,0 +1,57 @@
+site_name: "end2end — Golf Swing Detection"
+site_description: "API reference for the end2end golf swing keyframe detection pipeline."
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            members_order: source
+            filters: []
+
+nav:
+  - Overview: index.md
+  - API Reference:
+    - Configuration: reference/config.md
+    - I/O: reference/io.md
+    - Signal Processing: reference/signal.md
+    - Peak Detection: reference/peaks.md
+    - Filters: reference/filters.md
+    - Contact Detection: reference/contact.md
+    - Pipeline: reference/pipeline.md
+    - Visualization: reference/visualize.md
+    - Batch Processing: reference/run_batch.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - toc:
+      permalink: true

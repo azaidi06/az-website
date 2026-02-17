@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: end2end
+Version: 0.1.0
+Summary: Golf swing keyframe detection from wrist keypoints
+Requires-Python: >=3.9
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: opencv-python
+Requires-Dist: matplotlib
