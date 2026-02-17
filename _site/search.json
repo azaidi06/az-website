@@ -4,7 +4,7 @@
     "href": "portfolio.html",
     "title": "Portfolio",
     "section": "",
-    "text": "Options Analysis Dashboard\n\n\nReal-time options pricing, Greeks visualization, and stock analysis built with Streamlit.\n\n\nFinance Dashboard Streamlit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping Tutorial\n\n\nStep-by-step guide to scraping dynamic websites with Python and Playwright, including async patterns and retry logic.\n\n\nPython Web Scraping Tutorial\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTennis Analytics Dashboard\n\n\nExploratory data analysis of ATP/WTA match data with interactive Plotly visualizations.\n\n\nTennis Data Analysis Plotly\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nServe Analysis Interactive\n\n\nClient-side interactive analysis of serve patterns using Observable JS for instant filtering.\n\n\nTennis OJS Interactive\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpponent Quality Analysis\n\n\nAnalyzing win rates against top-ranked opponents to measure true competitive strength.\n\n\nTennis Analytics Interactive"
+    "text": "Options Analysis Dashboard\nReal-time options pricing, Greeks visualization, and stock analysis built with Streamlit.\n\nFinance\nDashboard\nStreamlit\n\n\n\n\n\n\n\n\n\n\nWeb Scraping Tutorial\nStep-by-step guide to scraping dynamic websites with Python and Playwright, including async patterns and retry logic.\n\nPython\nWeb Scraping\nTutorial\n\n\n\n\n\n\n\n\n\n\nServe Analysis Interactive\nClient-side interactive analysis of serve patterns using Observable JS for instant filtering.\n\nTennis\nOJS\nInteractive\n\n\n\n\n\n\n\n\n\n\nOpponent Quality Analysis\nAnalyzing win rates against top-ranked opponents to measure true competitive strength.\n\nTennis\nAnalytics\nInteractive"
   },
   {
     "objectID": "posts/koala-series/koala.html",

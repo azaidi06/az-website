@@ -7,7 +7,7 @@ format:
 ---
 
 ```{=html}
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Sora:wght@300;500;700&family=DM+Sans:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;500;700&family=Nunito+Sans:wght@300;400;600;700&family=Outfit:wght@300;500;700&family=Unbounded:wght@300;500;700&family=Source+Sans+3:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600;700&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Sora:wght@300;500;700&family=DM+Sans:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;500;700&family=Nunito+Sans:wght@300;400;600;700&family=Outfit:wght@300;500;700&family=Unbounded:wght@300;500;700&family=Source+Sans+3:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600;700&family=Manrope:wght@300;500;700&family=Playfair+Display:wght@400;600;700&family=Bricolage+Grotesque:wght@300;500;700&family=Fraunces:wght@300;500;700&family=Instrument+Serif&family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 .font-preview-page {
@@ -176,13 +176,41 @@ body:not(.quarto-dark) .font-card-label .font-names { color: #999; }
 body:not(.quarto-dark) .font-card-body .sample-heading { color: #1a1a1a; }
 
 .font-card-body .sample-text {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   line-height: 1.6;
   color: rgba(255,255,255,0.6);
-  margin: 0;
+  margin: 0 0 0.6rem 0;
 }
 
 body:not(.quarto-dark) .font-card-body .sample-text { color: #555; }
+
+.font-card-body .pros-cons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.font-card-body .pros, .font-card-body .cons {
+  flex: 1;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+}
+
+body:not(.quarto-dark) .font-card-body .pros,
+body:not(.quarto-dark) .font-card-body .cons { color: #888; }
+
+.font-card-body .pros strong, .font-card-body .cons strong {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+  color: rgba(255,255,255,0.6);
+}
+
+body:not(.quarto-dark) .font-card-body .pros strong,
+body:not(.quarto-dark) .font-card-body .cons strong { color: #555; }
 
 .current-badge {
   display: inline-block;
@@ -203,6 +231,20 @@ body:not(.quarto-dark) .current-badge {
   background: rgba(45, 90, 39, 0.12);
   color: #2d5a27;
 }
+
+.section-divider {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+  margin: 2.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+body:not(.quarto-dark) .section-divider { color: #aaa; border-bottom-color: rgba(0,0,0,0.06); }
 
 .back-link {
   display: inline-block;
@@ -234,9 +276,11 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
   <h1>Font Pairing Preview</h1>
   <p class="page-subtitle">Click any card to see the full landing page rendered with that font pairing.</p>
 
+  <div class="section-divider">Sans-Serif Pairings</div>
+
   <div class="font-grid">
 
-    <!-- 1. Current -->
+    <!-- 1. Current: Space Grotesk + Inter -->
     <a href="preview.html?h=Space+Grotesk&b=Inter&label=Current" class="font-card">
       <div class="font-card-hero">
         <img src="../images/wide_maroc.jpg" alt="Preview">
@@ -256,8 +300,12 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
           <span class="pairing-name">Current <span class="current-badge">Active</span></span>
           <span class="font-names">Space Grotesk + Inter</span>
         </div>
-        <div class="sample-heading" style="font-family:'Space Grotesk',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Space Grotesk',sans-serif;">The Baseline</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Geometric and technical without being cold. Space Grotesk's monospaced DNA gives headings a subtle coder credibility, while Inter is the invisible workhorse body font &mdash; it never distracts.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Inter',sans-serif;"><strong>Strengths</strong>Recognizably "tech." Great at small sizes. Massive weight range in Inter.</div>
+          <div class="cons" style="font-family:'Inter',sans-serif;"><strong>Tradeoffs</strong>Very common pairing in dev/data portfolios. Can feel generic if not styled well.</div>
+        </div>
       </div>
     </a>
 
@@ -281,8 +329,12 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
           <span class="pairing-name" style="font-family:'Sora',sans-serif;">Modern Tech</span>
           <span class="font-names">Sora + DM Sans</span>
         </div>
-        <div class="sample-heading" style="font-family:'Sora',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'DM Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Sora',sans-serif;">Precise but Rounded</div>
+        <p class="sample-text" style="font-family:'DM Sans',sans-serif;">Sora feels like Space Grotesk's slightly friendlier sibling &mdash; same geometric skeleton, but softer terminals. DM Sans adds a touch more character than Inter for body text with its optical sizing.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'DM Sans',sans-serif;"><strong>Strengths</strong>Feels premium and current. Great for data-heavy layouts. Both fonts render crisp at any size.</div>
+          <div class="cons" style="font-family:'DM Sans',sans-serif;"><strong>Tradeoffs</strong>Similar enough to current that the change may feel subtle. Doesn't add personality jump.</div>
+        </div>
       </div>
     </a>
 
@@ -303,11 +355,15 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
       </div>
       <div class="font-card-body">
         <div class="font-card-label">
-          <span class="pairing-name" style="font-family:'Plus Jakarta Sans',sans-serif;">Warm & Friendly</span>
+          <span class="pairing-name" style="font-family:'Plus Jakarta Sans',sans-serif;">Warm & Approachable</span>
           <span class="font-names">Plus Jakarta Sans + Nunito Sans</span>
         </div>
-        <div class="sample-heading" style="font-family:'Plus Jakarta Sans',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Nunito Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Plus Jakarta Sans',sans-serif;">Human-Centered Data</div>
+        <p class="sample-text" style="font-family:'Nunito Sans',sans-serif;">Says "I'm technical but I can explain things to anyone." Jakarta's rounded strokes feel inviting without being childish. Nunito Sans is the friendliest readable body font on Google Fonts.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Nunito Sans',sans-serif;"><strong>Strengths</strong>Approachable. Great if your audience includes non-technical stakeholders or recruiters.</div>
+          <div class="cons" style="font-family:'Nunito Sans',sans-serif;"><strong>Tradeoffs</strong>Can lean too soft for a serious data science portfolio. Less "edge."</div>
+        </div>
       </div>
     </a>
 
@@ -331,37 +387,16 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
           <span class="pairing-name" style="font-family:'Outfit',sans-serif;">Clean Minimal</span>
           <span class="font-names">Outfit + Inter</span>
         </div>
-        <div class="sample-heading" style="font-family:'Outfit',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Outfit',sans-serif;">Let the Work Speak</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Outfit strips away quirks &mdash; no distinctive terminals, no personality hooks. It's a "stay out of the way" heading font that makes your content the star. Paired with Inter, it's invisible design.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Inter',sans-serif;"><strong>Strengths</strong>Ultra-clean. Never clashes with any content. Timeless and professional.</div>
+          <div class="cons" style="font-family:'Inter',sans-serif;"><strong>Tradeoffs</strong>Almost too safe. Nothing memorable about the typography itself. Forgettable.</div>
+        </div>
       </div>
     </a>
 
-    <!-- 5. Unbounded + Source Sans 3 -->
-    <a href="preview.html?h=Unbounded&b=Source+Sans+3&label=Bold+Personality" class="font-card">
-      <div class="font-card-hero">
-        <img src="../images/wide_maroc.jpg" alt="Preview">
-        <div class="overlay"></div>
-        <div class="hero-text">
-          <div class="hero-title" style="font-family:'Unbounded',sans-serif;font-size:1.3rem;">Bringing<br>Data to<br>Life</div>
-          <div class="hero-divider"></div>
-          <div class="hero-roles">
-            <span style="font-family:'Unbounded',sans-serif;">Applied Data Scientist</span>
-            <span style="font-family:'Unbounded',sans-serif;">Software Engineer</span>
-            <span style="font-family:'Unbounded',sans-serif;">Product Leader</span>
-          </div>
-        </div>
-      </div>
-      <div class="font-card-body">
-        <div class="font-card-label">
-          <span class="pairing-name" style="font-family:'Unbounded',sans-serif;">Bold Personality</span>
-          <span class="font-names">Unbounded + Source Sans 3</span>
-        </div>
-        <div class="sample-heading" style="font-family:'Unbounded',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
-      </div>
-    </a>
-
-    <!-- 6. DM Sans + IBM Plex Sans -->
+    <!-- 5. DM Sans + IBM Plex Sans -->
     <a href="preview.html?h=DM+Sans&b=IBM+Plex+Sans&label=Polished+Corporate" class="font-card">
       <div class="font-card-hero">
         <img src="../images/wide_maroc.jpg" alt="Preview">
@@ -381,12 +416,16 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
           <span class="pairing-name" style="font-family:'DM Sans',sans-serif;">Polished Corporate</span>
           <span class="font-names">DM Sans + IBM Plex Sans</span>
         </div>
-        <div class="sample-heading" style="font-family:'DM Sans',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'IBM Plex Sans',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'DM Sans',sans-serif;">Enterprise-Ready</div>
+        <p class="sample-text" style="font-family:'IBM Plex Sans',sans-serif;">DM Sans is tight and assured. IBM Plex was literally designed for one of the world's largest tech companies. Together they say "I build things at scale." Serious without being stuffy.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'IBM Plex Sans',sans-serif;"><strong>Strengths</strong>Reads as experienced and credible. IBM Plex is excellent for data tables and code-adjacent content.</div>
+          <div class="cons" style="font-family:'IBM Plex Sans',sans-serif;"><strong>Tradeoffs</strong>Can feel corporate rather than creative. Less personality than a personal portfolio might want.</div>
+        </div>
       </div>
     </a>
 
-    <!-- 7. Manrope + Source Sans 3 -->
+    <!-- 6. Manrope + Source Sans 3 -->
     <a href="preview.html?h=Manrope&b=Source+Sans+3&label=Soft+Geometric" class="font-card">
       <div class="font-card-hero">
         <img src="../images/wide_maroc.jpg" alt="Preview">
@@ -406,33 +445,227 @@ body:not(.quarto-dark) .click-hint { color: #aaa; }
           <span class="pairing-name" style="font-family:'Manrope',sans-serif;">Soft Geometric</span>
           <span class="font-names">Manrope + Source Sans 3</span>
         </div>
-        <div class="sample-heading" style="font-family:'Manrope',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Manrope',sans-serif;">Balanced & Versatile</div>
+        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Manrope is the goldilocks geometric &mdash; more warmth than Outfit, more structure than Jakarta. Source Sans 3 (Adobe's first open-source font) is battle-tested for readability at any size.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Source Sans 3',sans-serif;"><strong>Strengths</strong>Works everywhere. Great at large hero sizes AND small card text. Zero learning curve for readers.</div>
+          <div class="cons" style="font-family:'Source Sans 3',sans-serif;"><strong>Tradeoffs</strong>Middle-of-the-road. Doesn't make a statement &mdash; just quietly works.</div>
+        </div>
       </div>
     </a>
 
-    <!-- 8. Sora + Inter -->
-    <a href="preview.html?h=Sora&b=Inter&label=Minimal+Swap" class="font-card">
+    <!-- 7. Poppins + Inter -->
+    <a href="preview.html?h=Poppins&b=Inter&label=Popular+Modern" class="font-card">
       <div class="font-card-hero">
         <img src="../images/wide_maroc.jpg" alt="Preview">
         <div class="overlay"></div>
         <div class="hero-text">
-          <div class="hero-title" style="font-family:'Sora',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-title" style="font-family:'Poppins',sans-serif;">Bringing<br>Data to<br>Life</div>
           <div class="hero-divider"></div>
           <div class="hero-roles">
-            <span style="font-family:'Sora',sans-serif;">Applied Data Scientist</span>
-            <span style="font-family:'Sora',sans-serif;">Software Engineer</span>
-            <span style="font-family:'Sora',sans-serif;">Product Leader</span>
+            <span style="font-family:'Poppins',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Poppins',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Poppins',sans-serif;">Product Leader</span>
           </div>
         </div>
       </div>
       <div class="font-card-body">
         <div class="font-card-label">
-          <span class="pairing-name" style="font-family:'Sora',sans-serif;">Minimal Swap</span>
-          <span class="font-names">Sora + Inter</span>
+          <span class="pairing-name" style="font-family:'Poppins',sans-serif;">Popular Modern</span>
+          <span class="font-names">Poppins + Inter</span>
         </div>
-        <div class="sample-heading" style="font-family:'Sora',sans-serif;">Tennis Serve Analysis</div>
-        <p class="sample-text" style="font-family:'Inter',sans-serif;">Exploring patterns in ATP and WTA match data from 1968 to 2024. A deep dive into how serve performance has evolved across eras.</p>
+        <div class="sample-heading" style="font-family:'Poppins',sans-serif;">The Crowd Favorite</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Poppins is the most used geometric sans on the internet &mdash; Canva, Spotify, countless startups. It's popular for a reason: perfectly round, extremely legible, feels "designed" without trying hard. Worth seeing to accept or reject.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Inter',sans-serif;"><strong>Strengths</strong>Universally liked. Huge weight range. Proven at every size. Feels polished and modern instantly.</div>
+          <div class="cons" style="font-family:'Inter',sans-serif;"><strong>Tradeoffs</strong>So popular it can feel like a template. You'll see it on 40% of portfolios you visit.</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 8. Bricolage Grotesque + DM Sans -->
+    <a href="preview.html?h=Bricolage+Grotesque&b=DM+Sans&label=Quirky+Character" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Bricolage Grotesque',sans-serif;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Bricolage Grotesque',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Bricolage Grotesque',sans-serif;">Quirky Character</span>
+          <span class="font-names">Bricolage Grotesque + DM Sans</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Bricolage Grotesque',sans-serif;">Personality Forward</div>
+        <p class="sample-text" style="font-family:'DM Sans',sans-serif;">Bricolage has distinctive ink traps and quirky joints that make headings instantly recognizable. It says "I'm a creative thinker who happens to do data science." DM Sans keeps body text grounded.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'DM Sans',sans-serif;"><strong>Strengths</strong>Memorable. Stands out from every other data portfolio. Great at large sizes on the hero.</div>
+          <div class="cons" style="font-family:'DM Sans',sans-serif;"><strong>Tradeoffs</strong>The quirks can feel distracting. May not land well with conservative hiring managers.</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-divider">Bold & Distinctive Pairings</div>
+
+  <div class="font-grid">
+
+    <!-- 9. Unbounded + Source Sans 3 -->
+    <a href="preview.html?h=Unbounded&b=Source+Sans+3&label=Bold+Statement" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Unbounded',sans-serif;font-size:1.3rem;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Unbounded',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Unbounded',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Unbounded',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Unbounded',sans-serif;">Bold Statement</span>
+          <span class="font-names">Unbounded + Source Sans 3</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Unbounded',sans-serif;">Maximum Impact</div>
+        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Unbounded is unapologetically chunky and rounded &mdash; headings demand attention like a billboard. It says "I'm confident and I don't blend in." Multiple weights available so it works across the full site.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Source Sans 3',sans-serif;"><strong>Strengths</strong>Impossible to ignore. Creates strong visual hierarchy. Memorable first impression.</div>
+          <div class="cons" style="font-family:'Source Sans 3',sans-serif;"><strong>Tradeoffs</strong>Can feel heavy. Needs careful sizing &mdash; hero titles may need to be scaled down.</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 10. JetBrains Mono + Source Sans 3 -->
+    <a href="preview.html?h=JetBrains+Mono&b=Source+Sans+3&label=Engineer+Identity" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'JetBrains Mono',monospace;">Applied Data Scientist</span>
+            <span style="font-family:'JetBrains Mono',monospace;">Software Engineer</span>
+            <span style="font-family:'JetBrains Mono',monospace;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'JetBrains Mono',monospace;">Engineer Identity</span>
+          <span class="font-names">JetBrains Mono + Source Sans 3</span>
+        </div>
+        <div class="sample-heading" style="font-family:'JetBrains Mono',monospace;">Terminal Native</div>
+        <p class="sample-text" style="font-family:'Source Sans 3',sans-serif;">Monospaced headings are a bold identity choice &mdash; it says "I live in notebooks and terminals, and I'm not pretending otherwise." JetBrains Mono is the most refined mono font available: ligatures, great weights, designed for hours of reading. Instantly distinctive from every other data science portfolio.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Source Sans 3',sans-serif;"><strong>Strengths</strong>Unmistakable identity. Full weight range. Looks incredible at large hero sizes. Signals deep technical credibility.</div>
+          <div class="cons" style="font-family:'Source Sans 3',sans-serif;"><strong>Tradeoffs</strong>Monospaced headings take more horizontal space. Can feel like a dev blog rather than a portfolio.</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-divider">Serif + Sans Pairings (High Contrast)</div>
+
+  <div class="font-grid">
+
+    <!-- 12. Playfair Display + Inter -->
+    <a href="preview.html?h=Playfair+Display&b=Inter&label=Classic+Elegance" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Playfair Display',serif;font-weight:400;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Inter',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Inter',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Inter',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Playfair Display',serif;">Classic Elegance</span>
+          <span class="font-names">Playfair Display + Inter</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Playfair Display',serif;">Refined Intelligence</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Serif headings + sans body is the highest-contrast pairing possible. Playfair says "editorial, considered, scholarly." It communicates that you think deeply before you build. Inter keeps it modern.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Inter',sans-serif;"><strong>Strengths</strong>Instantly elevated. Great for storytelling-heavy portfolios. Feels like a publication.</div>
+          <div class="cons" style="font-family:'Inter',sans-serif;"><strong>Tradeoffs</strong>Can feel old-fashioned or "bloggy." Unusual for tech/data portfolios. Polarizing.</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 13. Fraunces + DM Sans -->
+    <a href="preview.html?h=Fraunces&b=DM+Sans&label=Soft+Serif+Warmth" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Fraunces',serif;font-weight:300;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'DM Sans',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'DM Sans',sans-serif;">Software Engineer</span>
+            <span style="font-family:'DM Sans',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Fraunces',serif;">Soft Serif Warmth</span>
+          <span class="font-names">Fraunces + DM Sans</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Fraunces',serif;">Whimsy Meets Rigor</div>
+        <p class="sample-text" style="font-family:'DM Sans',sans-serif;">Fraunces is a "wonky" old-style serif with soft, organic shapes &mdash; it feels handmade and human. Says "I do serious work but I don't take myself too seriously." DM Sans grounds the playfulness.</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'DM Sans',sans-serif;"><strong>Strengths</strong>Extremely distinctive. Variable font with tons of optical tuning. Warm and inviting.</div>
+          <div class="cons" style="font-family:'DM Sans',sans-serif;"><strong>Tradeoffs</strong>Very opinionated &mdash; people love it or hate it. May feel too casual for some audiences.</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 14. Instrument Serif + Inter -->
+    <a href="preview.html?h=Instrument+Serif&b=Inter&label=Editorial+Contrast" class="font-card">
+      <div class="font-card-hero">
+        <img src="../images/wide_maroc.jpg" alt="Preview">
+        <div class="overlay"></div>
+        <div class="hero-text">
+          <div class="hero-title" style="font-family:'Instrument Serif',serif;font-weight:400;">Bringing<br>Data to<br>Life</div>
+          <div class="hero-divider"></div>
+          <div class="hero-roles">
+            <span style="font-family:'Inter',sans-serif;">Applied Data Scientist</span>
+            <span style="font-family:'Inter',sans-serif;">Software Engineer</span>
+            <span style="font-family:'Inter',sans-serif;">Product Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="font-card-body">
+        <div class="font-card-label">
+          <span class="pairing-name" style="font-family:'Instrument Serif',serif;">Editorial Contrast</span>
+          <span class="font-names">Instrument Serif + Inter</span>
+        </div>
+        <div class="sample-heading" style="font-family:'Instrument Serif',serif;">Sharp & Sophisticated</div>
+        <p class="sample-text" style="font-family:'Inter',sans-serif;">Instrument Serif is thin, sharp, and modern &mdash; a serif that doesn't feel old. Think NYT or Stripe's editorial pages. Communicates sophistication and attention to craft. Very "design-forward."</p>
+        <div class="pros-cons">
+          <div class="pros" style="font-family:'Inter',sans-serif;"><strong>Strengths</strong>Striking contrast with Inter. Feels like a premium publication. Unique in the data space.</div>
+          <div class="cons" style="font-family:'Inter',sans-serif;"><strong>Tradeoffs</strong>Only regular weight available. Thin strokes can be hard to read at small sizes or on low-res screens.</div>
+        </div>
       </div>
     </a>
 

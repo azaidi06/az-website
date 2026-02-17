@@ -13,10 +13,6 @@ format:
 
   <!-- Hero Section -->
   <div class="hero-section-v2">
-    <div class="hero-image-container">
-      <img src="images/wide_maroc.jpg" alt="Hero background" class="hero-image">
-      <div class="hero-overlay"></div>
-    </div>
     <div class="hero-content-v2">
       <h1 class="hero-title-v2">Bringing<br>Data to<br>Life</h1>
       <div class="hero-divider"></div>
@@ -138,8 +134,7 @@ body:not(.quarto-dark) .gradient-bg {
 /* Hero Section V2 */
 .hero-section-v2 {
   position: relative;
-  height: 50vh;
-  min-height: 350px;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,30 +142,18 @@ body:not(.quarto-dark) .gradient-bg {
   margin: 5rem 2rem 2rem 2rem;
   border-radius: 24px;
   overflow: hidden;
+  background-image: url('images/wide_maroc.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: #2a2a2a;
 }
 
-.hero-image-container {
+.hero-section-v2::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 0;
 }
 
 .hero-content-v2 {
@@ -275,7 +258,6 @@ body:not(.quarto-dark) .gradient-bg {
   }
 
   .hero-section-v2 {
-    height: 35vh;
     min-height: 200px;
     padding: 1rem;
     margin: 60px 0.75rem 0.75rem 0.75rem;
@@ -519,10 +501,10 @@ body:not(.quarto-dark) .card-arrow svg {
 
   // Parallax effect on hero
   window.addEventListener('scroll', function() {
-    const hero = document.querySelector('.hero-image');
+    const hero = document.querySelector('.hero-section-v2');
     if (hero) {
       const scrolled = window.pageYOffset;
-      hero.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+      hero.style.backgroundPositionY = 'calc(50% + ' + scrolled * 0.3 + 'px)';
     }
   });
 

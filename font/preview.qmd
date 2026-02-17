@@ -411,15 +411,25 @@ body:not(.quarto-dark) .card-icon svg { stroke: #2d5a27; }
   const bodyFont = params.get('b') || 'Inter';
   const label = params.get('label') || (headingFont + ' + ' + bodyFont);
 
+  // Fonts that only have one weight or need special handling
+  const singleWeightFonts = ['Instrument Serif'];
+  const serifFonts = ['Playfair Display', 'Fraunces', 'Instrument Serif'];
+  const monoFonts = ['JetBrains Mono'];
+
   // Update label
   document.getElementById('font-label').textContent = decodeURIComponent(label) + '  |  ' + headingFont + ' + ' + bodyFont;
 
   // Load Google Fonts dynamically
+  const hEncoded = encodeURIComponent(headingFont).replace(/%20/g, '+');
+  const bEncoded = encodeURIComponent(bodyFont).replace(/%20/g, '+');
+  const hWeights = singleWeightFonts.includes(headingFont) ? '' : ':wght@300;500;700';
+  const bWeights = singleWeightFonts.includes(bodyFont) ? '' : ':wght@300;400;600';
+
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = 'https://fonts.googleapis.com/css2?family='
-    + encodeURIComponent(headingFont).replace(/%20/g, '+') + ':wght@300;500;700&family='
-    + encodeURIComponent(bodyFont).replace(/%20/g, '+') + ':wght@300;400;600&display=swap';
+    + hEncoded + hWeights + '&family='
+    + bEncoded + bWeights + '&display=swap';
   document.head.appendChild(link);
 
   // Apply fonts once loaded
@@ -429,19 +439,24 @@ body:not(.quarto-dark) .card-icon svg { stroke: #2d5a27; }
   setTimeout(applyFonts, 500);
 
   function applyFonts() {
+    const hFallback = serifFonts.includes(headingFont) ? 'serif' : monoFonts.includes(headingFont) ? 'monospace' : 'sans-serif';
+    const bFallback = serifFonts.includes(bodyFont) ? 'serif' : monoFonts.includes(bodyFont) ? 'monospace' : 'sans-serif';
+    const hFamily = "'" + headingFont + "', " + hFallback;
+    const bFamily = "'" + bodyFont + "', " + bFallback;
+
     document.querySelectorAll('.heading-font').forEach(el => {
-      el.style.fontFamily = "'" + headingFont + "', sans-serif";
+      el.style.fontFamily = hFamily;
     });
     document.querySelectorAll('.body-font').forEach(el => {
-      el.style.fontFamily = "'" + bodyFont + "', sans-serif";
+      el.style.fontFamily = bFamily;
     });
 
     // Also apply to elements by their CSS class
     document.querySelectorAll('.hero-title-v2, .hero-subtitle-v2 span, .feature-card-v2 h3, .feature-card-v2 p + p').forEach(el => {
-      el.style.fontFamily = "'" + headingFont + "', sans-serif";
+      el.style.fontFamily = hFamily;
     });
     document.querySelectorAll('.feature-card-v2 p:first-of-type').forEach(el => {
-      el.style.fontFamily = "'" + bodyFont + "', sans-serif";
+      el.style.fontFamily = bFamily;
     });
   }
 

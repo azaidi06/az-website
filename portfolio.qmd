@@ -7,9 +7,10 @@ format:
     body-classes: portfolio-page
 ---
 
-::: {.grid .portfolio-grid}
+```{=html}
+<div class="grid portfolio-grid">
 
-::: {.g-col-12 .g-col-md-6}
+<div class="g-col-12 g-col-md-6">
 <a href="http://options-dashboard.duckdns.org/Stock_Analysis" target="_blank" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-graph-up-arrow"></i></div>
 <div class="portfolio-project-body">
@@ -23,9 +24,9 @@ format:
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
 </a>
-:::
+</div>
 
-::: {.g-col-12 .g-col-md-6}
+<div class="g-col-12 g-col-md-6">
 <a href="posts/scraping-tutorial/scraping-tutorial.html" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-code-square"></i></div>
 <div class="portfolio-project-body">
@@ -39,25 +40,9 @@ format:
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
 </a>
-:::
-
-::: {.g-col-12 .g-col-md-6}
-<a href="posts/tennis-eda/tennis-eda.html" class="portfolio-project-card">
-<div class="portfolio-project-icon"><i class="bi bi-bar-chart-line"></i></div>
-<div class="portfolio-project-body">
-<h4>Tennis Analytics Dashboard</h4>
-<p class="portfolio-project-desc">Exploratory data analysis of ATP/WTA match data with interactive Plotly visualizations.</p>
-<div class="portfolio-project-tags">
-<span class="portfolio-tag">Tennis</span>
-<span class="portfolio-tag">Data Analysis</span>
-<span class="portfolio-tag">Plotly</span>
 </div>
-</div>
-<div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
-</a>
-:::
 
-::: {.g-col-12 .g-col-md-6}
+<div class="g-col-12 g-col-md-6">
 <a href="posts/tennis-ojs/tennis-ojs.html" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-lightning"></i></div>
 <div class="portfolio-project-body">
@@ -71,9 +56,9 @@ format:
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
 </a>
-:::
+</div>
 
-::: {.g-col-12 .g-col-md-6}
+<div class="g-col-12 g-col-md-6">
 <a href="posts/opponent-quality/opponent-quality.html" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-people"></i></div>
 <div class="portfolio-project-body">
@@ -87,7 +72,7 @@ format:
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
 </a>
-:::
+</div>
 
-:::
-
+</div>
+```
