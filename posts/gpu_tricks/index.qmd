@@ -1,0 +1,44 @@
+---
+title: "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For"
+description: "How merging a Lambda + EC2 pipeline into a single GPU instance — and using NVENC/NVDEC — cut wall time by 33% and data transfer by 55% at zero additional cost."
+date: "2026-02-23"
+categories: [GPU, Infrastructure, Optimization]
+image: thumbnail.png
+draft: false
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+## The Problem
+
+When you're running ML inference on a GPU instance, it's easy to forget that modern NVIDIA GPUs ship with **three independent hardware engines** — CUDA cores, NVDEC (hardware video decoder), and NVENC (hardware video encoder). Most ML pipelines only touch CUDA, leaving the other two completely idle.
+
+This post walks through a real-world example: a golf swing analysis pipeline that originally used **two services** (Lambda for CPU transcoding + EC2 for GPU inference). By merging them into one EC2 instance and offloading transcoding to NVENC, we eliminated an entire service, cut wall time from ~18 to ~12 minutes, and halved the data moving across the network — all without spending an extra cent.
+
+## Interactive Pipeline Visualization
+
+Toggle between the before and after architectures to see exactly where the gains come from.
+
+```{=html}
+<div id="pipeline-viz-root"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="gpu_trick.js"></script>
+```
+
+## Key Takeaways
+
+1. **NVENC/NVDEC are free hardware** — they sit on the GPU die as dedicated ASICs, separate from CUDA cores. Using them doesn't steal compute from your ML workload.
+
+2. **Fewer services = fewer network hops** — every S3 round-trip adds latency and transfer costs. Keeping data local between pipeline steps is almost always a win.
+
+3. **Profile before you optimize** — `nvidia-smi` and `nvtop` quickly show which GPU engines are active. If NVENC/NVDEC show 0% utilization, you're leaving performance on the table.
+
+```bash
+# Check GPU engine utilization
+nvidia-smi dmon -s u -d 1  # Shows CUDA, NVENC, NVDEC utilization per second
+```

@@ -523,5 +523,33 @@
     "title": "Ali Zaidi",
     "section": "",
     "text": "Product Leader & Applied Data Scientist\n\n\nI specialize in bridging cutting-edge technical solutions with product vision — spanning startups and enterprise environments. Whether it’s defining a roadmap, architecting an ML pipeline, or prototyping a new feature, I operate across the full stack of product development.\n\n\n\n\n\n\n\n\n\n\nProduct Leadership\n\n\nDefining product vision, building roadmaps, and aligning cross-functional teams. Experienced in translating complex technical capabilities into clear value propositions for stakeholders and customers.\n\n\n\n\n\n\n\n\n\nApplied AI & ML\n\n\nBuilding production-grade ML systems from research to deployment. Deep experience with PyTorch, TensorFlow, and modern LLM frameworks. Focus on practical solutions that scale.\n\n\n\n\n\n\n\n\n\nFull Stack Data\n\n\nEnd-to-end ownership from data ingestion and transformation to analysis and visualization. Building reliable pipelines that turn raw data into actionable insights.\n\n\n\n\n\n\n\n\n\nData Science\n\n\nExpertise in Computer Vision, NLP, and generative AI. Strong foundation in statistical modeling, experiment design, and turning ambiguous problems into measurable solutions.\n\n\n\n\n\n\n\n\n\nSoftware Engineering\n\n\nProduction-quality code with modern practices: RESTful APIs, CI/CD pipelines, containerization with Docker, and maintainable Python packages. Code that’s built to last.\n\n\n\n\n\n\n\n\n\nCloud & Infrastructure\n\n\nDesigning and deploying scalable systems on AWS and other cloud platforms. Experience with HPC/SLURM clusters for compute-intensive workloads and cost-optimized architectures."
+  },
+  {
+    "objectID": "posts/gpu_tricks/index.html",
+    "href": "posts/gpu_tricks/index.html",
+    "title": "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For",
+    "section": "",
+    "text": "When you’re running ML inference on a GPU instance, it’s easy to forget that modern NVIDIA GPUs ship with three independent hardware engines — CUDA cores, NVDEC (hardware video decoder), and NVENC (hardware video encoder). Most ML pipelines only touch CUDA, leaving the other two completely idle.\nThis post walks through a real-world example: a golf swing analysis pipeline that originally used two services (Lambda for CPU transcoding + EC2 for GPU inference). By merging them into one EC2 instance and offloading transcoding to NVENC, we eliminated an entire service, cut wall time from ~18 to ~12 minutes, and halved the data moving across the network — all without spending an extra cent."
+  },
+  {
+    "objectID": "posts/gpu_tricks/index.html#the-problem",
+    "href": "posts/gpu_tricks/index.html#the-problem",
+    "title": "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For",
+    "section": "",
+    "text": "When you’re running ML inference on a GPU instance, it’s easy to forget that modern NVIDIA GPUs ship with three independent hardware engines — CUDA cores, NVDEC (hardware video decoder), and NVENC (hardware video encoder). Most ML pipelines only touch CUDA, leaving the other two completely idle.\nThis post walks through a real-world example: a golf swing analysis pipeline that originally used two services (Lambda for CPU transcoding + EC2 for GPU inference). By merging them into one EC2 instance and offloading transcoding to NVENC, we eliminated an entire service, cut wall time from ~18 to ~12 minutes, and halved the data moving across the network — all without spending an extra cent."
+  },
+  {
+    "objectID": "posts/gpu_tricks/index.html#interactive-pipeline-visualization",
+    "href": "posts/gpu_tricks/index.html#interactive-pipeline-visualization",
+    "title": "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For",
+    "section": "Interactive Pipeline Visualization",
+    "text": "Interactive Pipeline Visualization\nToggle between the before and after architectures to see exactly where the gains come from."
+  },
+  {
+    "objectID": "posts/gpu_tricks/index.html#key-takeaways",
+    "href": "posts/gpu_tricks/index.html#key-takeaways",
+    "title": "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nNVENC/NVDEC are free hardware — they sit on the GPU die as dedicated ASICs, separate from CUDA cores. Using them doesn’t steal compute from your ML workload.\nFewer services = fewer network hops — every S3 round-trip adds latency and transfer costs. Keeping data local between pipeline steps is almost always a win.\nProfile before you optimize — nvidia-smi and nvtop quickly show which GPU engines are active. If NVENC/NVDEC show 0% utilization, you’re leaving performance on the table.\n\n# Check GPU engine utilization\nnvidia-smi dmon -s u -d 1  # Shows CUDA, NVENC, NVDEC utilization per second"
   }
 ]

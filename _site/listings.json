@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/gpu_tricks/index.html",
       "/posts/golf_keyframe_extraction/index.html",
       "/posts/scraping-tutorial/scraping-tutorial.html",
       "/posts/tennis-ojs/tennis-ojs.html",
