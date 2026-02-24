@@ -536,6 +536,11 @@ body.blog-page #quarto-content {
   padding-top: 80px;
 }
 
+/* Push title-block-banner below the fixed navbar on post pages */
+#title-block-header.quarto-title-block {
+  padding-top: 60px;
+}
+
 /* 2. SOFTER HYPERLINKS IN DARK MODE */
 /* Override Darkly theme's bright blue links with muted grey-blue */
 body.quarto-dark a {
