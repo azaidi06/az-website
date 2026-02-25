@@ -1,8 +1,8 @@
 ---
-title: "GPU Tricks: Squeezing Free Performance from Hardware You Already Pay For"
-description: "How merging a Lambda + EC2 pipeline into a single GPU instance — and using NVENC/NVDEC — cut wall time by 33% and data transfer by 55% at zero additional cost."
+title: "GPU Tricks: 3x Faster ML Inference by Using Hardware You Already Pay For"
+description: "A three-phase optimization of a video analysis pipeline — from architecture cleanup (NVENC) to hardware decode (NVDEC) to compiler tricks (torch.compile) — cutting end-to-end time from 18 minutes to 6 and cost per video from $0.14 to $0.04."
 date: "2026-02-23"
-categories: [GPU, Infrastructure, Optimization]
+categories: [GPU, Infrastructure, Optimization, PyTorch]
 image: thumbnail.png
 draft: false
 format:
@@ -14,13 +14,50 @@ format:
 
 ## The Problem
 
-When you're running ML inference on a GPU instance, it's easy to forget that modern NVIDIA GPUs ship with **three independent hardware engines** — CUDA cores, NVDEC (hardware video decoder), and NVENC (hardware video encoder). Most ML pipelines only touch CUDA, leaving the other two completely idle.
+Modern NVIDIA GPUs ship with **three independent hardware engines** — CUDA cores, NVDEC (hardware video decoder), and NVENC (hardware video encoder). They're separate silicon blocks on the die: using one doesn't steal cycles from the others. Most ML pipelines only touch CUDA, leaving the other two completely idle.
 
-This post walks through a real-world example: a golf swing analysis pipeline that originally used **two services** (Lambda for CPU transcoding + EC2 for GPU inference). By merging them into one EC2 instance and offloading transcoding to NVENC, we eliminated an entire service, cut wall time from ~18 to ~12 minutes, and halved the data moving across the network — all without spending an extra cent.
+This post walks through three phases of optimizing a real pipeline — a golf swing analysis system that takes raw iPhone video through pose estimation on an EC2 GPU instance. Each phase targeted a different bottleneck, and the profiling results repeatedly contradicted initial assumptions about where time was being spent.
+
+| Phase | What changed | Wall time | Speedup |
+|-------|-------------|-----------|---------|
+| Before | Lambda + EC2 (two services) | ~18 min | — |
+| Phase 1 | Merge services, use NVENC | ~12 min | 1.5x |
+| Phase 2 | NVDEC decode + threaded overlap | ~9 min | 2.0x |
+| Phase 3 | torch.compile (inductor) | **~6 min** | **3.0x** |
+
+: End-to-end wall time for a 5-minute 60fps iPhone video (~19,000 frames) {.striped}
+
+The final pipeline processes a video in roughly the time it takes to record it, at **$0.04 per video** on spot instances.
+
+## Phase 1: Merge Services, Activate NVENC
+
+The original architecture used **two services**: an AWS Lambda function for CPU transcoding (HEVC → H.264) and a separate EC2 GPU instance for pose estimation. Every video crossed the network three times:
+
+```
+Phone → S3 /raw → Lambda downloads (168 MB) → CPU transcode (7 min!)
+     → S3 /processed upload (394 MB) → EC2 downloads (394 MB) → inference
+```
+
+The fix was obvious: the EC2 instance already had an NVIDIA L4 GPU with a dedicated NVENC encoder sitting idle. Moving the transcode onto the same machine:
+
+1. **Eliminated the Lambda entirely** — one fewer service to deploy, monitor, and pay for
+2. **Killed two S3 round-trips** — the 394 MB intermediate file never leaves the machine
+3. **Replaced a 7-minute CPU transcode with a 24-second NVENC hardware encode**
+
+NVENC is a fixed-function ASIC on the GPU die. It encodes video in hardware, completely independent of CUDA cores. Your ML inference runs on CUDA; your transcode runs on NVENC; they don't compete. It's free performance on hardware you're already renting.
+
+```bash
+# The transcode command — ffmpeg routes encode to NVENC hardware
+ffmpeg -hwaccel cuda -i input.MOV \
+  -c:v h264_nvenc -preset p4 -pix_fmt yuv420p \
+  -vsync cfr output.mp4
+```
+
+**Result: ~18 min → ~12 min** (33% faster, 55% less data transfer, one fewer service).
 
 ## Interactive Pipeline Visualization
 
-Toggle between the before and after architectures to see exactly where the gains come from.
+Toggle between the original two-service architecture and the merged single-service design.
 
 ```{=html}
 <div id="pipeline-viz-root"></div>
@@ -30,15 +67,191 @@ Toggle between the before and after architectures to see exactly where the gains
 <script src="gpu_trick.js"></script>
 ```
 
+## Phase 2: NVDEC and the Profiling Plot Twist
+
+With transcoding handled, the pipeline bottleneck was clearly the labeling step: ~10 minutes to run RTMDet (person detection) + ViTPose-Huge (pose estimation) over 19,000 frames. The labeler uses a **two-thread overlap design**:
+
+- **Background thread**: decodes video frames and preprocesses them into batches of 32
+- **Main thread**: runs GPU inference (RTMDet → crop → ViTPose → heatmap decode)
+
+The threads communicate through a `queue.Queue(maxsize=2)` — the background thread stays one batch ahead so the GPU never waits for data.
+
+### Expected 3.5x, Got 19%
+
+The initial theory was that CPU frame decoding (`cv2.VideoCapture`) was the bottleneck. OpenCV decodes on CPU at ~38 fps for 1080p H.264, and the GPU seemed underutilized at an estimated ~16%. The projected speedup from switching to NVDEC hardware decode was 3.5x.
+
+The actual result: **33.6 fps → 40.1 fps (19% improvement).**
+
+Not bad, but nowhere near 3.5x. The reason became clear only after profiling individual batch stages on the actual hardware.
+
+### The Real Bottleneck
+
+Profiled per-batch timings on g6.2xlarge (L4 GPU), batch size 32:
+
+```
+Background thread (NVDEC decode + preprocess):
+  ffmpeg h264_cuvid decode x32:   ~100ms
+  preprocess (resize+pad+norm):   ~100ms
+  TOTAL:                          ~200ms    ← finishes fast, waits for main
+
+Main thread (GPU inference + CPU glue):
+  RTMDet inference:               ~236ms    (GPU)
+  warpAffine x32:                  ~14ms    (CPU)
+  ViTPose inference:              ~258ms    (GPU)
+  Heatmap decode (dark-UDP):       ~43ms    (CPU)
+  TOTAL:                          ~552ms    ← the actual bottleneck
+```
+
+**GPU inference consumed 494ms out of 552ms per batch — 90% of main thread time.** The GPU wasn't 16% utilized. It was 90% utilized. The original estimate was wrong because it conflated `nvidia-smi` utilization (which reports duty cycle, not throughput) with actual batch timing.
+
+With the overlap design, effective throughput is `max(background, main)`:
+
+- **Before NVDEC**: max(985ms, 552ms) = 985ms → 32.5 fps. CPU decode was the limiter.
+- **After NVDEC**: max(200ms, 552ms) = 552ms → ~58 fps theoretical, 40.1 measured. GPU is now the limiter.
+
+NVDEC didn't deliver 3.5x because the main thread was 3.5x slower than originally estimated. But the swap still mattered — it **flipped the bottleneck from CPU to GPU**, which is exactly where you want it. CPU bottlenecks are hard to fix (you'd need more cores). GPU bottlenecks can be attacked with compilers.
+
+**Result: ~12 min → ~9 min** (labeling: 10 min → 8.1 min at 40.1 fps).
+
+## Phase 3: torch.compile — Another 1.77x for Free
+
+With the GPU confirmed as the bottleneck, the path forward was reducing inference time. `torch.compile` with the **inductor backend** is PyTorch's built-in graph compiler — it traces the model, fuses operations, and generates optimized Triton kernels. One function call, no code changes:
+
+```python
+# That's it. Two lines.
+det_model.backbone = torch.compile(det_model.backbone)
+pose_model.backbone = torch.compile(pose_model.backbone)
+```
+
+### Conv Nets Love Compilers More Than Transformers
+
+The two models responded very differently:
+
+| Component | Eager | Compiled (inductor) | Speedup |
+|-----------|-------|-------------------|---------|
+| RTMDet (conv-based detector) | 236ms | 107ms | **2.2x** |
+| ViTPose-Huge (vision transformer) | 258ms | 237ms | **1.08x** |
+| Combined GPU time | 494ms | 344ms | 1.44x |
+
+: Per-batch (32 frames) GPU inference on L4 24GB, PyTorch 2.8 {.striped}
+
+RTMDet is a convolutional network. Conv layers have highly regular memory access patterns and lots of fusible pointwise operations (batch norm, ReLU, residual adds). Inductor excels here — it fuses entire conv→bn→relu chains into single Triton kernels, eliminating intermediate memory reads/writes.
+
+ViTPose is a Vision Transformer. Attention layers are dominated by large matrix multiplications (Q, K, V projections) that are already well-optimized by cuBLAS. There's less for the compiler to fuse, so the gains are marginal.
+
+### Why 1.77x End-to-End When GPU-Only Is 1.44x?
+
+The E2E speedup exceeded the raw GPU improvement:
+
+| Metric | Eager | Compiled | Speedup |
+|--------|-------|----------|---------|
+| Steady-state fps | 32.5 | 57.5 | **1.77x** |
+| 5-min video (19K frames) | ~10 min | ~5.5 min | 1.77x |
+| Cost per video (spot) | $0.08 | $0.04 | **2x cheaper** |
+
+: End-to-end turbo mode labeling on g6.2xlarge {.striped}
+
+The amplification comes from RTMDet's outsized improvement. Before compilation, the main thread took 552ms (494ms GPU + 58ms CPU). After, it takes ~401ms (344ms GPU + 57ms CPU). The background reader (200ms) was already faster than the main thread, so reducing the main thread shrinks the effective batch time directly:
+
+```
+Before compile: max(200ms reader, 552ms main) = 552ms = 58 fps theoretical
+After compile:  max(200ms reader, 401ms main) = 401ms = 80 fps theoretical
+Measured: 57.5 fps (queue sync, warmup overhead eat the rest)
+```
+
+The cold start cost is **~18 seconds** on the first batch as inductor traces and compiles the graph. Subsequent batches (and subsequent videos in the same session) use the cached kernels. For a 5-minute video with ~600 batches, 18 seconds of compilation overhead is noise.
+
+**Result: ~9 min → ~6 min** (labeling: 8.1 min → 5.5 min at 57.5 fps).
+
+## Dead End: Why TensorRT Made Things Worse
+
+The natural next step after `torch.compile` was TensorRT — NVIDIA's dedicated inference optimizer. `torch_tensorrt` compiles models to TRT engines with FP16 quantization, typically delivering large speedups on NVIDIA hardware. On the L4, it was **slower**:
+
+| GPU | ViTPose Eager | ViTPose TRT FP16 | Speedup |
+|-----|--------------|------------------|---------|
+| RTX 3090 | ~258ms | ~191ms | 1.35x |
+| L4 (g6.2xlarge) | 258ms | 267ms | **0.96x (worse)** |
+
+: ViTPose-Huge batch=32 inference, same model and inputs {.striped}
+
+### The BW/TFLOP Ratio Explains Everything
+
+TRT FP16 primarily reduces **compute** — it halves the precision of matrix multiplications. But ViTPose-Huge is a Vision Transformer where attention layers move large amounts of data (Q, K, V matrix reads and writes). Whether TRT helps depends on whether the GPU is **compute-bound** or **memory-bandwidth-bound**:
+
+| GPU | Mem BW | FP16 TFLOPS | BW/TFLOP | Bottleneck |
+|-----|--------|-------------|----------|------------|
+| RTX 3090 | 936 GB/s | 142 | 6.6 | Compute → TRT helps |
+| L4 | 300 GB/s | 121 | **2.5** | Memory BW → TRT can't help |
+| A10G | 600 GB/s | 125 | 4.8 | Mixed → marginal |
+| L40S | 864 GB/s | 362 | 2.4 | Memory BW → TRT can't help |
+| A100 | 2039 GB/s | 312 | 6.5 | Compute → TRT would help |
+
+: Higher BW/TFLOP = more compute-bound = TRT FP16 helps more {.striped}
+
+The L4's 300 GB/s GDDR6 can't feed its 121 FP16 TFLOPS. The GPU is starved for data, not compute. TRT's kernel fusion reduces compute further, but you're not waiting on compute — you're waiting on memory reads. Halving the arithmetic doesn't help when the arithmetic isn't what's slow.
+
+Every cost-effective AWS inference GPU (G-family: L4, A10G, L40S) has a low BW/TFLOP ratio. The GPUs where TRT *would* help — A100, V100 — come in expensive multi-GPU configurations ($32+/hr). For this workload, **inductor is strictly better than TRT on every practical AWS instance**.
+
+Beyond performance, dropping TRT had operational benefits:
+
+- **No 600-second cold start** — TRT engine caches were invalidated on every deploy (code hash changes), requiring a full rebuild
+- **4.4 GB smaller AMI** — `tensorrt_libs` was 37% of all Python packages on disk
+- **Faster EBS warm-up** — less data to lazy-load from the snapshot on first boot
+
+## The Full Journey
+
+```
+Phase 0    Phase 1         Phase 2         Phase 3
+~18 min    ~12 min         ~9 min          ~6 min
+           ┌───────────┐   ┌───────────┐   ┌───────────┐
+           │ Merge to  │   │ NVDEC hw  │   │ torch     │
+           │ single EC2│   │ decode +  │   │ .compile  │
+           │ + NVENC   │   │ threaded  │   │ inductor  │
+           │ transcode │   │ overlap   │   │ on models │
+           └───────────┘   └───────────┘   └───────────┘
+               1.5x            2.0x            3.0x
+```
+
+| | Before | Phase 1 | Phase 2 | Phase 3 |
+|---|--------|---------|---------|---------|
+| **Architecture** | Lambda + EC2 | EC2 only | EC2 only | EC2 only |
+| **Transcode** | CPU libx264 (7 min) | NVENC (24s) | NVENC (24s) | NVENC (24s) |
+| **Decode** | — | cv2 CPU | NVDEC h264_cuvid | NVDEC h264_cuvid |
+| **Inference** | Eager | Eager | Eager | torch.compile |
+| **Labeling fps** | — | 32.5 | 40.1 | **57.5** |
+| **E2E wall time** | ~18 min | ~12 min | ~9 min | **~6 min** |
+| **Cost/video** | ~$0.14 | ~$0.08 | ~$0.064 | **~$0.04** |
+| **Data transferred** | 957 MB | 433 MB | 433 MB | 433 MB |
+| **Services** | 2 | 1 | 1 | 1 |
+
+: Complete optimization timeline for a 5-min 60fps iPhone video {.striped}
+
+Each phase attacked a different bottleneck: Phase 1 removed unnecessary network hops and CPU transcoding. Phase 2 shifted the bottleneck from CPU decode to GPU inference. Phase 3 reduced GPU inference time with a compiler. The lesson is that optimization is sequential — each fix reveals the next bottleneck, and the only reliable way to find it is to profile.
+
 ## Key Takeaways
 
-1. **NVENC/NVDEC are free hardware** — they sit on the GPU die as dedicated ASICs, separate from CUDA cores. Using them doesn't steal compute from your ML workload.
+1. **NVENC/NVDEC are free hardware** — they sit on the GPU die as dedicated ASICs, separate from CUDA cores. Using them doesn't steal compute from your ML workload. If `nvidia-smi dmon` shows 0% for ENC or DEC, you're leaving performance on the table.
 
-2. **Fewer services = fewer network hops** — every S3 round-trip adds latency and transfer costs. Keeping data local between pipeline steps is almost always a win.
+2. **Fewer services = fewer network hops** — the biggest single win (7 min → 24s transcode + eliminated S3 round-trips) came from architecture simplification, not algorithmic cleverness.
 
-3. **Profile before you optimize** — `nvidia-smi` and `nvtop` quickly show which GPU engines are active. If NVENC/NVDEC show 0% utilization, you're leaving performance on the table.
+3. **Profile, don't guess** — initial estimates had GPU utilization at 16% and predicted a 3.5x speedup from NVDEC. Actual profiling showed 90% GPU utilization and 19% speedup. The numbers you assume are rarely the numbers you have.
+
+4. **torch.compile is the easiest inference win** — two lines of code, no model changes, 1.77x end-to-end speedup. Conv-heavy models (RTMDet: 2.2x) benefit far more than transformers (ViTPose: 1.08x).
+
+5. **TensorRT isn't always faster** — on memory-bandwidth-bound GPUs (L4, L40S), TRT FP16 can be slower than eager PyTorch. Check your GPU's BW/TFLOP ratio before investing in a TRT integration. Every cost-effective AWS inference GPU is bandwidth-bound.
 
 ```bash
-# Check GPU engine utilization
+# Quick GPU engine utilization check
 nvidia-smi dmon -s u -d 1  # Shows CUDA, NVENC, NVDEC utilization per second
+
+# Per-layer profiling to find the actual bottleneck
+python -c "
+import torch
+with torch.profiler.profile(activities=[
+    torch.profiler.ProfilerActivity.CPU,
+    torch.profiler.ProfilerActivity.CUDA,
+]) as prof:
+    model(input_batch)
+print(prof.key_averages().table(sort_by='cuda_time_total', row_limit=10))
+"
 ```

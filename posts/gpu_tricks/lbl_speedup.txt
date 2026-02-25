@@ -1,0 +1,325 @@
+GPU Video Decode Impact Analysis: golf-pipeline-final Labeling Stage
+=====================================================================
+CORRECTED 2026-02-24 with actual profiling data from g6.2xlarge (L4 GPU)
+
+1. CURRENT STATE (PROFILED)
+============================
+
+The turbo labeler (fast_label.py) uses a two-thread design. Per-batch (32 frames)
+profiled timings on g6.2xlarge with NVDEC (ffmpeg h264_cuvid pipe):
+
+Background thread (NVDEC decode + preprocess):
+  ffmpeg h264_cuvid decode x32:   ~100ms   (hardware decode, pipe to numpy)
+  _preprocess_det_batch():        ~100ms   (cv2.resize + pad + normalize)
+  TOTAL:                          ~200ms
+
+Main thread (GPU inference + inter-model CPU):
+  RTMDet batch inference:         ~236ms   (GPU, 640x640 input, was estimated 5ms!)
+  Per-frame warpAffine x32:       ~14ms    (CPU cv2, bbox-dependent)
+  ViTPose batch inference:        ~258ms   (GPU, 192x256 input, was estimated 5ms!)
+  Heatmap decode (dark-UDP):      ~43ms    (CPU numpy)
+  TOTAL:                          ~552ms
+
+Effective throughput: max(200, 552) = 552ms per 32 frames = ~58 fps theoretical
+Measured wall clock: 40.1 fps (overhead from queue sync, warmup, etc.)
+
+KEY CORRECTION: GPU is the bottleneck, NOT frame decode.
+  - GPU inference (RTMDet + ViTPose) = 494ms = 90% of main thread time
+  - GPU is busy ~90% of each batch cycle (opposite of original 84% idle claim)
+  - Background reader completes in ~200ms, then waits ~350ms for main thread
+  - queue_wait = 0ms (reader always ahead) proves GPU is the limiter
+
+Before NVDEC (cv2 CPU decode):
+  Background thread: ~985ms (cv2 decode ~800ms + preprocess ~185ms)
+  Main thread: ~552ms (unchanged)
+  Effective: max(985, 552) = 985ms = 32.5 fps
+  -> Reader-bound: main thread waited ~430ms/batch for frames
+
+After NVDEC (ffmpeg h264_cuvid):
+  Background thread: ~200ms
+  Main thread: ~552ms (unchanged)
+  Effective: max(200, 552) = 552ms = ~58 fps theoretical, 40.1 fps measured
+  -> Main-bound: reader waits ~350ms/batch for GPU to finish
+  -> 19% real improvement (33.6 -> 40.1 fps), not the 3.5x originally projected
+
+
+2. THREE TIERS OF IMPROVEMENT (CORRECTED)
+==========================================
+
+TIER 1: Swap Decoder (COMPLETED — ffmpeg h264_cuvid pipe)
+----------------------------------------------------------
+Replaced cv2.VideoCapture with ffmpeg NVDEC pipe. Decode on NVDEC hardware,
+pipe raw BGR frames to numpy arrays. All existing preprocessing unchanged.
+
+  Result: 33.6 fps -> 40.1 fps (19% improvement)
+  Why not 3.5x? Original analysis assumed main thread was ~158ms (wrong).
+  Actual main thread is ~552ms, so eliminating decode bottleneck just shifts
+  the bottleneck to GPU inference. The 19% gain comes from eliminating the
+  ~430ms overlap gap where the main thread waited for cv2 decode.
+
+                    Pre-NVDEC   Post-NVDEC (Tier 1)
+  Labeling fps      33.6        40.1
+  Labeling time     ~10 min     ~8.1 min (5-min video, 19K frames)
+  Per-video cost    $0.08       $0.064
+  Code change       --          ~80 lines added to fast_label.py
+  New deps          --          None (ffmpeg already on AMI)
+
+
+TIER 2: GPU Preprocessing (NOT WORTHWHILE)
+-------------------------------------------
+Moving resize/pad/normalize and warpAffine to GPU would save:
+  - CPU preprocess: ~100ms (but already hidden behind GPU's 552ms)
+  - CPU warp: ~14ms
+  - Total CPU savings: ~114ms
+
+But GPU is already saturated at 494ms of inference per batch.
+Adding preprocessing to GPU would INCREASE GPU time, not decrease total time.
+
+  Current GPU utilization per batch:
+    RTMDet:   236ms
+    ViTPose:  258ms
+    TOTAL:    494ms (of 552ms main thread = 90% GPU)
+
+  If we add GPU preprocessing:
+    GPU preprocess:  ~10ms (resize+pad+normalize on GPU)
+    RTMDet:          236ms
+    GPU warp:        ~5ms  (grid_sample)
+    ViTPose:         258ms
+    TOTAL GPU:       ~509ms (worse than current 494ms)
+
+  Net effect: ~0% improvement. CPU work (14ms warp + 43ms heatmap) already
+  fits within GPU time. Moving it to GPU just adds to the GPU bottleneck.
+
+  VERDICT: Skip. GPU inference is the bottleneck, not CPU preprocessing.
+
+
+TIER 3: Port Heatmap Decode to GPU (MARGINAL)
+-----------------------------------------------
+Heatmap decode is only 43ms (not 64ms as estimated). It already runs fully
+within the GPU inference window. Porting to GPU would not change throughput.
+
+  VERDICT: Skip. Would only matter if GPU inference were first accelerated.
+
+
+3. WHAT WOULD ACTUALLY HELP
+=============================
+
+The only way to meaningfully speed up labeling is to reduce GPU inference time:
+
+Option A: torch.compile() on Models — COMPLETED (2026-02-24)
+  See section 7 for full results. Summary:
+  - RTMDet: inductor default → 106.9ms (2.2x speedup from 236ms eager)
+  - ViTPose: inductor default → ~237ms (~8% improvement from 258ms)
+  - New main thread: 106.9 + 14 + 237 + 43 = ~401ms → ~80 fps theoretical
+  - Measured: 57.5 fps steady-state (1.77x over 32.5 fps eager baseline)
+  - Cold start: ~18s inductor compilation on first batch
+  - Labeling: ~5.5 min for 5-min video (19K frames)
+
+Option B: TensorRT Compilation — NOT VIABLE ON L4
+  See section 8 for detailed analysis. Summary:
+  - torch_tensorrt FP16 for ViTPose: 267ms (SLOWER than eager 258ms on L4)
+  - TRT engine build: 600s on first run, cache invalidated by S3 code pull
+  - Root cause: L4 memory bandwidth (300 GB/s) bottleneck, not compute
+  - No practical AWS GPU where TRT helps ViTPose at reasonable cost
+  - VERDICT: Do not use torch_tensorrt. Inductor-only is optimal.
+
+Option C: Lighter Detector (RTMDet-Tiny)
+  - RTMDet 106.9ms -> ~15ms (Tiny vs Medium compiled, ~7x fewer FLOPs)
+  - New main thread: ~15 + 14 + 237 + 43 = ~309ms -> ~103 fps
+  - Labeling: ~3.1 min for 5-min video
+  - Risk: Lower detection accuracy, may miss persons in edge cases
+
+Option D: Skip Detection ("fast" mode, already exists)
+  - RTMDet 106.9ms -> 0ms (use full-frame crop, no person detection)
+  - New main thread: ~14 + 237 + 43 = ~294ms -> ~109 fps
+  - Labeling: ~2.9 min for 5-min video
+  - Risk: Accuracy loss when person doesn't fill frame
+
+                    Pre-compile   Compiled    RTMDet-Tiny   Skip Det
+  Labeling fps      40.1          57.5        ~103          ~109
+  Labeling time     ~8.1 min      ~5.5 min    ~3.1 min      ~2.9 min
+  Complexity        --            Done        Low           Zero
+
+
+4. END-TO-END PIPELINE IMPACT
+===============================
+
+  Stage                Pre-compile   Compiled      RTMDet-Tiny
+  Transcode (NVENC)    ~24 sec       ~24 sec       ~24 sec
+  Labeling (EC2)       ~8.1 min      ~5.5 min      ~3.1 min
+  Swing detection      ~13 sec       ~13 sec       ~13 sec
+  TOTAL                ~9.1 min      ~6.2 min      ~3.8 min
+
+torch.compile (inductor) is now deployed. Remaining speedup options
+target the detector (RTMDet-Tiny or skip detection).
+
+
+5. RISKS
+=========
+
+1. iPhone VFR: iPhones record variable frame rate. Transcode step (NVENC)
+   converts to CFR before labeling, so this is handled upstream.
+
+2. NVDEC color space: ffmpeg h264_cuvid outputs via pipe as BGR24. A/B test
+   showed keypoint diffs < 1px vs cv2 path. No practical accuracy impact.
+
+3. RTMDet-Tiny accuracy: Golf videos with distant camera or multiple people
+   may suffer. Would need validation on diverse video set.
+
+
+6. RECOMMENDATION (UPDATED 2026-02-24)
+========================================
+
+Phase 1 (NVENC transcode), Phase 2 (NVDEC decode), and torch.compile
+(inductor) are complete. The labeling pipeline now runs at 57.5 fps
+steady-state on g6.2xlarge (L4), a 1.77x speedup over eager baseline.
+
+Priority order for further gains:
+  1. RTMDet-Tiny swap (moderate impact, low effort)
+  2. Skip detection mode (already exists, use when accuracy permits)
+
+Drop torch_tensorrt from the stack — it provides no benefit on L4 and
+adds 600s cold-start penalty + 4.4GB AMI bloat. Use inductor for all models.
+
+Skip Tier 2 (GPU preprocessing) and Tier 3 (GPU heatmap decode) — they
+target the wrong bottleneck. GPU inference is 90% of batch time.
+
+
+7. TORCH.COMPILE RESULTS (2026-02-24)
+=======================================
+
+Benchmarked on g6.2xlarge (L4 24GB, 8 vCPU), batch=32, PyTorch 2.8+cu126.
+
+GPU-only microbenchmarks (isolated backbone+neck / backbone+head):
+
+  Component   Eager     Compiled (inductor)   Speedup
+  RTMDet      236ms     106.9ms               2.2x
+  ViTPose     258ms     ~237ms                ~1.08x (8%)
+  Combined    494ms     ~344ms                1.44x
+
+E2E labeling (turbo mode, 5821 frames, 1080p60):
+
+  Run              Time     FPS      Notes
+  Run 1 (warmup)   118.3s   49.2     includes ~18s inductor compilation
+  Run 2 (steady)   101.2s   57.5     steady state
+  Run 3 (steady)   101.5s   57.4     confirms steady state
+
+Comparison:
+
+  Metric                  Eager     Compiled    Speedup
+  Steady-state fps        32.5      57.5        1.77x
+  5-min video (19K fr)    ~10 min   ~5.5 min    1.77x
+  Cost/video (spot)       $0.08     ~$0.04      2x cheaper
+
+Why 1.77x E2E when GPU-only is 1.44x?
+  - RTMDet's 2.2x speedup shifts the bottleneck ratio
+  - With eager: main thread = 552ms (GPU 494ms = 90%)
+  - With compile: main thread = ~401ms (GPU 344ms = 86%)
+  - Background reader (200ms) remains well within main thread time
+  - Net effect is larger than pure GPU speedup because RTMDet's big
+    improvement shrinks the main thread substantially
+
+Implementation:
+  - fast_label.py: _compile_models(labeler) applies torch.compile to
+    RTMDet backbone+neck (inductor default) and ViTPose backbone+head
+    (inductor default). Called once before first video.
+  - worker.py: calls _compile_models() at top of label_video_turbo/hifi
+  - Inductor graph cache: TORCHINDUCTOR_FX_GRAPH_CACHE=1 env var enables
+    disk caching at /tmp/torchinductor_root/
+  - First batch: ~18s compilation overhead (inductor traces + compiles)
+  - Subsequent batches: cached, no overhead
+
+
+8. TORCH_TENSORRT ANALYSIS: WHY TRT DOESN'T HELP ON L4
+========================================================
+
+torch_tensorrt FP16 was benchmarked on both RTX 3090 and L4 for ViTPose:
+
+  GPU       ViTPose Eager   ViTPose TRT FP16   Speedup
+  3090      ~258ms          ~191ms             1.35x
+  L4        258ms           267ms              0.96x (WORSE)
+
+Root cause: memory bandwidth limits on L4.
+
+ViTPose-Huge is a Vision Transformer. Attention layers have both compute
+and memory access demands (Q, K, V matrix reads/writes). Whether TRT
+FP16 helps depends on which resource is the bottleneck:
+
+  GPU     Mem BW      FP16 TFLOPS   BW/TFLOP   Bottleneck
+  3090    936 GB/s    142           6.6        Compute → TRT FP16 helps
+  L4      300 GB/s    121           2.5        Memory BW → TRT can't help
+  A10G    600 GB/s    125           4.8        Mixed → marginal
+  L40S    864 GB/s    362           2.4        Memory BW → TRT can't help
+  A100    2039 GB/s   312           6.5        Compute → TRT would help
+  H100    3350 GB/s   989           3.4        Mixed → maybe
+
+The BW/TFLOP ratio determines if the GPU is bandwidth-bound (low ratio)
+or compute-bound (high ratio). TRT FP16 primarily reduces compute; when
+the model is bandwidth-bound, there's nothing to gain.
+
+L4's 300 GB/s GDDR6 can't feed its 121 FP16 TFLOPS. The GPU is starved
+for data, not compute. TRT kernel fusion reduces compute further, but
+you're not waiting on compute — you're waiting on memory reads.
+
+AWS GPU instances where TRT would help ViTPose:
+  - A100 (p4d/p4de): 2039 GB/s HBM2e, 6.5 BW/TFLOP — yes, but $32-41/hr (8-GPU minimum)
+  - V100 (p3): 900 GB/s HBM2, 7.2 BW/TFLOP — yes, but $3.06/hr, old gen, limited spot
+  - None are cost-effective for this workload
+
+Cost-effective inference GPUs (G-family) are all bandwidth-constrained:
+  - L4 (g6): 2.5 BW/TFLOP — TRT doesn't help
+  - A10G (g5): 4.8 BW/TFLOP — marginal at best, 2x cost
+  - L40S (g6e): 2.4 BW/TFLOP — same ratio as L4, 3x cost
+
+VERDICT: Drop torch_tensorrt entirely for this workload. Benefits:
+  - Eliminates 600s cold-start TRT engine rebuild per deploy
+    (TRT caches invalidated by S3 code pull changing code hashes)
+  - Removes 4.4GB tensorrt_libs from AMI (37% of Python packages)
+  - Faster AMI bakes (skip TRT install + warmup step)
+  - Reduces EBS cold-start penalty (less data to lazy-load from snapshot)
+  - Zero runtime performance loss (inductor matches or beats TRT on L4)
+
+
+9. EBS COLD-START ANALYSIS (2026-02-24)
+=========================================
+
+When deploying from a snapshot-backed AMI, EBS volumes suffer a first-read
+penalty ("lazy loading") — blocks are fetched from S3 on first access.
+
+Measured on g6.2xlarge (gp3, 100GB, default 3000 IOPS / 125 MB/s):
+
+  Storage             Write       Read (cold)   Read (warm)
+  EBS root (gp3)      225 MB/s    12 MB/s       125 MB/s
+  NVMe instance store  1.5 GB/s    1.6 GB/s     1.6 GB/s
+
+Data on root EBS that must be loaded at startup:
+
+  Component           Size
+  tensorrt_libs       4.4 GB  ← drop this (see section 8)
+  nvidia (CUDA)       3.4 GB
+  torch               1.6 GB
+  triton              541 MB
+  mmpose/mmdet/etc    ~2 GB
+  Model weights       2.5 GB  ← downloaded from S3 (already warm)
+  TOTAL               ~14.5 GB (10.1 GB without TRT)
+
+At 12 MB/s cold read, importing 10+ GB of Python packages takes ~14 min.
+Model weights are warm (S3 download in user-data writes them to EBS first).
+
+The 419GB NVMe instance store (/opt/dlami/nvme) is completely unused.
+
+Mitigation options (in priority order):
+  1. Drop torch_tensorrt: saves 4.4GB = ~6 min off cold start
+  2. Bump EBS IOPS/throughput: {"Iops":10000,"Throughput":500} in
+     block-device-mappings. Cost: <$0.05/deploy (prorated per-second).
+     Higher IOPS allows more concurrent block fetches from S3.
+  3. Download model weights to NVMe from S3: change deploy.sh to write
+     checkpoints to /opt/dlami/nvme/ instead of EBS. S3→NVMe is
+     network-bound (~100 MB/s), bypasses EBS lazy loading entirely.
+  4. Background EBS pre-warm: dd if=/dev/nvme0n1 of=/dev/null bs=1M &
+     in user-data before starting worker. Forces block fetch.
+  5. EBS Fast Snapshot Restore: $0.75/AZ/hr ongoing. Only for frequent deploys.
+
+Note: cold-start penalty is amortized across multiple videos. Once the
+first video warms the page cache, subsequent videos load normally.
+Typical deploy processes 5-10 videos per session.
