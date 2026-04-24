@@ -15,10 +15,7 @@
   --shadow-md: 8px 8px 0 0 var(--ink);
   --shadow-lg: 12px 12px 0 0 var(--ink);
 
-  background:
-    linear-gradient(rgba(245, 241, 234, 0.86), rgba(245, 241, 234, 0.92)),
-    url('images/wide_maroc.jpg') center / cover no-repeat;
-  background-attachment: scroll, scroll;
+  background: var(--cream);
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
@@ -105,6 +102,12 @@ body:has(.brutal-page) #quarto-header {
   align-items: center;
   margin-bottom: clamp(3rem, 6vw, 5rem);
   position: relative;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(245, 241, 234, 0.55), rgba(245, 241, 234, 0.65)),
+    url('images/wide_maroc.jpg') center top / cover no-repeat;
+  isolation: isolate;
 }
 
 @media (max-width: 860px) {
