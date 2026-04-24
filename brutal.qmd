@@ -12,66 +12,142 @@ format:
 ---
 
 ```{=html}
-<div class="brutal-page">
+<div class="brutal-page" data-theme="cream">
 
-  <nav class="brutal-topbar">
-    <div class="brutal-brand">ZAIDI</div>
-    <div class="brutal-nav">
+  <header class="brutal-topbar">
+    <div class="brutal-brand">AZ</div>
+    <nav class="brutal-nav">
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="resume.html">Resume</a>
+    </nav>
+    <div class="brutal-controls">
+      <div class="brutal-theme">
+        <button class="brutal-theme-btn" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="dot"></span>
+          <span class="name">Cream</span>
+          <span class="caret">▾</span>
+        </button>
+        <ul class="brutal-theme-menu" hidden>
+          <li data-theme="cream"><span class="swatch swatch-cream"></span> Cream</li>
+          <li data-theme="mono"><span class="swatch swatch-mono"></span> Mono</li>
+          <li data-theme="neon"><span class="swatch swatch-neon"></span> Neon</li>
+          <li data-theme="earth"><span class="swatch swatch-earth"></span> Earth</li>
+          <li data-theme="vapor"><span class="swatch swatch-vapor"></span> Vapor</li>
+        </ul>
+      </div>
+      <a class="brutal-contact" href="mailto:azaidi06@gmail.com">Contact</a>
     </div>
-    <a class="brutal-contact" href="mailto:azaidi06@gmail.com">Contact</a>
-  </nav>
+  </header>
 
-  <section class="brutal-hero">
-    <div class="brutal-hero-copy">
-      <div class="brutal-eyebrow">Hi, I'm</div>
-      <h1 class="brutal-title">Ali<br>Zaidi</h1>
-      <p class="brutal-tagline">
-        Bringing <span class="accent">data</span> to life.
-      </p>
-      <ul class="brutal-roles">
-        <li>Applied Data Scientist</li>
-        <li>Software Engineer</li>
-        <li>Product Leader</li>
-      </ul>
-      <a class="brutal-cta" href="about.html">Get in touch →</a>
-    </div>
+  <main class="brutal-main">
+    <section class="brutal-hero">
+      <div class="hero-text">
+        <div class="eyebrow">Hi, I'm</div>
+        <h1 class="brutal-title">Ali<br>Zaidi<span class="stamp">.</span></h1>
+        <p class="tagline">
+          Bringing <span class="accent">data</span> to life — across ML, software, and product.
+        </p>
+        <ul class="roles">
+          <li>Applied Data Scientist</li>
+          <li>Software Engineer</li>
+          <li>Product Leader</li>
+        </ul>
+        <a class="brutal-cta" href="about.html">
+          Get in touch <span class="arrow">→</span>
+        </a>
+      </div>
 
-    <div class="brutal-visual">
-      <img src="images/wide_maroc.jpg" alt="" class="visual-img">
-      <span class="star star-1">✳</span>
-      <span class="star star-2">✳</span>
-    </div>
+      <div class="hero-visual">
+        <span class="floating-tag tag-1">★ Est. 2026</span>
+        <div class="visual-frame">
+          <img src="images/wide_maroc.jpg" alt="">
+          <span class="badge">Currently · Building</span>
+        </div>
+        <span class="floating-tag tag-2">Data → Life</span>
+      </div>
 
-    <span class="brutal-scatter scatter-1">✳</span>
-    <span class="brutal-scatter scatter-2">✳</span>
-  </section>
+      <span class="scatter scatter-1">✳</span>
+      <span class="scatter scatter-2">✳</span>
+    </section>
 
-  <section class="brutal-cards">
-    <a href="about.html" class="brutal-card accent-pink">
-      <div class="card-label">01 · Profile</div>
-      <h3>About Me</h3>
-      <p>Background, skills, and the path that got me here.</p>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a href="blog.html" class="brutal-card accent-cyan">
-      <div class="card-label">02 · Writing</div>
-      <h3>Blog</h3>
-      <p>Tutorials, data experiments, and meaningful meanderings.</p>
-      <div class="card-arrow">→</div>
-    </a>
-
-    <a href="portfolio.html" class="brutal-card accent-yellow">
-      <div class="card-label">03 · Work</div>
-      <h3>Portfolio</h3>
-      <p>Selected projects across ML, tooling, and product.</p>
-      <div class="card-arrow">→</div>
-    </a>
-  </section>
+    <section class="brutal-cards">
+      <a href="about.html" class="brutal-card c1">
+        <span class="num">01</span>
+        <h3>About</h3>
+        <span class="arrow">→</span>
+      </a>
+      <a href="blog.html" class="brutal-card c2">
+        <span class="num">02</span>
+        <h3>Blog</h3>
+        <span class="arrow">→</span>
+      </a>
+      <a href="portfolio.html" class="brutal-card c3">
+        <span class="num">03</span>
+        <h3>Portfolio</h3>
+        <span class="arrow">→</span>
+      </a>
+      <a href="resume.html" class="brutal-card c4">
+        <span class="num">04</span>
+        <h3>Resume</h3>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+  </main>
 
 </div>
+
+<script>
+(function () {
+  const root = document.querySelector('.brutal-page');
+  const btn = document.querySelector('.brutal-theme-btn');
+  const menu = document.querySelector('.brutal-theme-menu');
+  if (!root || !btn || !menu) return;
+
+  const labels = { cream: 'Cream', mono: 'Mono', neon: 'Neon', earth: 'Earth', vapor: 'Vapor' };
+  const nameEl = btn.querySelector('.name');
+
+  function apply(theme) {
+    if (!labels[theme]) theme = 'cream';
+    root.dataset.theme = theme;
+    nameEl.textContent = labels[theme];
+    menu.querySelectorAll('li').forEach(li => {
+      li.dataset.active = String(li.dataset.theme === theme);
+    });
+    try { localStorage.setItem('brutal-theme', theme); } catch (e) {}
+  }
+
+  let saved = 'cream';
+  try { saved = localStorage.getItem('brutal-theme') || 'cream'; } catch (e) {}
+  apply(saved);
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = !menu.hidden;
+    menu.hidden = open;
+    btn.setAttribute('aria-expanded', String(!open));
+  });
+
+  menu.addEventListener('click', (e) => {
+    const li = e.target.closest('li[data-theme]');
+    if (!li) return;
+    apply(li.dataset.theme);
+    menu.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  });
+
+  document.addEventListener('click', () => {
+    menu.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
 ```
