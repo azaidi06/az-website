@@ -97,17 +97,11 @@ body:has(.brutal-page) #quarto-header {
 /* --- Hero grid --- */
 .brutal-page .brutal-hero {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
   margin-bottom: clamp(3rem, 6vw, 5rem);
   position: relative;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
-  border-radius: 12px;
-  background:
-    linear-gradient(rgba(245, 241, 234, 0.55), rgba(245, 241, 234, 0.65)),
-    url('images/wide_maroc.jpg') center top / cover no-repeat;
-  isolation: isolate;
 }
 
 @media (max-width: 860px) {
@@ -116,28 +110,70 @@ body:has(.brutal-page) #quarto-header {
   }
 }
 
+.brutal-page .brutal-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
 .brutal-page .brutal-title {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 8rem);
-  line-height: 0.92;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.9;
   letter-spacing: -0.02em;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.25rem 0;
 }
 
-.brutal-page .brutal-title .accent {
+.brutal-page .brutal-tagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 1.5rem 0;
+  max-width: 28ch;
+}
+
+.brutal-page .brutal-tagline .accent {
   position: relative;
   display: inline-block;
+  font-weight: 700;
 }
 
-.brutal-page .brutal-title .accent::after {
+.brutal-page .brutal-tagline .accent::after {
   content: '';
   position: absolute;
-  left: -4px;
-  right: -4px;
-  bottom: 0.1em;
-  height: 0.35em;
+  left: -3px;
+  right: -3px;
+  bottom: 0.05em;
+  height: 0.45em;
   background: var(--yellow);
   z-index: -1;
+}
+
+.brutal-page .brutal-roles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.brutal-page .brutal-roles li {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
 }
 
 .brutal-page .brutal-cta {
@@ -161,59 +197,35 @@ body:has(.brutal-page) #quarto-header {
   color: var(--ink);
 }
 
-/* --- Hero visual: gradient blob + portrait placeholder --- */
+/* --- Hero visual: framed photo panel --- */
 .brutal-page .brutal-visual {
   position: relative;
   aspect-ratio: 4 / 5;
-  max-width: 420px;
+  width: 100%;
+  max-width: 460px;
   justify-self: center;
   border: var(--border) solid var(--ink);
   border-radius: 8px;
   box-shadow: var(--shadow-lg);
-  background: var(--paper);
+  background: var(--ink);
   overflow: hidden;
 }
 
-.brutal-page .brutal-visual .grid-bg {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--ink) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ink) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.08;
-}
-
-.brutal-page .brutal-visual .blob {
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  aspect-ratio: 2 / 1;
-  background: linear-gradient(100deg, var(--pink), var(--lilac) 45%, var(--cyan));
-  filter: blur(18px);
-  border-radius: 999px;
-}
-
-.brutal-page .brutal-visual .visual-word {
-  position: absolute;
-  right: -0.35em;
-  top: 50%;
-  transform: translateY(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 0.9;
+.brutal-page .brutal-visual .visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: contrast(1.05) saturate(0.95);
 }
 
 .brutal-page .brutal-visual .star {
   position: absolute;
   font-family: 'Archivo Black', sans-serif;
   font-size: 2rem;
-  color: var(--ink);
+  color: var(--paper);
+  text-shadow: 2px 2px 0 var(--ink);
 }
 
 .brutal-page .brutal-visual .star-1 { top: 8%; left: 8%; }
