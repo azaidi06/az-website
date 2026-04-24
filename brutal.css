@@ -15,7 +15,10 @@
   --shadow-md: 8px 8px 0 0 var(--ink);
   --shadow-lg: 12px 12px 0 0 var(--ink);
 
-  background: var(--cream);
+  background:
+    linear-gradient(rgba(245, 241, 234, 0.86), rgba(245, 241, 234, 0.92)),
+    url('images/wide_maroc.jpg') center / cover no-repeat;
+  background-attachment: scroll, scroll;
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
