@@ -1,0 +1,74 @@
+---
+title: ""
+sidebar: false
+toc: false
+format:
+  html:
+    page-layout: custom
+    css: brutal.css
+    include-in-header:
+      text: |
+        <meta name="description" content="Ali Zaidi — Applied Data Scientist. Alt landing.">
+---
+
+```{=html}
+<div class="brutal-page">
+
+  <nav class="brutal-topbar">
+    <div class="brutal-brand">ZAIDI</div>
+    <div class="brutal-nav">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="resume.html">Resume</a>
+    </div>
+    <a class="brutal-contact" href="mailto:azaidi06@gmail.com">Contact</a>
+  </nav>
+
+  <section class="brutal-hero">
+    <div class="brutal-hero-copy">
+      <h1 class="brutal-title">
+        Look<br>
+        <span class="accent">beyond</span><br>
+        limits
+      </h1>
+      <a class="brutal-cta" href="about.html">Get in touch →</a>
+    </div>
+
+    <div class="brutal-visual">
+      <div class="grid-bg"></div>
+      <div class="blob"></div>
+      <span class="star star-1">✳</span>
+      <span class="star star-2">✳</span>
+      <div class="visual-word">data</div>
+    </div>
+
+    <span class="brutal-scatter scatter-1">✳</span>
+    <span class="brutal-scatter scatter-2">✳</span>
+  </section>
+
+  <section class="brutal-cards">
+    <a href="about.html" class="brutal-card accent-pink">
+      <div class="card-label">01 · Profile</div>
+      <h3>About Me</h3>
+      <p>Background, skills, and the path that got me here.</p>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="blog.html" class="brutal-card accent-cyan">
+      <div class="card-label">02 · Writing</div>
+      <h3>Blog</h3>
+      <p>Tutorials, data experiments, and meaningful meanderings.</p>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="portfolio.html" class="brutal-card accent-yellow">
+      <div class="card-label">03 · Work</div>
+      <h3>Portfolio</h3>
+      <p>Selected projects across ML, tooling, and product.</p>
+      <div class="card-arrow">→</div>
+    </a>
+  </section>
+
+</div>
+```

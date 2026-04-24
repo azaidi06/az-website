@@ -15,6 +15,8 @@ website:
         href: portfolio.qmd
       - text: "Resume"
         href: resume.qmd
+      - text: "v2"
+        href: brutal.qmd
       - icon: github
         href: https://github.com/azaidi06
       - icon: twitter
