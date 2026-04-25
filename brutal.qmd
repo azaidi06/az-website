@@ -30,10 +30,17 @@ format:
           <span class="caret">▾</span>
         </button>
         <ul class="brutal-theme-menu" hidden>
+          <li class="menu-label">Light</li>
           <li data-theme="cream"><span class="swatch swatch-cream"></span> Cream</li>
           <li data-theme="mono"><span class="swatch swatch-mono"></span> Mono</li>
-          <li data-theme="neon"><span class="swatch swatch-neon"></span> Neon</li>
           <li data-theme="earth"><span class="swatch swatch-earth"></span> Earth</li>
+          <li class="menu-divider"></li>
+          <li class="menu-label">Dark</li>
+          <li data-theme="carbon"><span class="swatch swatch-carbon"></span> Carbon</li>
+          <li data-theme="forest"><span class="swatch swatch-forest"></span> Forest</li>
+          <li data-theme="midnight"><span class="swatch swatch-midnight"></span> Midnight</li>
+          <li data-theme="noir"><span class="swatch swatch-noir"></span> Noir</li>
+          <li data-theme="neon"><span class="swatch swatch-neon"></span> Neon</li>
           <li data-theme="vapor"><span class="swatch swatch-vapor"></span> Vapor</li>
         </ul>
       </div>
@@ -105,7 +112,11 @@ format:
   const menu = document.querySelector('.brutal-theme-menu');
   if (!root || !btn || !menu) return;
 
-  const labels = { cream: 'Cream', mono: 'Mono', neon: 'Neon', earth: 'Earth', vapor: 'Vapor' };
+  const labels = {
+    cream: 'Cream', mono: 'Mono', earth: 'Earth',
+    carbon: 'Carbon', forest: 'Forest', midnight: 'Midnight',
+    noir: 'Noir', neon: 'Neon', vapor: 'Vapor'
+  };
   const nameEl = btn.querySelector('.name');
 
   function apply(theme) {
