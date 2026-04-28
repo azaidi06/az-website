@@ -14,7 +14,7 @@ format:
 ```{=html}
 <div class="brutal-page" data-theme="cream">
 
-  <header class="brutal-topbar">
+  <header class="brutal-topbar" data-reveal data-anim="slide-down">
     <div class="brutal-brand">AZ</div>
     <nav class="brutal-nav">
       <a href="about.html">About</a>
@@ -49,53 +49,53 @@ format:
   </header>
 
   <main class="brutal-main">
-    <section class="brutal-hero">
+    <section class="brutal-hero" data-reveal>
       <div class="hero-text">
-        <div class="eyebrow">Hi, I'm</div>
-        <h1 class="brutal-title">Ali<br>Zaidi<span class="stamp">.</span></h1>
-        <p class="tagline">
+        <div class="eyebrow" data-reveal data-delay="0">Hi, I'm</div>
+        <h1 class="brutal-title" data-reveal data-anim="title">Ali<br>Zaidi<span class="stamp">.</span></h1>
+        <p class="tagline" data-reveal data-delay="1">
           Bringing <span class="accent">data</span> to life — across ML, software, and product.
         </p>
-        <ul class="roles">
+        <ul class="roles" data-reveal data-delay="2">
           <li>Applied Data Scientist</li>
           <li>Software Engineer</li>
           <li>Product Leader</li>
         </ul>
-        <a class="brutal-cta" href="about.html">
+        <a class="brutal-cta" href="about.html" data-reveal data-delay="3">
           Get in touch <span class="arrow">→</span>
         </a>
       </div>
 
-      <div class="hero-visual">
-        <span class="floating-tag tag-1">★ Est. 2026</span>
+      <div class="hero-visual" data-reveal data-delay="4">
+        <span class="floating-tag tag-1" data-reveal data-delay="5">★ Est. 2026</span>
         <div class="visual-frame">
           <img src="images/wide_maroc.jpg" alt="">
           <span class="badge">Currently · Building</span>
         </div>
-        <span class="floating-tag tag-2">Data → Life</span>
+        <span class="floating-tag tag-2" data-reveal data-delay="6">Data → Life</span>
       </div>
 
-      <span class="scatter scatter-1">✳</span>
-      <span class="scatter scatter-2">✳</span>
+      <span class="scatter scatter-1" data-reveal data-delay="7">✳</span>
+      <span class="scatter scatter-2" data-reveal data-delay="8">✳</span>
     </section>
 
-    <section class="brutal-cards">
-      <a href="about.html" class="brutal-card c1">
+    <section class="brutal-cards" data-reveal>
+      <a href="about.html" class="brutal-card c1" data-reveal data-delay="0">
         <span class="num">01</span>
         <h3>About</h3>
         <span class="arrow">→</span>
       </a>
-      <a href="blog.html" class="brutal-card c2">
+      <a href="blog.html" class="brutal-card c2" data-reveal data-delay="1">
         <span class="num">02</span>
         <h3>Blog</h3>
         <span class="arrow">→</span>
       </a>
-      <a href="portfolio.html" class="brutal-card c3">
+      <a href="portfolio.html" class="brutal-card c3" data-reveal data-delay="2">
         <span class="num">03</span>
         <h3>Portfolio</h3>
         <span class="arrow">→</span>
       </a>
-      <a href="resume.html" class="brutal-card c4">
+      <a href="resume.html" class="brutal-card c4" data-reveal data-delay="3">
         <span class="num">04</span>
         <h3>Resume</h3>
         <span class="arrow">→</span>
@@ -159,6 +159,30 @@ format:
       btn.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // --- Scroll animations via IntersectionObserver ---
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    if (revealEls.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      );
+      revealEls.forEach(el => observer.observe(el));
+    }
+  } else {
+    // No animation: reveal everything immediately
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+  }
 })();
 </script>
 ```
