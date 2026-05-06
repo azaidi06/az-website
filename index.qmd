@@ -4,182 +4,88 @@ sidebar: false
 toc: false
 format:
   html:
-    page-layout: custom
-    css: brutal.css
+    page-layout: article
 ---
 
 ```{=html}
-<div class="brutal-page" data-theme="cream">
-
-  <header class="brutal-topbar" data-reveal data-anim="slide-down">
-    <div class="brutal-brand">AZ</div>
-    <nav class="brutal-nav">
-      <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="resume.html">Resume</a>
-    </nav>
-    <div class="brutal-controls">
-      <div class="brutal-theme">
-        <button class="brutal-theme-btn" type="button" aria-haspopup="true" aria-expanded="false">
-          <span class="dot"></span>
-          <span class="name">Cream</span>
-          <span class="caret">▾</span>
-        </button>
-        <ul class="brutal-theme-menu" hidden>
-          <li class="menu-label">Light</li>
-          <li data-theme="cream"><span class="swatch swatch-cream"></span> Cream</li>
-          <li data-theme="mono"><span class="swatch swatch-mono"></span> Mono</li>
-          <li data-theme="earth"><span class="swatch swatch-earth"></span> Earth</li>
-          <li class="menu-divider"></li>
-          <li class="menu-label">Dark</li>
-          <li data-theme="carbon"><span class="swatch swatch-carbon"></span> Carbon</li>
-          <li data-theme="forest"><span class="swatch swatch-forest"></span> Forest</li>
-          <li data-theme="midnight"><span class="swatch swatch-midnight"></span> Midnight</li>
-          <li data-theme="noir"><span class="swatch swatch-noir"></span> Noir</li>
-          <li data-theme="neon"><span class="swatch swatch-neon"></span> Neon</li>
-          <li data-theme="vapor"><span class="swatch swatch-vapor"></span> Vapor</li>
-        </ul>
-      </div>
-      <a class="brutal-contact" href="mailto:azaidi06@gmail.com">Contact</a>
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="hero-title">
+      Bringing<br>Data to<br>Life</div>
+    
+    <div class="hero-subtitle">
+      Applied Data Scientist <br>
+      Software Engineer <br>
+      Product Leader
     </div>
-  </header>
-
-  <main class="brutal-main">
-    <section class="brutal-hero" data-reveal>
-      <div class="hero-text">
-        <div class="eyebrow" data-reveal data-delay="0">Hi, I'm</div>
-        <h1 class="brutal-title" data-reveal data-anim="title">Ali<br>Zaidi<span class="stamp">.</span></h1>
-        <p class="tagline" data-reveal data-delay="1">
-          Bringing <span class="accent">data</span> to life — across ML, software, and product.
-        </p>
-        <ul class="roles" data-reveal data-delay="2">
-          <li>Applied Data Scientist</li>
-          <li>Software Engineer</li>
-          <li>Product Leader</li>
-        </ul>
-        <a class="brutal-cta" href="about.html" data-reveal data-delay="3">
-          Get in touch <span class="arrow">→</span>
-        </a>
-      </div>
-
-      <div class="hero-visual" data-reveal data-delay="4">
-        <span class="floating-tag tag-1" data-reveal data-delay="5">★ Est. 2026</span>
-        <div class="visual-frame">
-          <img src="images/wide_maroc.jpg" alt="">
-          <span class="badge">Currently · Building</span>
-        </div>
-        <span class="floating-tag tag-2" data-reveal data-delay="6">Data → Life</span>
-      </div>
-
-      <span class="scatter scatter-1" data-reveal data-delay="7">✳</span>
-      <span class="scatter scatter-2" data-reveal data-delay="8">✳</span>
-    </section>
-
-    <section class="brutal-cards" data-reveal>
-      <a href="about.html" class="brutal-card c1" data-reveal data-delay="0">
-        <span class="num">01</span>
-        <h3>About</h3>
-        <span class="arrow">→</span>
-      </a>
-      <a href="blog.html" class="brutal-card c2" data-reveal data-delay="1">
-        <span class="num">02</span>
-        <h3>Blog</h3>
-        <span class="arrow">→</span>
-      </a>
-      <a href="portfolio.html" class="brutal-card c3" data-reveal data-delay="2">
-        <span class="num">03</span>
-        <h3>Portfolio</h3>
-        <span class="arrow">→</span>
-      </a>
-      <a href="resume.html" class="brutal-card c4" data-reveal data-delay="3">
-        <span class="num">04</span>
-        <h3>Resume</h3>
-        <span class="arrow">→</span>
-      </a>
-    </section>
-  </main>
-
+  </div>
 </div>
+```
+::: {.grid .feature-grid}
+
+::: {.g-col-12 .g-col-md-6}
+<a href="about.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+### About Me
+<p>Background, skills, and expertise</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<a href="blog.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+### Personal Blog
+<p>Thoughts, tutorials, and photos</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<a href="resume.qmd" class="card-link">
+<div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+### Professional Resume
+<p>Experience and qualifications</p>
+</div>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+### Areas of Interest
+<p>Software, Science, Healthcare</p>
+</div>
+:::
+
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
-(function () {
-  const root = document.querySelector('.brutal-page');
-  const btn = document.querySelector('.brutal-theme-btn');
-  const menu = document.querySelector('.brutal-theme-menu');
-  if (!root || !btn || !menu) return;
-
-  const labels = {
-    cream: 'Cream', mono: 'Mono', earth: 'Earth',
-    carbon: 'Carbon', forest: 'Forest', midnight: 'Midnight',
-    noir: 'Noir', neon: 'Neon', vapor: 'Vapor'
-  };
-  const nameEl = btn.querySelector('.name');
-
-  function apply(theme) {
-    if (!labels[theme]) theme = 'cream';
-    root.dataset.theme = theme;
-    nameEl.textContent = labels[theme];
-    menu.querySelectorAll('li').forEach(li => {
-      li.dataset.active = String(li.dataset.theme === theme);
-    });
-    try { localStorage.setItem('brutal-theme', theme); } catch (e) {}
-  }
-
-  let saved = 'cream';
-  try { saved = localStorage.getItem('brutal-theme') || 'cream'; } catch (e) {}
-  apply(saved);
-
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const open = !menu.hidden;
-    menu.hidden = open;
-    btn.setAttribute('aria-expanded', String(!open));
+  // Initialize AOS
+  AOS.init({
+    duration: 800,   // Animation duration in ms
+    easing: 'ease-out-cubic',
+    once: true,      // Whether animation should happen only once while scrolling down
+    offset: 50       // Offset (in px) from the original trigger point
   });
-
-  menu.addEventListener('click', (e) => {
-    const li = e.target.closest('li[data-theme]');
-    if (!li) return;
-    apply(li.dataset.theme);
-    menu.hidden = true;
-    btn.setAttribute('aria-expanded', 'false');
-  });
-
-  document.addEventListener('click', () => {
-    menu.hidden = true;
-    btn.setAttribute('aria-expanded', 'false');
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      menu.hidden = true;
-      btn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // --- Scroll animations via IntersectionObserver ---
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!prefersReduced) {
-    const revealEls = document.querySelectorAll('[data-reveal]');
-    if (revealEls.length) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
-              entry.target.classList.add('revealed');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-      );
-      revealEls.forEach(el => observer.observe(el));
-    }
-  } else {
-    // No animation: reveal everything immediately
-    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
-  }
-})();
 </script>
-```
+
+<script>
+  // Navbar Scroll Effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) { // If scrolled more than 50px
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<!-- Quick links to other landing page versions -->
+<div style="text-align: center; padding: 1.5rem 2rem 3rem; color: #888; font-size: 0.85rem;">
+  <p style="margin-bottom: 0.5rem;">Explore other landing page versions:</p>
+  <a href="brutal.qmd" style="margin: 0 0.5rem; text-decoration: underline;">Brutal Design</a> ·
+  <a href="old_index_backup.qmd" style="margin: 0 0.5rem; text-decoration: underline;">Gradient + Particles</a>
+</div>
