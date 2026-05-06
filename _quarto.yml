@@ -29,7 +29,7 @@ website:
   open-graph: true
   twitter-card:
     card-style: summary_large_image
-  site-url: https://azaidi06.github.io
+  site-url: https://azaidi06.github.io/az-website
   description: "Personal portfolio of Ali Zaidi — Applied Data Scientist, Software Engineer, and Product Leader."
 
 format:
