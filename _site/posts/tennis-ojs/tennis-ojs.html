@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2026-02-02">
 <meta name="description" content="Explore serve statistics for top ATP and WTA players with interactive filters and visualizations">
 
-<title>Ali Zaidi - Tennis Serve Analysis (Interactive)</title>
+<title>Tennis Serve Analysis (Interactive) – AZ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -60,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,24 +69,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../images/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d329e753491efaeac79c98c4b193a686.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9ccec12e75040a7b2e6f2e8a12f431ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ac290716a9ac6015de64222ecc2296ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,6 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,82 +114,241 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Ali Zaidi - Tennis Serve Analysis (Interactive)">
+<link rel="stylesheet" href="../../redesign.css">
+<meta property="og:title" content="Tennis Serve Analysis (Interactive) – AZ">
 <meta property="og:description" content="Explore serve statistics for top ATP and WTA players with interactive filters and visualizations">
-<meta property="og:image" content="https://azaidi06.github.io/posts/tennis-ojs/preview.png">
-<meta property="og:site-name" content="Ali Zaidi">
+<meta property="og:image" content="https://azaidi06.github.io/az-website/posts/tennis-ojs/preview.png">
+<meta property="og:site_name" content="AZ">
 <meta property="og:image:height" content="468">
 <meta property="og:image:width" content="721">
-<meta name="twitter:title" content="Ali Zaidi - Tennis Serve Analysis (Interactive)">
+<meta name="twitter:title" content="Tennis Serve Analysis (Interactive) – AZ">
 <meta name="twitter:description" content="Explore serve statistics for top ATP and WTA players with interactive filters and visualizations">
-<meta name="twitter:image" content="https://azaidi06.github.io/posts/tennis-ojs/preview.png">
+<meta name="twitter:image" content="https://azaidi06.github.io/az-website/posts/tennis-ojs/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image-height" content="468">
 <meta name="twitter:image-width" content="721">
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Ali Zaidi</span>
+    <span class="navbar-title">AZ</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../portfolio.html" rel="" target="">
- <span class="menu-text">Portfolio</span></a>
+    <a class="nav-link" href="../../portfolio.html"> 
+<span class="menu-text">work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../resume.html" rel="" target="">
- <span class="menu-text">Resume</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Brutal Design</span></a>
+    <a class="nav-link" href="../../resume.html"> 
+<span class="menu-text">cv</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/azaidi06" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/azaidi06"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/azaidi06" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/azaidi06"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/azaidi06" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/azaidi06"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -201,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page-right">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -223,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -234,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -244,9 +414,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
+
 <div id="cell-export-to-ojs" class="cell" data-execution_count="3">
 <div id="export-to-ojs" class="cell-output cell-output-display">
-<script type="ojs-define">{"contents": [{"name": "tennis_data", "value": {"atp": {"all_time": {"players": [{"player": "Sinner", "full_name": "Jannik Sinner", "rank": 1, "matches": 340, "ace_rate": 7.7, "df_rate": 2.6, "first_serve_pct": 60.2, "first_serve_won": 75.6, "bp_save_pct": 66.6, "bp_convert_pct": 42.9}, {"player": "Zverev", "full_name": "Alexander Zverev", "rank": 2, "matches": 646, "ace_rate": 11.0, "df_rate": 4.6, "first_serve_pct": 66.6, "first_serve_won": 75.1, "bp_save_pct": 61.6, "bp_convert_pct": 40.8}, {"player": "Alcaraz", "full_name": "Carlos Alcaraz", "rank": 3, "matches": 263, "ace_rate": 5.3, "df_rate": 2.8, "first_serve_pct": 65.3, "first_serve_won": 72.6, "bp_save_pct": 63.8, "bp_convert_pct": 41.0}, {"player": "Fritz", "full_name": "Taylor Fritz", "rank": 4, "matches": 466, "ace_rate": 12.3, "df_rate": 2.9, "first_serve_pct": 59.9, "first_serve_won": 76.9, "bp_save_pct": 63.6, "bp_convert_pct": 37.9}, {"player": "Medvedev", "full_name": "Daniil Medvedev", "rank": 5, "matches": 528, "ace_rate": 10.7, "df_rate": 4.8, "first_serve_pct": 61.8, "first_serve_won": 75.7, "bp_save_pct": 63.4, "bp_convert_pct": 43.1}, {"player": "Ruud", "full_name": "Casper Ruud", "rank": 6, "matches": 385, "ace_rate": 6.7, "df_rate": 2.8, "first_serve_pct": 65.1, "first_serve_won": 72.7, "bp_save_pct": 63.2, "bp_convert_pct": 40.1}, {"player": "Djokovic", "full_name": "Novak Djokovic", "rank": 7, "matches": 1299, "ace_rate": 7.7, "df_rate": 2.9, "first_serve_pct": 65.0, "first_serve_won": 75.0, "bp_save_pct": 65.6, "bp_convert_pct": 44.1}, {"player": "Rublev", "full_name": "Andrey Rublev", "rank": 8, "matches": 510, "ace_rate": 9.4, "df_rate": 3.2, "first_serve_pct": 60.9, "first_serve_won": 75.8, "bp_save_pct": 63.4, "bp_convert_pct": 39.4}, {"player": "Minaur", "full_name": "Alex De Minaur", "rank": 9, "matches": 396, "ace_rate": 5.1, "df_rate": 3.2, "first_serve_pct": 59.0, "first_serve_won": 71.6, "bp_save_pct": 60.8, "bp_convert_pct": 42.1}, {"player": "Dimitrov", "full_name": "Grigor Dimitrov", "rank": 10, "matches": 740, "ace_rate": 9.0, "df_rate": 4.3, "first_serve_pct": 62.0, "first_serve_won": 75.7, "bp_save_pct": 63.1, "bp_convert_pct": 38.6}, {"player": "Tsitsipas", "full_name": "Stefanos Tsitsipas", "rank": 11, "matches": 496, "ace_rate": 9.0, "df_rate": 2.8, "first_serve_pct": 62.3, "first_serve_won": 76.8, "bp_save_pct": 65.2, "bp_convert_pct": 39.7}, {"player": "Paul", "full_name": "Tommy Paul", "rank": 12, "matches": 295, "ace_rate": 6.6, "df_rate": 2.8, "first_serve_pct": 61.4, "first_serve_won": 71.6, "bp_save_pct": 61.6, "bp_convert_pct": 39.5}, {"player": "Rune", "full_name": "Holger Rune", "rank": 13, "matches": 218, "ace_rate": 6.9, "df_rate": 4.3, "first_serve_pct": 62.3, "first_serve_won": 72.7, "bp_save_pct": 63.5, "bp_convert_pct": 39.7}, {"player": "Humbert", "full_name": "Ugo Humbert", "rank": 14, "matches": 261, "ace_rate": 8.7, "df_rate": 3.1, "first_serve_pct": 62.3, "first_serve_won": 73.7, "bp_save_pct": 63.6, "bp_convert_pct": 36.3}, {"player": "Draper", "full_name": "Jack Draper", "rank": 15, "matches": 130, "ace_rate": 11.6, "df_rate": 3.9, "first_serve_pct": 60.1, "first_serve_won": 78.1, "bp_save_pct": 65.7, "bp_convert_pct": 42.4}, {"player": "Hurkacz", "full_name": "Hubert Hurkacz", "rank": 16, "matches": 346, "ace_rate": 13.7, "df_rate": 2.6, "first_serve_pct": 63.5, "first_serve_won": 76.5, "bp_save_pct": 65.5, "bp_convert_pct": 36.8}, {"player": "Musetti", "full_name": "Lorenzo Musetti", "rank": 17, "matches": 238, "ace_rate": 4.6, "df_rate": 2.6, "first_serve_pct": 64.5, "first_serve_won": 69.8, "bp_save_pct": 58.3, "bp_convert_pct": 40.3}, {"player": "Tiafoe", "full_name": "Frances Tiafoe", "rank": 18, "matches": 393, "ace_rate": 8.9, "df_rate": 2.9, "first_serve_pct": 60.9, "first_serve_won": 73.1, "bp_save_pct": 62.5, "bp_convert_pct": 37.7}, {"player": "Khachanov", "full_name": "Karen Khachanov", "rank": 19, "matches": 471, "ace_rate": 9.6, "df_rate": 3.0, "first_serve_pct": 62.7, "first_serve_won": 74.0, "bp_save_pct": 63.4, "bp_convert_pct": 40.3}, {"player": "Fils", "full_name": "Arthur Fils", "rank": 20, "matches": 107, "ace_rate": 8.6, "df_rate": 4.4, "first_serve_pct": 61.3, "first_serve_won": 75.3, "bp_save_pct": 63.6, "bp_convert_pct": 38.5}, {"player": "Shelton", "full_name": "Ben Shelton", "rank": 21, "matches": 123, "ace_rate": 11.4, "df_rate": 4.5, "first_serve_pct": 66.5, "first_serve_won": 76.2, "bp_save_pct": 69.7, "bp_convert_pct": 37.5}, {"player": "Korda", "full_name": "Sebastian Korda", "rank": 22, "matches": 204, "ace_rate": 9.1, "df_rate": 2.8, "first_serve_pct": 62.9, "first_serve_won": 72.8, "bp_save_pct": 63.0, "bp_convert_pct": 40.0}, {"player": "Tabilo", "full_name": "Alejandro Tabilo", "rank": 23, "matches": 110, "ace_rate": 8.8, "df_rate": 3.5, "first_serve_pct": 64.1, "first_serve_won": 72.4, "bp_save_pct": 61.6, "bp_convert_pct": 39.5}, {"player": "Popyrin", "full_name": "Alexei Popyrin", "rank": 24, "matches": 204, "ace_rate": 11.1, "df_rate": 4.1, "first_serve_pct": 61.4, "first_serve_won": 74.6, "bp_save_pct": 65.5, "bp_convert_pct": 33.3}, {"player": "Machac", "full_name": "Tomas Machac", "rank": 25, "matches": 85, "ace_rate": 6.4, "df_rate": 3.1, "first_serve_pct": 63.9, "first_serve_won": 69.0, "bp_save_pct": 62.3, "bp_convert_pct": 41.3}], "surface": [{"player": "Zverev", "rank": 2, "surface": "Hard", "ace_rate": 12.0, "matches": 383}, {"player": "Zverev", "rank": 2, "surface": "Clay", "ace_rate": 8.6, "matches": 204}, {"player": "Zverev", "rank": 2, "surface": "Grass", "ace_rate": 13.5, "matches": 59}, {"player": "Djokovic", "rank": 7, "surface": "Hard", "ace_rate": 8.3, "matches": 809}, {"player": "Djokovic", "rank": 7, "surface": "Clay", "ace_rate": 5.2, "matches": 341}, {"player": "Djokovic", "rank": 7, "surface": "Grass", "ace_rate": 10.0, "matches": 139}, {"player": "Dimitrov", "rank": 10, "surface": "Hard", "ace_rate": 9.4, "matches": 493}, {"player": "Dimitrov", "rank": 10, "surface": "Clay", "ace_rate": 6.7, "matches": 168}, {"player": "Dimitrov", "rank": 10, "surface": "Grass", "ace_rate": 11.9, "matches": 79}, {"player": "Medvedev", "rank": 5, "surface": "Hard", "ace_rate": 11.4, "matches": 390}, {"player": "Medvedev", "rank": 5, "surface": "Clay", "ace_rate": 5.8, "matches": 70}, {"player": "Medvedev", "rank": 5, "surface": "Grass", "ace_rate": 11.8, "matches": 68}, {"player": "Khachanov", "rank": 19, "surface": "Hard", "ace_rate": 10.6, "matches": 315}, {"player": "Khachanov", "rank": 19, "surface": "Clay", "ace_rate": 6.5, "matches": 117}, {"player": "Khachanov", "rank": 19, "surface": "Grass", "ace_rate": 10.3, "matches": 39}, {"player": "Rublev", "rank": 8, "surface": "Hard", "ace_rate": 10.4, "matches": 363}, {"player": "Rublev", "rank": 8, "surface": "Clay", "ace_rate": 6.5, "matches": 118}, {"player": "Rublev", "rank": 8, "surface": "Grass", "ace_rate": 9.7, "matches": 29}, {"player": "Fritz", "rank": 4, "surface": "Hard", "ace_rate": 12.5, "matches": 322}, {"player": "Fritz", "rank": 4, "surface": "Clay", "ace_rate": 10.0, "matches": 88}, {"player": "Fritz", "rank": 4, "surface": "Grass", "ace_rate": 14.5, "matches": 56}, {"player": "Paul", "rank": 12, "surface": "Hard", "ace_rate": 6.9, "matches": 207}, {"player": "Paul", "rank": 12, "surface": "Clay", "ace_rate": 4.6, "matches": 52}, {"player": "Paul", "rank": 12, "surface": "Grass", "ace_rate": 7.3, "matches": 36}, {"player": "Tiafoe", "rank": 18, "surface": "Hard", "ace_rate": 9.2, "matches": 279}, {"player": "Tiafoe", "rank": 18, "surface": "Clay", "ace_rate": 7.4, "matches": 73}, {"player": "Tiafoe", "rank": 18, "surface": "Grass", "ace_rate": 9.5, "matches": 41}, {"player": "Tabilo", "rank": 23, "surface": "Hard", "ace_rate": 10.5, "matches": 52}, {"player": "Tabilo", "rank": 23, "surface": "Clay", "ace_rate": 6.6, "matches": 44}, {"player": "Tabilo", "rank": 23, "surface": "Grass", "ace_rate": 9.2, "matches": 14}, {"player": "Tsitsipas", "rank": 11, "surface": "Hard", "ace_rate": 10.1, "matches": 307}, {"player": "Tsitsipas", "rank": 11, "surface": "Clay", "ace_rate": 6.4, "matches": 150}, {"player": "Tsitsipas", "rank": 11, "surface": "Grass", "ace_rate": 10.9, "matches": 39}, {"player": "Hurkacz", "rank": 16, "surface": "Hard", "ace_rate": 14.3, "matches": 241}, {"player": "Hurkacz", "rank": 16, "surface": "Clay", "ace_rate": 10.7, "matches": 66}, {"player": "Hurkacz", "rank": 16, "surface": "Grass", "ace_rate": 15.0, "matches": 39}, {"player": "Ruud", "rank": 6, "surface": "Hard", "ace_rate": 8.0, "matches": 179}, {"player": "Ruud", "rank": 6, "surface": "Clay", "ace_rate": 5.5, "matches": 194}, {"player": "Ruud", "rank": 6, "surface": "Grass", "ace_rate": 8.3, "matches": 12}, {"player": "Humbert", "rank": 14, "surface": "Hard", "ace_rate": 9.4, "matches": 173}, {"player": "Humbert", "rank": 14, "surface": "Clay", "ace_rate": 5.0, "matches": 44}, {"player": "Humbert", "rank": 14, "surface": "Grass", "ace_rate": 9.3, "matches": 44}, {"player": "Minaur", "rank": 9, "surface": "Hard", "ace_rate": 5.5, "matches": 286}, {"player": "Minaur", "rank": 9, "surface": "Clay", "ace_rate": 2.9, "matches": 61}, {"player": "Minaur", "rank": 9, "surface": "Grass", "ace_rate": 5.2, "matches": 49}, {"player": "Popyrin", "rank": 24, "surface": "Hard", "ace_rate": 11.7, "matches": 141}, {"player": "Popyrin", "rank": 24, "surface": "Clay", "ace_rate": 8.7, "matches": 43}, {"player": "Popyrin", "rank": 24, "surface": "Grass", "ace_rate": 11.9, "matches": 20}, {"player": "Korda", "rank": 22, "surface": "Hard", "ace_rate": 9.9, "matches": 137}, {"player": "Korda", "rank": 22, "surface": "Clay", "ace_rate": 5.9, "matches": 42}, {"player": "Korda", "rank": 22, "surface": "Grass", "ace_rate": 10.1, "matches": 25}, {"player": "Sinner", "rank": 1, "surface": "Hard", "ace_rate": 8.5, "matches": 234}, {"player": "Sinner", "rank": 1, "surface": "Clay", "ace_rate": 4.7, "matches": 76}, {"player": "Sinner", "rank": 1, "surface": "Grass", "ace_rate": 9.7, "matches": 30}, {"player": "Musetti", "rank": 17, "surface": "Hard", "ace_rate": 5.6, "matches": 117}, {"player": "Musetti", "rank": 17, "surface": "Clay", "ace_rate": 2.9, "matches": 93}, {"player": "Musetti", "rank": 17, "surface": "Grass", "ace_rate": 5.8, "matches": 28}, {"player": "Draper", "rank": 15, "surface": "Hard", "ace_rate": 12.0, "matches": 88}, {"player": "Draper", "rank": 15, "surface": "Clay", "ace_rate": 7.7, "matches": 20}, {"player": "Draper", "rank": 15, "surface": "Grass", "ace_rate": 13.9, "matches": 22}, {"player": "Machac", "rank": 25, "surface": "Hard", "ace_rate": 7.1, "matches": 62}, {"player": "Machac", "rank": 25, "surface": "Clay", "ace_rate": 4.3, "matches": 19}, {"player": "Alcaraz", "rank": 3, "surface": "Hard", "ace_rate": 6.2, "matches": 137}, {"player": "Alcaraz", "rank": 3, "surface": "Clay", "ace_rate": 3.6, "matches": 99}, {"player": "Alcaraz", "rank": 3, "surface": "Grass", "ace_rate": 7.2, "matches": 27}, {"player": "Rune", "rank": 13, "surface": "Hard", "ace_rate": 8.3, "matches": 128}, {"player": "Rune", "rank": 13, "surface": "Clay", "ace_rate": 4.0, "matches": 73}, {"player": "Rune", "rank": 13, "surface": "Grass", "ace_rate": 9.1, "matches": 17}, {"player": "Fils", "rank": 20, "surface": "Hard", "ace_rate": 10.0, "matches": 64}, {"player": "Fils", "rank": 20, "surface": "Clay", "ace_rate": 5.9, "matches": 32}, {"player": "Fils", "rank": 20, "surface": "Grass", "ace_rate": 8.2, "matches": 11}, {"player": "Shelton", "rank": 21, "surface": "Hard", "ace_rate": 11.8, "matches": 89}, {"player": "Shelton", "rank": 21, "surface": "Clay", "ace_rate": 8.2, "matches": 21}, {"player": "Shelton", "rank": 21, "surface": "Grass", "ace_rate": 14.0, "matches": 13}], "tour_avg": {"aces_per_match": 12.7, "first_serve_in_pct": 63.3, "first_serve_won_pct": 77.4, "second_serve_won_pct": 56.8}, "surface_avg": [{"surface": "Hard", "aces_per_match": 13.6, "first_won_pct": 78.2}, {"surface": "Clay", "aces_per_match": 8.5, "first_won_pct": 74.5}, {"surface": "Grass", "aces_per_match": 17.3, "first_won_pct": 79.5}]}, "last_5_years": {"players": [{"player": "Sinner", "full_name": "Jannik Sinner", "rank": 1, "matches": 283, "ace_rate": 8.3, "df_rate": 2.6, "first_serve_pct": 60.0, "first_serve_won": 76.7, "bp_save_pct": 67.4, "bp_convert_pct": 43.1}, {"player": "Zverev", "full_name": "Alexander Zverev", "rank": 2, "matches": 268, "ace_rate": 11.6, "df_rate": 3.7, "first_serve_pct": 70.4, "first_serve_won": 76.2, "bp_save_pct": 63.9, "bp_convert_pct": 39.6}, {"player": "Alcaraz", "full_name": "Carlos Alcaraz", "rank": 3, "matches": 256, "ace_rate": 5.3, "df_rate": 2.9, "first_serve_pct": 65.4, "first_serve_won": 72.6, "bp_save_pct": 64.0, "bp_convert_pct": 41.1}, {"player": "Fritz", "full_name": "Taylor Fritz", "rank": 4, "matches": 265, "ace_rate": 12.7, "df_rate": 2.8, "first_serve_pct": 61.0, "first_serve_won": 78.3, "bp_save_pct": 64.8, "bp_convert_pct": 39.6}, {"player": "Medvedev", "full_name": "Daniil Medvedev", "rank": 5, "matches": 275, "ace_rate": 10.5, "df_rate": 5.1, "first_serve_pct": 63.6, "first_serve_won": 76.2, "bp_save_pct": 64.4, "bp_convert_pct": 44.9}, {"player": "Ruud", "full_name": "Casper Ruud", "rank": 6, "matches": 271, "ace_rate": 7.2, "df_rate": 2.7, "first_serve_pct": 64.8, "first_serve_won": 73.7, "bp_save_pct": 63.4, "bp_convert_pct": 40.3}, {"player": "Djokovic", "full_name": "Novak Djokovic", "rank": 7, "matches": 202, "ace_rate": 8.8, "df_rate": 3.0, "first_serve_pct": 64.4, "first_serve_won": 77.5, "bp_save_pct": 66.3, "bp_convert_pct": 42.3}, {"player": "Rublev", "full_name": "Andrey Rublev", "rank": 8, "matches": 286, "ace_rate": 10.1, "df_rate": 2.6, "first_serve_pct": 62.0, "first_serve_won": 76.7, "bp_save_pct": 64.9, "bp_convert_pct": 38.9}, {"player": "Minaur", "full_name": "Alex De Minaur", "rank": 9, "matches": 245, "ace_rate": 5.0, "df_rate": 3.2, "first_serve_pct": 57.5, "first_serve_won": 71.3, "bp_save_pct": 60.6, "bp_convert_pct": 42.9}, {"player": "Dimitrov", "full_name": "Grigor Dimitrov", "rank": 10, "matches": 208, "ace_rate": 9.2, "df_rate": 4.3, "first_serve_pct": 62.0, "first_serve_won": 77.4, "bp_save_pct": 63.3, "bp_convert_pct": 39.1}, {"player": "Tsitsipas", "full_name": "Stefanos Tsitsipas", "rank": 11, "matches": 283, "ace_rate": 9.1, "df_rate": 2.9, "first_serve_pct": 62.6, "first_serve_won": 76.9, "bp_save_pct": 66.5, "bp_convert_pct": 40.7}, {"player": "Paul", "full_name": "Tommy Paul", "rank": 12, "matches": 235, "ace_rate": 6.6, "df_rate": 2.8, "first_serve_pct": 61.5, "first_serve_won": 72.0, "bp_save_pct": 62.5, "bp_convert_pct": 39.5}, {"player": "Rune", "full_name": "Holger Rune", "rank": 13, "matches": 217, "ace_rate": 6.9, "df_rate": 4.3, "first_serve_pct": 62.3, "first_serve_won": 72.7, "bp_save_pct": 63.5, "bp_convert_pct": 39.6}, {"player": "Humbert", "full_name": "Ugo Humbert", "rank": 14, "matches": 178, "ace_rate": 8.3, "df_rate": 2.9, "first_serve_pct": 62.8, "first_serve_won": 73.2, "bp_save_pct": 62.8, "bp_convert_pct": 35.8}, {"player": "Draper", "full_name": "Jack Draper", "rank": 15, "matches": 130, "ace_rate": 11.6, "df_rate": 3.9, "first_serve_pct": 60.1, "first_serve_won": 78.1, "bp_save_pct": 65.7, "bp_convert_pct": 42.4}, {"player": "Hurkacz", "full_name": "Hubert Hurkacz", "rank": 16, "matches": 238, "ace_rate": 15.8, "df_rate": 2.0, "first_serve_pct": 63.9, "first_serve_won": 78.1, "bp_save_pct": 67.3, "bp_convert_pct": 36.0}, {"player": "Musetti", "full_name": "Lorenzo Musetti", "rank": 17, "matches": 230, "ace_rate": 4.6, "df_rate": 2.6, "first_serve_pct": 64.5, "first_serve_won": 69.8, "bp_save_pct": 58.2, "bp_convert_pct": 40.1}, {"player": "Tiafoe", "full_name": "Frances Tiafoe", "rank": 18, "matches": 225, "ace_rate": 9.6, "df_rate": 2.7, "first_serve_pct": 59.8, "first_serve_won": 74.5, "bp_save_pct": 64.7, "bp_convert_pct": 37.4}, {"player": "Khachanov", "full_name": "Karen Khachanov", "rank": 19, "matches": 218, "ace_rate": 9.2, "df_rate": 2.6, "first_serve_pct": 64.0, "first_serve_won": 74.0, "bp_save_pct": 63.4, "bp_convert_pct": 40.7}, {"player": "Fils", "full_name": "Arthur Fils", "rank": 20, "matches": 107, "ace_rate": 8.6, "df_rate": 4.4, "first_serve_pct": 61.3, "first_serve_won": 75.3, "bp_save_pct": 63.6, "bp_convert_pct": 38.5}, {"player": "Shelton", "full_name": "Ben Shelton", "rank": 21, "matches": 123, "ace_rate": 11.4, "df_rate": 4.5, "first_serve_pct": 66.5, "first_serve_won": 76.2, "bp_save_pct": 69.7, "bp_convert_pct": 37.5}, {"player": "Korda", "full_name": "Sebastian Korda", "rank": 22, "matches": 192, "ace_rate": 9.3, "df_rate": 2.8, "first_serve_pct": 62.7, "first_serve_won": 73.2, "bp_save_pct": 63.2, "bp_convert_pct": 39.5}, {"player": "Tabilo", "full_name": "Alejandro Tabilo", "rank": 23, "matches": 104, "ace_rate": 8.8, "df_rate": 3.5, "first_serve_pct": 64.1, "first_serve_won": 72.5, "bp_save_pct": 61.7, "bp_convert_pct": 39.6}, {"player": "Popyrin", "full_name": "Alexei Popyrin", "rank": 24, "matches": 156, "ace_rate": 11.4, "df_rate": 3.8, "first_serve_pct": 61.6, "first_serve_won": 75.3, "bp_save_pct": 66.1, "bp_convert_pct": 33.3}, {"player": "Machac", "full_name": "Tomas Machac", "rank": 25, "matches": 81, "ace_rate": 6.5, "df_rate": 3.2, "first_serve_pct": 63.8, "first_serve_won": 69.2, "bp_save_pct": 61.9, "bp_convert_pct": 41.4}], "surface": [{"player": "Zverev", "rank": 2, "surface": "Hard", "ace_rate": 12.5, "matches": 153}, {"player": "Zverev", "rank": 2, "surface": "Clay", "ace_rate": 9.3, "matches": 94}, {"player": "Zverev", "rank": 2, "surface": "Grass", "ace_rate": 15.8, "matches": 21}, {"player": "Djokovic", "rank": 7, "surface": "Hard", "ace_rate": 10.4, "matches": 102}, {"player": "Djokovic", "rank": 7, "surface": "Clay", "ace_rate": 5.8, "matches": 73}, {"player": "Djokovic", "rank": 7, "surface": "Grass", "ace_rate": 10.3, "matches": 27}, {"player": "Dimitrov", "rank": 10, "surface": "Hard", "ace_rate": 9.6, "matches": 140}, {"player": "Dimitrov", "rank": 10, "surface": "Clay", "ace_rate": 6.5, "matches": 50}, {"player": "Dimitrov", "rank": 10, "surface": "Grass", "ace_rate": 13.4, "matches": 18}, {"player": "Medvedev", "rank": 5, "surface": "Hard", "ace_rate": 11.2, "matches": 195}, {"player": "Medvedev", "rank": 5, "surface": "Clay", "ace_rate": 6.5, "matches": 42}, {"player": "Medvedev", "rank": 5, "surface": "Grass", "ace_rate": 11.5, "matches": 38}, {"player": "Khachanov", "rank": 19, "surface": "Hard", "ace_rate": 10.2, "matches": 146}, {"player": "Khachanov", "rank": 19, "surface": "Clay", "ace_rate": 6.3, "matches": 54}, {"player": "Khachanov", "rank": 19, "surface": "Grass", "ace_rate": 9.7, "matches": 18}, {"player": "Rublev", "rank": 8, "surface": "Hard", "ace_rate": 11.2, "matches": 189}, {"player": "Rublev", "rank": 8, "surface": "Clay", "ace_rate": 7.1, "matches": 75}, {"player": "Rublev", "rank": 8, "surface": "Grass", "ace_rate": 10.5, "matches": 22}, {"player": "Fritz", "rank": 4, "surface": "Hard", "ace_rate": 12.9, "matches": 176}, {"player": "Fritz", "rank": 4, "surface": "Clay", "ace_rate": 10.2, "matches": 56}, {"player": "Fritz", "rank": 4, "surface": "Grass", "ace_rate": 15.9, "matches": 33}, {"player": "Paul", "rank": 12, "surface": "Hard", "ace_rate": 7.0, "matches": 157}, {"player": "Paul", "rank": 12, "surface": "Clay", "ace_rate": 4.6, "matches": 43}, {"player": "Paul", "rank": 12, "surface": "Grass", "ace_rate": 7.4, "matches": 35}, {"player": "Tiafoe", "rank": 18, "surface": "Hard", "ace_rate": 10.1, "matches": 153}, {"player": "Tiafoe", "rank": 18, "surface": "Clay", "ace_rate": 8.0, "matches": 44}, {"player": "Tiafoe", "rank": 18, "surface": "Grass", "ace_rate": 9.0, "matches": 28}, {"player": "Tabilo", "rank": 23, "surface": "Hard", "ace_rate": 10.7, "matches": 48}, {"player": "Tabilo", "rank": 23, "surface": "Clay", "ace_rate": 6.6, "matches": 42}, {"player": "Tabilo", "rank": 23, "surface": "Grass", "ace_rate": 9.2, "matches": 14}, {"player": "Tsitsipas", "rank": 11, "surface": "Hard", "ace_rate": 10.4, "matches": 160}, {"player": "Tsitsipas", "rank": 11, "surface": "Clay", "ace_rate": 6.4, "matches": 99}, {"player": "Tsitsipas", "rank": 11, "surface": "Grass", "ace_rate": 11.6, "matches": 24}, {"player": "Hurkacz", "rank": 16, "surface": "Hard", "ace_rate": 16.7, "matches": 161}, {"player": "Hurkacz", "rank": 16, "surface": "Clay", "ace_rate": 12.3, "matches": 46}, {"player": "Hurkacz", "rank": 16, "surface": "Grass", "ace_rate": 16.3, "matches": 31}, {"player": "Ruud", "rank": 6, "surface": "Hard", "ace_rate": 8.5, "matches": 135}, {"player": "Ruud", "rank": 6, "surface": "Clay", "ace_rate": 5.6, "matches": 125}, {"player": "Ruud", "rank": 6, "surface": "Grass", "ace_rate": 8.3, "matches": 11}, {"player": "Humbert", "rank": 14, "surface": "Hard", "ace_rate": 8.9, "matches": 112}, {"player": "Humbert", "rank": 14, "surface": "Clay", "ace_rate": 4.8, "matches": 32}, {"player": "Humbert", "rank": 14, "surface": "Grass", "ace_rate": 9.4, "matches": 34}, {"player": "Minaur", "rank": 9, "surface": "Hard", "ace_rate": 5.6, "matches": 158}, {"player": "Minaur", "rank": 9, "surface": "Clay", "ace_rate": 2.9, "matches": 48}, {"player": "Minaur", "rank": 9, "surface": "Grass", "ace_rate": 5.0, "matches": 39}, {"player": "Popyrin", "rank": 24, "surface": "Hard", "ace_rate": 12.2, "matches": 101}, {"player": "Popyrin", "rank": 24, "surface": "Clay", "ace_rate": 9.0, "matches": 38}, {"player": "Popyrin", "rank": 24, "surface": "Grass", "ace_rate": 12.1, "matches": 17}, {"player": "Korda", "rank": 22, "surface": "Hard", "ace_rate": 10.1, "matches": 129}, {"player": "Korda", "rank": 22, "surface": "Clay", "ace_rate": 6.1, "matches": 38}, {"player": "Korda", "rank": 22, "surface": "Grass", "ace_rate": 10.1, "matches": 25}, {"player": "Sinner", "rank": 1, "surface": "Hard", "ace_rate": 9.0, "matches": 195}, {"player": "Sinner", "rank": 1, "surface": "Clay", "ace_rate": 5.1, "matches": 59}, {"player": "Sinner", "rank": 1, "surface": "Grass", "ace_rate": 10.0, "matches": 29}, {"player": "Musetti", "rank": 17, "surface": "Hard", "ace_rate": 5.6, "matches": 116}, {"player": "Musetti", "rank": 17, "surface": "Clay", "ace_rate": 2.9, "matches": 86}, {"player": "Musetti", "rank": 17, "surface": "Grass", "ace_rate": 5.8, "matches": 28}, {"player": "Draper", "rank": 15, "surface": "Hard", "ace_rate": 12.0, "matches": 88}, {"player": "Draper", "rank": 15, "surface": "Clay", "ace_rate": 7.7, "matches": 20}, {"player": "Draper", "rank": 15, "surface": "Grass", "ace_rate": 13.9, "matches": 22}, {"player": "Machac", "rank": 25, "surface": "Hard", "ace_rate": 7.1, "matches": 59}, {"player": "Machac", "rank": 25, "surface": "Clay", "ace_rate": 4.5, "matches": 18}, {"player": "Alcaraz", "rank": 3, "surface": "Hard", "ace_rate": 6.1, "matches": 132}, {"player": "Alcaraz", "rank": 3, "surface": "Clay", "ace_rate": 3.7, "matches": 97}, {"player": "Alcaraz", "rank": 3, "surface": "Grass", "ace_rate": 7.2, "matches": 27}, {"player": "Rune", "rank": 13, "surface": "Hard", "ace_rate": 8.3, "matches": 127}, {"player": "Rune", "rank": 13, "surface": "Clay", "ace_rate": 4.0, "matches": 73}, {"player": "Rune", "rank": 13, "surface": "Grass", "ace_rate": 9.1, "matches": 17}, {"player": "Fils", "rank": 20, "surface": "Hard", "ace_rate": 10.0, "matches": 64}, {"player": "Fils", "rank": 20, "surface": "Clay", "ace_rate": 5.9, "matches": 32}, {"player": "Fils", "rank": 20, "surface": "Grass", "ace_rate": 8.2, "matches": 11}, {"player": "Shelton", "rank": 21, "surface": "Hard", "ace_rate": 11.8, "matches": 89}, {"player": "Shelton", "rank": 21, "surface": "Clay", "ace_rate": 8.2, "matches": 21}, {"player": "Shelton", "rank": 21, "surface": "Grass", "ace_rate": 14.0, "matches": 13}], "tour_avg": {"aces_per_match": 12.9, "first_serve_in_pct": 63.5, "first_serve_won_pct": 77.6, "second_serve_won_pct": 56.9}, "surface_avg": [{"surface": "Hard", "aces_per_match": 13.9, "first_won_pct": 78.5}, {"surface": "Clay", "aces_per_match": 8.5, "first_won_pct": 74.9}, {"surface": "Grass", "aces_per_match": 17.7, "first_won_pct": 79.6}]}, "last_1_year": {"players": [], "surface": [], "tour_avg": {}, "surface_avg": []}}, "wta": {"all_time": {"players": [{"player": "Sabalenka", "full_name": "Aryna Sabalenka", "rank": 1, "matches": 440, "ace_rate": 7.0, "df_rate": 6.6, "first_serve_pct": 60.8, "first_serve_won": 70.2, "bp_save_pct": 59.8, "bp_convert_pct": 45.5}, {"player": "Swiatek", "full_name": "Iga Swiatek", "rank": 2, "matches": 324, "ace_rate": 3.5, "df_rate": 3.1, "first_serve_pct": 63.0, "first_serve_won": 69.2, "bp_save_pct": 58.9, "bp_convert_pct": 48.9}, {"player": "Gauff", "full_name": "Coco Gauff", "rank": 3, "matches": 279, "ace_rate": 6.0, "df_rate": 7.2, "first_serve_pct": 60.8, "first_serve_won": 69.4, "bp_save_pct": 57.9, "bp_convert_pct": 47.3}, {"player": "Paolini", "full_name": "Jasmine Paolini", "rank": 4, "matches": 235, "ace_rate": 1.5, "df_rate": 3.0, "first_serve_pct": 67.0, "first_serve_won": 60.1, "bp_save_pct": 55.1, "bp_convert_pct": 47.0}, {"player": "Zheng", "full_name": "Qinwen Zheng", "rank": 5, "matches": 163, "ace_rate": 9.5, "df_rate": 6.1, "first_serve_pct": 52.0, "first_serve_won": 75.6, "bp_save_pct": 59.9, "bp_convert_pct": 45.5}, {"player": "Rybakina", "full_name": "Elena Rybakina", "rank": 6, "matches": 297, "ace_rate": 9.0, "df_rate": 4.1, "first_serve_pct": 58.4, "first_serve_won": 72.5, "bp_save_pct": 61.0, "bp_convert_pct": 43.2}, {"player": "Pegula", "full_name": "Jessica Pegula", "rank": 7, "matches": 300, "ace_rate": 3.9, "df_rate": 3.8, "first_serve_pct": 59.4, "first_serve_won": 67.0, "bp_save_pct": 57.7, "bp_convert_pct": 47.2}, {"player": "Navarro", "full_name": "Emma Navarro", "rank": 8, "matches": 109, "ace_rate": 1.8, "df_rate": 3.6, "first_serve_pct": 63.6, "first_serve_won": 62.8, "bp_save_pct": 54.2, "bp_convert_pct": 47.8}, {"player": "Kasatkina", "full_name": "Daria Kasatkina", "rank": 9, "matches": 480, "ace_rate": 2.2, "df_rate": 5.7, "first_serve_pct": 67.6, "first_serve_won": 60.8, "bp_save_pct": 53.0, "bp_convert_pct": 48.7}, {"player": "Krejcikova", "full_name": "Barbora Krejcikova", "rank": 10, "matches": 224, "ace_rate": 5.0, "df_rate": 5.8, "first_serve_pct": 60.7, "first_serve_won": 68.8, "bp_save_pct": 59.0, "bp_convert_pct": 45.4}, {"player": "Collins", "full_name": "Danielle Collins", "rank": 11, "matches": 267, "ace_rate": 5.0, "df_rate": 6.0, "first_serve_pct": 57.1, "first_serve_won": 67.5, "bp_save_pct": 58.0, "bp_convert_pct": 48.0}, {"player": "Badosa", "full_name": "Paula Badosa", "rank": 12, "matches": 230, "ace_rate": 5.8, "df_rate": 6.8, "first_serve_pct": 60.4, "first_serve_won": 68.5, "bp_save_pct": 59.8, "bp_convert_pct": 46.6}, {"player": "Shnaider", "full_name": "Diana Shnaider", "rank": 13, "matches": 90, "ace_rate": 3.0, "df_rate": 3.7, "first_serve_pct": 63.6, "first_serve_won": 64.6, "bp_save_pct": 54.4, "bp_convert_pct": 48.1}, {"player": "Kalinskaya", "full_name": "Anna Kalinskaya", "rank": 14, "matches": 176, "ace_rate": 2.3, "df_rate": 5.6, "first_serve_pct": 63.9, "first_serve_won": 62.2, "bp_save_pct": 54.5, "bp_convert_pct": 43.3}, {"player": "Ostapenko", "full_name": "Jelena Ostapenko", "rank": 15, "matches": 435, "ace_rate": 4.5, "df_rate": 8.0, "first_serve_pct": 56.2, "first_serve_won": 65.5, "bp_save_pct": 53.0, "bp_convert_pct": 48.6}, {"player": "Andreeva", "full_name": "Mirra Andreeva", "rank": 16, "matches": 73, "ace_rate": 3.9, "df_rate": 3.4, "first_serve_pct": 64.0, "first_serve_won": 65.6, "bp_save_pct": 53.8, "bp_convert_pct": 50.0}, {"player": "Maia", "full_name": "Beatriz Haddad Maia", "rank": 17, "matches": 249, "ace_rate": 3.3, "df_rate": 5.0, "first_serve_pct": 66.4, "first_serve_won": 65.4, "bp_save_pct": 58.1, "bp_convert_pct": 43.9}, {"player": "Kostyuk", "full_name": "Marta Kostyuk", "rank": 18, "matches": 192, "ace_rate": 4.2, "df_rate": 7.6, "first_serve_pct": 59.3, "first_serve_won": 64.9, "bp_save_pct": 53.5, "bp_convert_pct": 44.3}, {"player": "Vekic", "full_name": "Donna Vekic", "rank": 19, "matches": 363, "ace_rate": 5.3, "df_rate": 7.2, "first_serve_pct": 56.2, "first_serve_won": 68.4, "bp_save_pct": 54.8, "bp_convert_pct": 45.9}, {"player": "Azarenka", "full_name": "Victoria Azarenka", "rank": 20, "matches": 331, "ace_rate": 3.9, "df_rate": 6.2, "first_serve_pct": 64.7, "first_serve_won": 66.8, "bp_save_pct": 57.0, "bp_convert_pct": 48.0}, {"player": "Keys", "full_name": "Madison Keys", "rank": 21, "matches": 379, "ace_rate": 7.4, "df_rate": 3.3, "first_serve_pct": 64.5, "first_serve_won": 69.4, "bp_save_pct": 59.5, "bp_convert_pct": 43.5}, {"player": "Muchova", "full_name": "Karolina Muchova", "rank": 22, "matches": 181, "ace_rate": 5.3, "df_rate": 3.1, "first_serve_pct": 63.6, "first_serve_won": 67.9, "bp_save_pct": 58.9, "bp_convert_pct": 44.8}, {"player": "Svitolina", "full_name": "Elina Svitolina", "rank": 23, "matches": 464, "ace_rate": 4.5, "df_rate": 3.7, "first_serve_pct": 61.5, "first_serve_won": 66.3, "bp_save_pct": 55.9, "bp_convert_pct": 47.0}, {"player": "Boulter", "full_name": "Katie Boulter", "rank": 24, "matches": 142, "ace_rate": 5.0, "df_rate": 6.4, "first_serve_pct": 57.2, "first_serve_won": 68.9, "bp_save_pct": 57.7, "bp_convert_pct": 44.1}, {"player": "Frech", "full_name": "Magdalena Frech", "rank": 25, "matches": 162, "ace_rate": 3.3, "df_rate": 3.1, "first_serve_pct": 62.3, "first_serve_won": 61.9, "bp_save_pct": 52.0, "bp_convert_pct": 41.7}], "surface": [{"player": "Azarenka", "rank": 20, "surface": "Hard", "ace_rate": 4.1, "matches": 227}, {"player": "Azarenka", "rank": 20, "surface": "Clay", "ace_rate": 2.7, "matches": 69}, {"player": "Azarenka", "rank": 20, "surface": "Grass", "ace_rate": 5.4, "matches": 35}, {"player": "Keys", "rank": 21, "surface": "Hard", "ace_rate": 7.7, "matches": 235}, {"player": "Keys", "rank": 21, "surface": "Clay", "ace_rate": 6.6, "matches": 102}, {"player": "Keys", "rank": 21, "surface": "Grass", "ace_rate": 7.6, "matches": 42}, {"player": "Pegula", "rank": 7, "surface": "Hard", "ace_rate": 4.0, "matches": 215}, {"player": "Pegula", "rank": 7, "surface": "Clay", "ace_rate": 3.4, "matches": 53}, {"player": "Pegula", "rank": 7, "surface": "Grass", "ace_rate": 3.9, "matches": 30}, {"player": "Svitolina", "rank": 23, "surface": "Hard", "ace_rate": 4.8, "matches": 311}, {"player": "Svitolina", "rank": 23, "surface": "Clay", "ace_rate": 3.7, "matches": 111}, {"player": "Svitolina", "rank": 23, "surface": "Grass", "ace_rate": 4.5, "matches": 40}, {"player": "Vekic", "rank": 19, "surface": "Hard", "ace_rate": 5.2, "matches": 231}, {"player": "Vekic", "rank": 19, "surface": "Clay", "ace_rate": 4.4, "matches": 66}, {"player": "Vekic", "rank": 19, "surface": "Grass", "ace_rate": 6.6, "matches": 66}, {"player": "Collins", "rank": 11, "surface": "Hard", "ace_rate": 5.3, "matches": 180}, {"player": "Collins", "rank": 11, "surface": "Clay", "ace_rate": 4.7, "matches": 69}, {"player": "Collins", "rank": 11, "surface": "Grass", "ace_rate": 3.1, "matches": 18}, {"player": "Maia", "rank": 17, "surface": "Hard", "ace_rate": 3.2, "matches": 152}, {"player": "Maia", "rank": 17, "surface": "Clay", "ace_rate": 2.9, "matches": 63}, {"player": "Maia", "rank": 17, "surface": "Grass", "ace_rate": 4.5, "matches": 32}, {"player": "Krejcikova", "rank": 10, "surface": "Hard", "ace_rate": 5.4, "matches": 136}, {"player": "Krejcikova", "rank": 10, "surface": "Clay", "ace_rate": 3.4, "matches": 62}, {"player": "Krejcikova", "rank": 10, "surface": "Grass", "ace_rate": 6.1, "matches": 26}, {"player": "Boulter", "rank": 24, "surface": "Hard", "ace_rate": 4.8, "matches": 91}, {"player": "Boulter", "rank": 24, "surface": "Grass", "ace_rate": 5.7, "matches": 45}, {"player": "Paolini", "rank": 4, "surface": "Hard", "ace_rate": 1.7, "matches": 139}, {"player": "Paolini", "rank": 4, "surface": "Clay", "ace_rate": 1.2, "matches": 81}, {"player": "Paolini", "rank": 4, "surface": "Grass", "ace_rate": 1.8, "matches": 15}, {"player": "Ostapenko", "rank": 15, "surface": "Hard", "ace_rate": 4.4, "matches": 278}, {"player": "Ostapenko", "rank": 15, "surface": "Clay", "ace_rate": 3.8, "matches": 87}, {"player": "Ostapenko", "rank": 15, "surface": "Grass", "ace_rate": 5.6, "matches": 70}, {"player": "Badosa", "rank": 12, "surface": "Hard", "ace_rate": 6.6, "matches": 127}, {"player": "Badosa", "rank": 12, "surface": "Clay", "ace_rate": 4.6, "matches": 78}, {"player": "Badosa", "rank": 12, "surface": "Grass", "ace_rate": 6.0, "matches": 25}, {"player": "Frech", "rank": 25, "surface": "Hard", "ace_rate": 3.4, "matches": 94}, {"player": "Frech", "rank": 25, "surface": "Clay", "ace_rate": 2.5, "matches": 43}, {"player": "Frech", "rank": 25, "surface": "Grass", "ace_rate": 4.8, "matches": 24}, {"player": "Kasatkina", "rank": 9, "surface": "Hard", "ace_rate": 2.3, "matches": 306}, {"player": "Kasatkina", "rank": 9, "surface": "Clay", "ace_rate": 1.6, "matches": 121}, {"player": "Kasatkina", "rank": 9, "surface": "Grass", "ace_rate": 2.9, "matches": 53}, {"player": "Muchova", "rank": 22, "surface": "Hard", "ace_rate": 5.7, "matches": 121}, {"player": "Muchova", "rank": 22, "surface": "Clay", "ace_rate": 3.7, "matches": 42}, {"player": "Muchova", "rank": 22, "surface": "Grass", "ace_rate": 7.0, "matches": 18}, {"player": "Sabalenka", "rank": 1, "surface": "Hard", "ace_rate": 7.3, "matches": 301}, {"player": "Sabalenka", "rank": 1, "surface": "Clay", "ace_rate": 5.6, "matches": 94}, {"player": "Sabalenka", "rank": 1, "surface": "Grass", "ace_rate": 7.5, "matches": 45}, {"player": "Kalinskaya", "rank": 14, "surface": "Hard", "ace_rate": 2.5, "matches": 122}, {"player": "Kalinskaya", "rank": 14, "surface": "Clay", "ace_rate": 1.7, "matches": 33}, {"player": "Kalinskaya", "rank": 14, "surface": "Grass", "ace_rate": 1.9, "matches": 21}, {"player": "Rybakina", "rank": 6, "surface": "Hard", "ace_rate": 9.2, "matches": 185}, {"player": "Rybakina", "rank": 6, "surface": "Clay", "ace_rate": 7.2, "matches": 72}, {"player": "Rybakina", "rank": 6, "surface": "Grass", "ace_rate": 11.0, "matches": 39}, {"player": "Navarro", "rank": 8, "surface": "Hard", "ace_rate": 1.6, "matches": 61}, {"player": "Navarro", "rank": 8, "surface": "Clay", "ace_rate": 1.9, "matches": 32}, {"player": "Navarro", "rank": 8, "surface": "Grass", "ace_rate": 1.9, "matches": 15}, {"player": "Kostyuk", "rank": 18, "surface": "Hard", "ace_rate": 4.8, "matches": 129}, {"player": "Kostyuk", "rank": 18, "surface": "Clay", "ace_rate": 2.9, "matches": 41}, {"player": "Kostyuk", "rank": 18, "surface": "Grass", "ace_rate": 3.8, "matches": 22}, {"player": "Swiatek", "rank": 2, "surface": "Hard", "ace_rate": 4.0, "matches": 200}, {"player": "Swiatek", "rank": 2, "surface": "Clay", "ace_rate": 2.5, "matches": 100}, {"player": "Swiatek", "rank": 2, "surface": "Grass", "ace_rate": 4.4, "matches": 22}, {"player": "Zheng", "rank": 5, "surface": "Hard", "ace_rate": 10.6, "matches": 107}, {"player": "Zheng", "rank": 5, "surface": "Clay", "ace_rate": 6.9, "matches": 45}, {"player": "Zheng", "rank": 5, "surface": "Grass", "ace_rate": 9.1, "matches": 11}, {"player": "Gauff", "rank": 3, "surface": "Hard", "ace_rate": 6.3, "matches": 181}, {"player": "Gauff", "rank": 3, "surface": "Clay", "ace_rate": 4.3, "matches": 67}, {"player": "Gauff", "rank": 3, "surface": "Grass", "ace_rate": 8.2, "matches": 31}, {"player": "Shnaider", "rank": 13, "surface": "Hard", "ace_rate": 3.0, "matches": 54}, {"player": "Shnaider", "rank": 13, "surface": "Clay", "ace_rate": 2.3, "matches": 24}, {"player": "Shnaider", "rank": 13, "surface": "Grass", "ace_rate": 4.3, "matches": 12}, {"player": "Andreeva", "rank": 16, "surface": "Hard", "ace_rate": 4.4, "matches": 37}, {"player": "Andreeva", "rank": 16, "surface": "Clay", "ace_rate": 3.2, "matches": 30}], "tour_avg": {"aces_per_match": 6.0, "first_serve_in_pct": 62.1, "first_serve_won_pct": 70.8, "second_serve_won_pct": 51.0}, "surface_avg": [{"surface": "Hard", "aces_per_match": 6.2, "first_won_pct": 71.2}, {"surface": "Clay", "aces_per_match": 4.8, "first_won_pct": 68.8}, {"surface": "Grass", "aces_per_match": 7.0, "first_won_pct": 72.8}]}, "last_5_years": {"players": [{"player": "Sabalenka", "full_name": "Aryna Sabalenka", "rank": 1, "matches": 241, "ace_rate": 7.7, "df_rate": 6.6, "first_serve_pct": 61.0, "first_serve_won": 71.5, "bp_save_pct": 59.8, "bp_convert_pct": 46.4}, {"player": "Swiatek", "full_name": "Iga Swiatek", "rank": 2, "matches": 268, "ace_rate": 3.3, "df_rate": 3.0, "first_serve_pct": 64.3, "first_serve_won": 70.2, "bp_save_pct": 59.8, "bp_convert_pct": 49.9}, {"player": "Gauff", "full_name": "Coco Gauff", "rank": 3, "matches": 239, "ace_rate": 6.3, "df_rate": 7.0, "first_serve_pct": 60.3, "first_serve_won": 69.7, "bp_save_pct": 58.7, "bp_convert_pct": 46.9}, {"player": "Paolini", "full_name": "Jasmine Paolini", "rank": 4, "matches": 188, "ace_rate": 1.6, "df_rate": 2.8, "first_serve_pct": 67.5, "first_serve_won": 61.0, "bp_save_pct": 54.7, "bp_convert_pct": 46.8}, {"player": "Zheng", "full_name": "Qinwen Zheng", "rank": 5, "matches": 163, "ace_rate": 9.5, "df_rate": 6.1, "first_serve_pct": 52.0, "first_serve_won": 75.6, "bp_save_pct": 59.9, "bp_convert_pct": 45.5}, {"player": "Rybakina", "full_name": "Elena Rybakina", "rank": 6, "matches": 212, "ace_rate": 10.1, "df_rate": 4.0, "first_serve_pct": 58.0, "first_serve_won": 73.6, "bp_save_pct": 61.8, "bp_convert_pct": 42.3}, {"player": "Pegula", "full_name": "Jessica Pegula", "rank": 7, "matches": 237, "ace_rate": 4.0, "df_rate": 3.9, "first_serve_pct": 59.0, "first_serve_won": 67.9, "bp_save_pct": 58.3, "bp_convert_pct": 47.4}, {"player": "Navarro", "full_name": "Emma Navarro", "rank": 8, "matches": 107, "ace_rate": 1.8, "df_rate": 3.6, "first_serve_pct": 63.8, "first_serve_won": 63.0, "bp_save_pct": 53.5, "bp_convert_pct": 48.1}, {"player": "Kasatkina", "full_name": "Daria Kasatkina", "rank": 9, "matches": 232, "ace_rate": 2.2, "df_rate": 5.7, "first_serve_pct": 68.9, "first_serve_won": 61.7, "bp_save_pct": 54.7, "bp_convert_pct": 49.4}, {"player": "Krejcikova", "full_name": "Barbora Krejcikova", "rank": 10, "matches": 179, "ace_rate": 5.2, "df_rate": 6.1, "first_serve_pct": 60.5, "first_serve_won": 69.6, "bp_save_pct": 59.3, "bp_convert_pct": 47.2}, {"player": "Collins", "full_name": "Danielle Collins", "rank": 11, "matches": 168, "ace_rate": 5.4, "df_rate": 6.9, "first_serve_pct": 56.0, "first_serve_won": 70.1, "bp_save_pct": 59.1, "bp_convert_pct": 48.2}, {"player": "Badosa", "full_name": "Paula Badosa", "rank": 12, "matches": 187, "ace_rate": 6.0, "df_rate": 6.9, "first_serve_pct": 60.1, "first_serve_won": 69.1, "bp_save_pct": 60.9, "bp_convert_pct": 46.3}, {"player": "Shnaider", "full_name": "Diana Shnaider", "rank": 13, "matches": 90, "ace_rate": 3.0, "df_rate": 3.7, "first_serve_pct": 63.6, "first_serve_won": 64.6, "bp_save_pct": 54.4, "bp_convert_pct": 48.1}, {"player": "Kalinskaya", "full_name": "Anna Kalinskaya", "rank": 14, "matches": 135, "ace_rate": 2.3, "df_rate": 5.4, "first_serve_pct": 64.4, "first_serve_won": 63.2, "bp_save_pct": 56.3, "bp_convert_pct": 44.0}, {"player": "Ostapenko", "full_name": "Jelena Ostapenko", "rank": 15, "matches": 201, "ace_rate": 4.8, "df_rate": 6.4, "first_serve_pct": 58.5, "first_serve_won": 66.5, "bp_save_pct": 54.6, "bp_convert_pct": 48.3}, {"player": "Andreeva", "full_name": "Mirra Andreeva", "rank": 16, "matches": 73, "ace_rate": 3.9, "df_rate": 3.4, "first_serve_pct": 64.0, "first_serve_won": 65.6, "bp_save_pct": 53.8, "bp_convert_pct": 50.0}, {"player": "Maia", "full_name": "Beatriz Haddad Maia", "rank": 17, "matches": 179, "ace_rate": 3.4, "df_rate": 4.9, "first_serve_pct": 66.1, "first_serve_won": 65.6, "bp_save_pct": 58.5, "bp_convert_pct": 44.9}, {"player": "Kostyuk", "full_name": "Marta Kostyuk", "rank": 18, "matches": 160, "ace_rate": 4.3, "df_rate": 7.6, "first_serve_pct": 58.9, "first_serve_won": 65.2, "bp_save_pct": 53.7, "bp_convert_pct": 44.0}, {"player": "Vekic", "full_name": "Donna Vekic", "rank": 19, "matches": 150, "ace_rate": 5.8, "df_rate": 7.1, "first_serve_pct": 56.8, "first_serve_won": 69.9, "bp_save_pct": 56.6, "bp_convert_pct": 45.4}, {"player": "Azarenka", "full_name": "Victoria Azarenka", "rank": 20, "matches": 162, "ace_rate": 3.9, "df_rate": 6.2, "first_serve_pct": 62.9, "first_serve_won": 67.2, "bp_save_pct": 57.4, "bp_convert_pct": 46.3}, {"player": "Keys", "full_name": "Madison Keys", "rank": 21, "matches": 158, "ace_rate": 6.1, "df_rate": 3.6, "first_serve_pct": 66.0, "first_serve_won": 67.7, "bp_save_pct": 59.4, "bp_convert_pct": 43.1}, {"player": "Muchova", "full_name": "Karolina Muchova", "rank": 22, "matches": 112, "ace_rate": 5.2, "df_rate": 3.1, "first_serve_pct": 63.3, "first_serve_won": 68.1, "bp_save_pct": 59.1, "bp_convert_pct": 46.0}, {"player": "Svitolina", "full_name": "Elina Svitolina", "rank": 23, "matches": 130, "ace_rate": 4.5, "df_rate": 3.6, "first_serve_pct": 61.7, "first_serve_won": 66.0, "bp_save_pct": 56.6, "bp_convert_pct": 47.1}, {"player": "Boulter", "full_name": "Katie Boulter", "rank": 24, "matches": 108, "ace_rate": 4.8, "df_rate": 7.0, "first_serve_pct": 57.3, "first_serve_won": 69.4, "bp_save_pct": 58.6, "bp_convert_pct": 43.7}, {"player": "Frech", "full_name": "Magdalena Frech", "rank": 25, "matches": 130, "ace_rate": 3.5, "df_rate": 2.8, "first_serve_pct": 63.4, "first_serve_won": 62.3, "bp_save_pct": 52.8, "bp_convert_pct": 41.3}], "surface": [{"player": "Azarenka", "rank": 20, "surface": "Hard", "ace_rate": 4.1, "matches": 111}, {"player": "Azarenka", "rank": 20, "surface": "Clay", "ace_rate": 2.2, "matches": 31}, {"player": "Azarenka", "rank": 20, "surface": "Grass", "ace_rate": 5.5, "matches": 20}, {"player": "Keys", "rank": 21, "surface": "Hard", "ace_rate": 6.2, "matches": 93}, {"player": "Keys", "rank": 21, "surface": "Clay", "ace_rate": 5.4, "matches": 40}, {"player": "Keys", "rank": 21, "surface": "Grass", "ace_rate": 7.0, "matches": 25}, {"player": "Pegula", "rank": 7, "surface": "Hard", "ace_rate": 4.1, "matches": 164}, {"player": "Pegula", "rank": 7, "surface": "Clay", "ace_rate": 3.7, "matches": 44}, {"player": "Pegula", "rank": 7, "surface": "Grass", "ace_rate": 4.0, "matches": 27}, {"player": "Svitolina", "rank": 23, "surface": "Hard", "ace_rate": 4.5, "matches": 71}, {"player": "Svitolina", "rank": 23, "surface": "Clay", "ace_rate": 4.0, "matches": 39}, {"player": "Svitolina", "rank": 23, "surface": "Grass", "ace_rate": 5.8, "matches": 18}, {"player": "Vekic", "rank": 19, "surface": "Hard", "ace_rate": 5.8, "matches": 85}, {"player": "Vekic", "rank": 19, "surface": "Clay", "ace_rate": 4.4, "matches": 27}, {"player": "Vekic", "rank": 19, "surface": "Grass", "ace_rate": 6.7, "matches": 38}, {"player": "Collins", "rank": 11, "surface": "Hard", "ace_rate": 5.6, "matches": 112}, {"player": "Collins", "rank": 11, "surface": "Clay", "ace_rate": 5.3, "matches": 47}, {"player": "Maia", "rank": 17, "surface": "Hard", "ace_rate": 3.4, "matches": 118}, {"player": "Maia", "rank": 17, "surface": "Clay", "ace_rate": 2.6, "matches": 32}, {"player": "Maia", "rank": 17, "surface": "Grass", "ace_rate": 4.4, "matches": 27}, {"player": "Krejcikova", "rank": 10, "surface": "Hard", "ace_rate": 5.5, "matches": 114}, {"player": "Krejcikova", "rank": 10, "surface": "Clay", "ace_rate": 3.7, "matches": 39}, {"player": "Krejcikova", "rank": 10, "surface": "Grass", "ace_rate": 6.1, "matches": 26}, {"player": "Boulter", "rank": 24, "surface": "Hard", "ace_rate": 4.7, "matches": 64}, {"player": "Boulter", "rank": 24, "surface": "Grass", "ace_rate": 5.2, "matches": 38}, {"player": "Paolini", "rank": 4, "surface": "Hard", "ace_rate": 1.7, "matches": 121}, {"player": "Paolini", "rank": 4, "surface": "Clay", "ace_rate": 1.4, "matches": 52}, {"player": "Paolini", "rank": 4, "surface": "Grass", "ace_rate": 1.8, "matches": 15}, {"player": "Ostapenko", "rank": 15, "surface": "Hard", "ace_rate": 4.5, "matches": 127}, {"player": "Ostapenko", "rank": 15, "surface": "Clay", "ace_rate": 4.0, "matches": 35}, {"player": "Ostapenko", "rank": 15, "surface": "Grass", "ace_rate": 6.2, "matches": 39}, {"player": "Badosa", "rank": 12, "surface": "Hard", "ace_rate": 6.7, "matches": 109}, {"player": "Badosa", "rank": 12, "surface": "Clay", "ace_rate": 4.7, "matches": 59}, {"player": "Badosa", "rank": 12, "surface": "Grass", "ace_rate": 6.2, "matches": 19}, {"player": "Frech", "rank": 25, "surface": "Hard", "ace_rate": 3.5, "matches": 76}, {"player": "Frech", "rank": 25, "surface": "Clay", "ace_rate": 2.5, "matches": 32}, {"player": "Frech", "rank": 25, "surface": "Grass", "ace_rate": 5.2, "matches": 21}, {"player": "Kasatkina", "rank": 9, "surface": "Hard", "ace_rate": 2.4, "matches": 140}, {"player": "Kasatkina", "rank": 9, "surface": "Clay", "ace_rate": 1.5, "matches": 57}, {"player": "Kasatkina", "rank": 9, "surface": "Grass", "ace_rate": 3.0, "matches": 35}, {"player": "Muchova", "rank": 22, "surface": "Hard", "ace_rate": 5.7, "matches": 67}, {"player": "Muchova", "rank": 22, "surface": "Clay", "ace_rate": 3.6, "matches": 33}, {"player": "Muchova", "rank": 22, "surface": "Grass", "ace_rate": 7.1, "matches": 12}, {"player": "Sabalenka", "rank": 1, "surface": "Hard", "ace_rate": 7.8, "matches": 149}, {"player": "Sabalenka", "rank": 1, "surface": "Clay", "ace_rate": 6.4, "matches": 66}, {"player": "Sabalenka", "rank": 1, "surface": "Grass", "ace_rate": 10.0, "matches": 26}, {"player": "Kalinskaya", "rank": 14, "surface": "Hard", "ace_rate": 2.5, "matches": 94}, {"player": "Kalinskaya", "rank": 14, "surface": "Clay", "ace_rate": 1.6, "matches": 25}, {"player": "Kalinskaya", "rank": 14, "surface": "Grass", "ace_rate": 1.9, "matches": 16}, {"player": "Rybakina", "rank": 6, "surface": "Hard", "ace_rate": 10.5, "matches": 127}, {"player": "Rybakina", "rank": 6, "surface": "Clay", "ace_rate": 8.0, "matches": 49}, {"player": "Rybakina", "rank": 6, "surface": "Grass", "ace_rate": 11.7, "matches": 35}, {"player": "Navarro", "rank": 8, "surface": "Hard", "ace_rate": 1.6, "matches": 60}, {"player": "Navarro", "rank": 8, "surface": "Clay", "ace_rate": 2.0, "matches": 31}, {"player": "Navarro", "rank": 8, "surface": "Grass", "ace_rate": 1.9, "matches": 15}, {"player": "Kostyuk", "rank": 18, "surface": "Hard", "ace_rate": 4.9, "matches": 109}, {"player": "Kostyuk", "rank": 18, "surface": "Clay", "ace_rate": 2.5, "matches": 32}, {"player": "Kostyuk", "rank": 18, "surface": "Grass", "ace_rate": 3.8, "matches": 19}, {"player": "Swiatek", "rank": 2, "surface": "Hard", "ace_rate": 3.7, "matches": 164}, {"player": "Swiatek", "rank": 2, "surface": "Clay", "ace_rate": 2.4, "matches": 82}, {"player": "Swiatek", "rank": 2, "surface": "Grass", "ace_rate": 4.1, "matches": 20}, {"player": "Zheng", "rank": 5, "surface": "Hard", "ace_rate": 10.6, "matches": 107}, {"player": "Zheng", "rank": 5, "surface": "Clay", "ace_rate": 6.9, "matches": 45}, {"player": "Zheng", "rank": 5, "surface": "Grass", "ace_rate": 9.1, "matches": 11}, {"player": "Gauff", "rank": 3, "surface": "Hard", "ace_rate": 6.6, "matches": 149}, {"player": "Gauff", "rank": 3, "surface": "Clay", "ace_rate": 4.3, "matches": 63}, {"player": "Gauff", "rank": 3, "surface": "Grass", "ace_rate": 8.9, "matches": 27}, {"player": "Shnaider", "rank": 13, "surface": "Hard", "ace_rate": 3.0, "matches": 54}, {"player": "Shnaider", "rank": 13, "surface": "Clay", "ace_rate": 2.3, "matches": 24}, {"player": "Shnaider", "rank": 13, "surface": "Grass", "ace_rate": 4.3, "matches": 12}, {"player": "Andreeva", "rank": 16, "surface": "Hard", "ace_rate": 4.4, "matches": 37}, {"player": "Andreeva", "rank": 16, "surface": "Clay", "ace_rate": 3.2, "matches": 30}], "tour_avg": {"aces_per_match": 6.0, "first_serve_in_pct": 62.0, "first_serve_won_pct": 71.3, "second_serve_won_pct": 51.1}, "surface_avg": [{"surface": "Hard", "aces_per_match": 6.3, "first_won_pct": 71.7}, {"surface": "Clay", "aces_per_match": 4.7, "first_won_pct": 69.2}, {"surface": "Grass", "aces_per_match": 7.1, "first_won_pct": 73.3}]}, "last_1_year": {"players": [], "surface": [], "tour_avg": {}, "surface_avg": []}}}}]}</script>
+<script type="ojs-define">{"contents": [{"name": "tennis_data", "value": {"atp": {"all_time": {"players": [{"player": "Sinner", "full_name": "Jannik Sinner", "rank": 1, "matches": 340, "ace_rate": 7.7, "df_rate": 2.6, "first_serve_pct": 60.2, "first_serve_won": 75.6, "bp_save_pct": 66.6, "bp_convert_pct": 42.9}, {"player": "Zverev", "full_name": "Alexander Zverev", "rank": 2, "matches": 646, "ace_rate": 11.0, "df_rate": 4.6, "first_serve_pct": 66.6, "first_serve_won": 75.1, "bp_save_pct": 61.6, "bp_convert_pct": 40.8}, {"player": "Alcaraz", "full_name": "Carlos Alcaraz", "rank": 3, "matches": 263, "ace_rate": 5.3, "df_rate": 2.8, "first_serve_pct": 65.3, "first_serve_won": 72.6, "bp_save_pct": 63.8, "bp_convert_pct": 41.0}, {"player": "Fritz", "full_name": "Taylor Fritz", "rank": 4, "matches": 466, "ace_rate": 12.3, "df_rate": 2.9, "first_serve_pct": 59.9, "first_serve_won": 76.9, "bp_save_pct": 63.6, "bp_convert_pct": 37.9}, {"player": "Medvedev", "full_name": "Daniil Medvedev", "rank": 5, "matches": 528, "ace_rate": 10.7, "df_rate": 4.8, "first_serve_pct": 61.8, "first_serve_won": 75.7, "bp_save_pct": 63.4, "bp_convert_pct": 43.1}, {"player": "Ruud", "full_name": "Casper Ruud", "rank": 6, "matches": 385, "ace_rate": 6.7, "df_rate": 2.8, "first_serve_pct": 65.1, "first_serve_won": 72.7, "bp_save_pct": 63.2, "bp_convert_pct": 40.1}, {"player": "Djokovic", "full_name": "Novak Djokovic", "rank": 7, "matches": 1299, "ace_rate": 7.7, "df_rate": 2.9, "first_serve_pct": 65.0, "first_serve_won": 75.0, "bp_save_pct": 65.6, "bp_convert_pct": 44.1}, {"player": "Rublev", "full_name": "Andrey Rublev", "rank": 8, "matches": 510, "ace_rate": 9.4, "df_rate": 3.2, "first_serve_pct": 60.9, "first_serve_won": 75.8, "bp_save_pct": 63.4, "bp_convert_pct": 39.4}, {"player": "Minaur", "full_name": "Alex De Minaur", "rank": 9, "matches": 396, "ace_rate": 5.1, "df_rate": 3.2, "first_serve_pct": 59.0, "first_serve_won": 71.6, "bp_save_pct": 60.8, "bp_convert_pct": 42.1}, {"player": "Dimitrov", "full_name": "Grigor Dimitrov", "rank": 10, "matches": 740, "ace_rate": 9.0, "df_rate": 4.3, "first_serve_pct": 62.0, "first_serve_won": 75.7, "bp_save_pct": 63.1, "bp_convert_pct": 38.6}, {"player": "Tsitsipas", "full_name": "Stefanos Tsitsipas", "rank": 11, "matches": 496, "ace_rate": 9.0, "df_rate": 2.8, "first_serve_pct": 62.3, "first_serve_won": 76.8, "bp_save_pct": 65.2, "bp_convert_pct": 39.7}, {"player": "Paul", "full_name": "Tommy Paul", "rank": 12, "matches": 295, "ace_rate": 6.6, "df_rate": 2.8, "first_serve_pct": 61.4, "first_serve_won": 71.6, "bp_save_pct": 61.6, "bp_convert_pct": 39.5}, {"player": "Rune", "full_name": "Holger Rune", "rank": 13, "matches": 218, "ace_rate": 6.9, "df_rate": 4.3, "first_serve_pct": 62.3, "first_serve_won": 72.7, "bp_save_pct": 63.5, "bp_convert_pct": 39.7}, {"player": "Humbert", "full_name": "Ugo Humbert", "rank": 14, "matches": 261, "ace_rate": 8.7, "df_rate": 3.1, "first_serve_pct": 62.3, "first_serve_won": 73.7, "bp_save_pct": 63.6, "bp_convert_pct": 36.3}, {"player": "Draper", "full_name": "Jack Draper", "rank": 15, "matches": 130, "ace_rate": 11.6, "df_rate": 3.9, "first_serve_pct": 60.1, "first_serve_won": 78.1, "bp_save_pct": 65.7, "bp_convert_pct": 42.4}, {"player": "Hurkacz", "full_name": "Hubert Hurkacz", "rank": 16, "matches": 346, "ace_rate": 13.7, "df_rate": 2.6, "first_serve_pct": 63.5, "first_serve_won": 76.5, "bp_save_pct": 65.5, "bp_convert_pct": 36.8}, {"player": "Musetti", "full_name": "Lorenzo Musetti", "rank": 17, "matches": 238, "ace_rate": 4.6, "df_rate": 2.6, "first_serve_pct": 64.5, "first_serve_won": 69.8, "bp_save_pct": 58.3, "bp_convert_pct": 40.3}, {"player": "Tiafoe", "full_name": "Frances Tiafoe", "rank": 18, "matches": 393, "ace_rate": 8.9, "df_rate": 2.9, "first_serve_pct": 60.9, "first_serve_won": 73.1, "bp_save_pct": 62.5, "bp_convert_pct": 37.7}, {"player": "Khachanov", "full_name": "Karen Khachanov", "rank": 19, "matches": 471, "ace_rate": 9.6, "df_rate": 3.0, "first_serve_pct": 62.7, "first_serve_won": 74.0, "bp_save_pct": 63.4, "bp_convert_pct": 40.3}, {"player": "Fils", "full_name": "Arthur Fils", "rank": 20, "matches": 107, "ace_rate": 8.6, "df_rate": 4.4, "first_serve_pct": 61.3, "first_serve_won": 75.3, "bp_save_pct": 63.6, "bp_convert_pct": 38.5}, {"player": "Shelton", "full_name": "Ben Shelton", "rank": 21, "matches": 123, "ace_rate": 11.4, "df_rate": 4.5, "first_serve_pct": 66.5, "first_serve_won": 76.2, "bp_save_pct": 69.7, "bp_convert_pct": 37.5}, {"player": "Korda", "full_name": "Sebastian Korda", "rank": 22, "matches": 204, "ace_rate": 9.1, "df_rate": 2.8, "first_serve_pct": 62.9, "first_serve_won": 72.8, "bp_save_pct": 63.0, "bp_convert_pct": 40.0}, {"player": "Tabilo", "full_name": "Alejandro Tabilo", "rank": 23, "matches": 110, "ace_rate": 8.8, "df_rate": 3.5, "first_serve_pct": 64.1, "first_serve_won": 72.4, "bp_save_pct": 61.6, "bp_convert_pct": 39.5}, {"player": "Popyrin", "full_name": "Alexei Popyrin", "rank": 24, "matches": 204, "ace_rate": 11.1, "df_rate": 4.1, "first_serve_pct": 61.4, "first_serve_won": 74.6, "bp_save_pct": 65.5, "bp_convert_pct": 33.3}, {"player": "Machac", "full_name": "Tomas Machac", "rank": 25, "matches": 85, "ace_rate": 6.4, "df_rate": 3.1, "first_serve_pct": 63.9, "first_serve_won": 69.0, "bp_save_pct": 62.3, "bp_convert_pct": 41.3}], "surface": [{"player": "Zverev", "rank": 2, "surface": "Hard", "ace_rate": 12.0, "matches": 383}, {"player": "Zverev", "rank": 2, "surface": "Clay", "ace_rate": 8.6, "matches": 204}, {"player": "Zverev", "rank": 2, "surface": "Grass", "ace_rate": 13.5, "matches": 59}, {"player": "Djokovic", "rank": 7, "surface": "Hard", "ace_rate": 8.3, "matches": 809}, {"player": "Djokovic", "rank": 7, "surface": "Clay", "ace_rate": 5.2, "matches": 341}, {"player": "Djokovic", "rank": 7, "surface": "Grass", "ace_rate": 10.0, "matches": 139}, {"player": "Dimitrov", "rank": 10, "surface": "Hard", "ace_rate": 9.4, "matches": 493}, {"player": "Dimitrov", "rank": 10, "surface": "Clay", "ace_rate": 6.7, "matches": 168}, {"player": "Dimitrov", "rank": 10, "surface": "Grass", "ace_rate": 11.9, "matches": 79}, {"player": "Medvedev", "rank": 5, "surface": "Hard", "ace_rate": 11.4, "matches": 390}, {"player": "Medvedev", "rank": 5, "surface": "Clay", "ace_rate": 5.8, "matches": 70}, {"player": "Medvedev", "rank": 5, "surface": "Grass", "ace_rate": 11.8, "matches": 68}, {"player": "Khachanov", "rank": 19, "surface": "Hard", "ace_rate": 10.6, "matches": 315}, {"player": "Khachanov", "rank": 19, "surface": "Clay", "ace_rate": 6.5, "matches": 117}, {"player": "Khachanov", "rank": 19, "surface": "Grass", "ace_rate": 10.3, "matches": 39}, {"player": "Rublev", "rank": 8, "surface": "Hard", "ace_rate": 10.4, "matches": 363}, {"player": "Rublev", "rank": 8, "surface": "Clay", "ace_rate": 6.5, "matches": 118}, {"player": "Rublev", "rank": 8, "surface": "Grass", "ace_rate": 9.7, "matches": 29}, {"player": "Fritz", "rank": 4, "surface": "Hard", "ace_rate": 12.5, "matches": 322}, {"player": "Fritz", "rank": 4, "surface": "Clay", "ace_rate": 10.0, "matches": 88}, {"player": "Fritz", "rank": 4, "surface": "Grass", "ace_rate": 14.5, "matches": 56}, {"player": "Paul", "rank": 12, "surface": "Hard", "ace_rate": 6.9, "matches": 207}, {"player": "Paul", "rank": 12, "surface": "Clay", "ace_rate": 4.6, "matches": 52}, {"player": "Paul", "rank": 12, "surface": "Grass", "ace_rate": 7.3, "matches": 36}, {"player": "Tiafoe", "rank": 18, "surface": "Hard", "ace_rate": 9.2, "matches": 279}, {"player": "Tiafoe", "rank": 18, "surface": "Clay", "ace_rate": 7.4, "matches": 73}, {"player": "Tiafoe", "rank": 18, "surface": "Grass", "ace_rate": 9.5, "matches": 41}, {"player": "Tabilo", "rank": 23, "surface": "Hard", "ace_rate": 10.5, "matches": 52}, {"player": "Tabilo", "rank": 23, "surface": "Clay", "ace_rate": 6.6, "matches": 44}, {"player": "Tabilo", "rank": 23, "surface": "Grass", "ace_rate": 9.2, "matches": 14}, {"player": "Tsitsipas", "rank": 11, "surface": "Hard", "ace_rate": 10.1, "matches": 307}, {"player": "Tsitsipas", "rank": 11, "surface": "Clay", "ace_rate": 6.4, "matches": 150}, {"player": "Tsitsipas", "rank": 11, "surface": "Grass", "ace_rate": 10.9, "matches": 39}, {"player": "Hurkacz", "rank": 16, "surface": "Hard", "ace_rate": 14.3, "matches": 241}, {"player": "Hurkacz", "rank": 16, "surface": "Clay", "ace_rate": 10.7, "matches": 66}, {"player": "Hurkacz", "rank": 16, "surface": "Grass", "ace_rate": 15.0, "matches": 39}, {"player": "Ruud", "rank": 6, "surface": "Hard", "ace_rate": 8.0, "matches": 179}, {"player": "Ruud", "rank": 6, "surface": "Clay", "ace_rate": 5.5, "matches": 194}, {"player": "Ruud", "rank": 6, "surface": "Grass", "ace_rate": 8.3, "matches": 12}, {"player": "Humbert", "rank": 14, "surface": "Hard", "ace_rate": 9.4, "matches": 173}, {"player": "Humbert", "rank": 14, "surface": "Clay", "ace_rate": 5.0, "matches": 44}, {"player": "Humbert", "rank": 14, "surface": "Grass", "ace_rate": 9.3, "matches": 44}, {"player": "Minaur", "rank": 9, "surface": "Hard", "ace_rate": 5.5, "matches": 286}, {"player": "Minaur", "rank": 9, "surface": "Clay", "ace_rate": 2.9, "matches": 61}, {"player": "Minaur", "rank": 9, "surface": "Grass", "ace_rate": 5.2, "matches": 49}, {"player": "Popyrin", "rank": 24, "surface": "Hard", "ace_rate": 11.7, "matches": 141}, {"player": "Popyrin", "rank": 24, "surface": "Clay", "ace_rate": 8.7, "matches": 43}, {"player": "Popyrin", "rank": 24, "surface": "Grass", "ace_rate": 11.9, "matches": 20}, {"player": "Korda", "rank": 22, "surface": "Hard", "ace_rate": 9.9, "matches": 137}, {"player": "Korda", "rank": 22, "surface": "Clay", "ace_rate": 5.9, "matches": 42}, {"player": "Korda", "rank": 22, "surface": "Grass", "ace_rate": 10.1, "matches": 25}, {"player": "Sinner", "rank": 1, "surface": "Hard", "ace_rate": 8.5, "matches": 234}, {"player": "Sinner", "rank": 1, "surface": "Clay", "ace_rate": 4.7, "matches": 76}, {"player": "Sinner", "rank": 1, "surface": "Grass", "ace_rate": 9.7, "matches": 30}, {"player": "Musetti", "rank": 17, "surface": "Hard", "ace_rate": 5.6, "matches": 117}, {"player": "Musetti", "rank": 17, "surface": "Clay", "ace_rate": 2.9, "matches": 93}, {"player": "Musetti", "rank": 17, "surface": "Grass", "ace_rate": 5.8, "matches": 28}, {"player": "Draper", "rank": 15, "surface": "Hard", "ace_rate": 12.0, "matches": 88}, {"player": "Draper", "rank": 15, "surface": "Clay", "ace_rate": 7.7, "matches": 20}, {"player": "Draper", "rank": 15, "surface": "Grass", "ace_rate": 13.9, "matches": 22}, {"player": "Machac", "rank": 25, "surface": "Hard", "ace_rate": 7.1, "matches": 62}, {"player": "Machac", "rank": 25, "surface": "Clay", "ace_rate": 4.3, "matches": 19}, {"player": "Alcaraz", "rank": 3, "surface": "Hard", "ace_rate": 6.2, "matches": 137}, {"player": "Alcaraz", "rank": 3, "surface": "Clay", "ace_rate": 3.6, "matches": 99}, {"player": "Alcaraz", "rank": 3, "surface": "Grass", "ace_rate": 7.2, "matches": 27}, {"player": "Rune", "rank": 13, "surface": "Hard", "ace_rate": 8.3, "matches": 128}, {"player": "Rune", "rank": 13, "surface": "Clay", "ace_rate": 4.0, "matches": 73}, {"player": "Rune", "rank": 13, "surface": "Grass", "ace_rate": 9.1, "matches": 17}, {"player": "Fils", "rank": 20, "surface": "Hard", "ace_rate": 10.0, "matches": 64}, {"player": "Fils", "rank": 20, "surface": "Clay", "ace_rate": 5.9, "matches": 32}, {"player": "Fils", "rank": 20, "surface": "Grass", "ace_rate": 8.2, "matches": 11}, {"player": "Shelton", "rank": 21, "surface": "Hard", "ace_rate": 11.8, "matches": 89}, {"player": "Shelton", "rank": 21, "surface": "Clay", "ace_rate": 8.2, "matches": 21}, {"player": "Shelton", "rank": 21, "surface": "Grass", "ace_rate": 14.0, "matches": 13}], "tour_avg": {"aces_per_match": 12.7, "first_serve_in_pct": 63.3, "first_serve_won_pct": 77.4, "second_serve_won_pct": 56.8}, "surface_avg": [{"surface": "Hard", "aces_per_match": 13.6, "first_won_pct": 78.2}, {"surface": "Clay", "aces_per_match": 8.5, "first_won_pct": 74.5}, {"surface": "Grass", "aces_per_match": 17.3, "first_won_pct": 79.5}]}, "last_5_years": {"players": [{"player": "Sinner", "full_name": "Jannik Sinner", "rank": 1, "matches": 262, "ace_rate": 8.5, "df_rate": 2.6, "first_serve_pct": 59.8, "first_serve_won": 77.3, "bp_save_pct": 67.6, "bp_convert_pct": 42.9}, {"player": "Zverev", "full_name": "Alexander Zverev", "rank": 2, "matches": 253, "ace_rate": 11.8, "df_rate": 3.6, "first_serve_pct": 70.8, "first_serve_won": 76.3, "bp_save_pct": 63.9, "bp_convert_pct": 39.6}, {"player": "Alcaraz", "full_name": "Carlos Alcaraz", "rank": 3, "matches": 246, "ace_rate": 5.4, "df_rate": 2.8, "first_serve_pct": 65.4, "first_serve_won": 72.9, "bp_save_pct": 64.3, "bp_convert_pct": 40.9}, {"player": "Fritz", "full_name": "Taylor Fritz", "rank": 4, "matches": 251, "ace_rate": 12.9, "df_rate": 2.8, "first_serve_pct": 61.2, "first_serve_won": 78.5, "bp_save_pct": 65.5, "bp_convert_pct": 39.5}, {"player": "Medvedev", "full_name": "Daniil Medvedev", "rank": 5, "matches": 264, "ace_rate": 10.4, "df_rate": 5.1, "first_serve_pct": 63.5, "first_serve_won": 76.2, "bp_save_pct": 64.2, "bp_convert_pct": 45.0}, {"player": "Ruud", "full_name": "Casper Ruud", "rank": 6, "matches": 254, "ace_rate": 7.2, "df_rate": 2.7, "first_serve_pct": 64.9, "first_serve_won": 73.7, "bp_save_pct": 63.9, "bp_convert_pct": 39.9}, {"player": "Djokovic", "full_name": "Novak Djokovic", "rank": 7, "matches": 197, "ace_rate": 8.9, "df_rate": 2.9, "first_serve_pct": 64.5, "first_serve_won": 77.8, "bp_save_pct": 66.7, "bp_convert_pct": 42.6}, {"player": "Rublev", "full_name": "Andrey Rublev", "rank": 8, "matches": 261, "ace_rate": 10.4, "df_rate": 2.6, "first_serve_pct": 62.2, "first_serve_won": 76.7, "bp_save_pct": 64.9, "bp_convert_pct": 38.1}, {"player": "Minaur", "full_name": "Alex De Minaur", "rank": 9, "matches": 235, "ace_rate": 5.0, "df_rate": 3.2, "first_serve_pct": 57.4, "first_serve_won": 71.4, "bp_save_pct": 60.8, "bp_convert_pct": 43.2}, {"player": "Dimitrov", "full_name": "Grigor Dimitrov", "rank": 10, "matches": 200, "ace_rate": 9.4, "df_rate": 4.3, "first_serve_pct": 62.1, "first_serve_won": 77.8, "bp_save_pct": 63.0, "bp_convert_pct": 38.9}, {"player": "Tsitsipas", "full_name": "Stefanos Tsitsipas", "rank": 11, "matches": 256, "ace_rate": 9.4, "df_rate": 2.9, "first_serve_pct": 62.6, "first_serve_won": 76.8, "bp_save_pct": 66.7, "bp_convert_pct": 40.2}, {"player": "Paul", "full_name": "Tommy Paul", "rank": 12, "matches": 225, "ace_rate": 6.8, "df_rate": 2.8, "first_serve_pct": 61.4, "first_serve_won": 72.2, "bp_save_pct": 62.4, "bp_convert_pct": 39.6}, {"player": "Rune", "full_name": "Holger Rune", "rank": 13, "matches": 210, "ace_rate": 7.0, "df_rate": 4.3, "first_serve_pct": 62.2, "first_serve_won": 73.0, "bp_save_pct": 64.0, "bp_convert_pct": 39.6}, {"player": "Humbert", "full_name": "Ugo Humbert", "rank": 14, "matches": 165, "ace_rate": 8.2, "df_rate": 2.9, "first_serve_pct": 62.9, "first_serve_won": 73.0, "bp_save_pct": 63.3, "bp_convert_pct": 36.1}, {"player": "Draper", "full_name": "Jack Draper", "rank": 15, "matches": 129, "ace_rate": 11.7, "df_rate": 3.9, "first_serve_pct": 60.2, "first_serve_won": 78.1, "bp_save_pct": 65.7, "bp_convert_pct": 42.5}, {"player": "Hurkacz", "full_name": "Hubert Hurkacz", "rank": 16, "matches": 224, "ace_rate": 16.1, "df_rate": 1.9, "first_serve_pct": 63.9, "first_serve_won": 78.5, "bp_save_pct": 67.3, "bp_convert_pct": 36.1}, {"player": "Musetti", "full_name": "Lorenzo Musetti", "rank": 17, "matches": 217, "ace_rate": 4.7, "df_rate": 2.6, "first_serve_pct": 64.3, "first_serve_won": 69.9, "bp_save_pct": 58.0, "bp_convert_pct": 40.3}, {"player": "Tiafoe", "full_name": "Frances Tiafoe", "rank": 18, "matches": 212, "ace_rate": 9.8, "df_rate": 2.8, "first_serve_pct": 59.8, "first_serve_won": 74.9, "bp_save_pct": 64.7, "bp_convert_pct": 37.2}, {"player": "Khachanov", "full_name": "Karen Khachanov", "rank": 19, "matches": 205, "ace_rate": 9.4, "df_rate": 2.7, "first_serve_pct": 64.0, "first_serve_won": 74.2, "bp_save_pct": 63.7, "bp_convert_pct": 40.7}, {"player": "Fils", "full_name": "Arthur Fils", "rank": 20, "matches": 107, "ace_rate": 8.6, "df_rate": 4.4, "first_serve_pct": 61.3, "first_serve_won": 75.3, "bp_save_pct": 63.6, "bp_convert_pct": 38.5}, {"player": "Shelton", "full_name": "Ben Shelton", "rank": 21, "matches": 123, "ace_rate": 11.4, "df_rate": 4.5, "first_serve_pct": 66.5, "first_serve_won": 76.2, "bp_save_pct": 69.7, "bp_convert_pct": 37.5}, {"player": "Korda", "full_name": "Sebastian Korda", "rank": 22, "matches": 181, "ace_rate": 9.5, "df_rate": 2.8, "first_serve_pct": 62.5, "first_serve_won": 73.4, "bp_save_pct": 62.6, "bp_convert_pct": 39.3}, {"player": "Tabilo", "full_name": "Alejandro Tabilo", "rank": 23, "matches": 101, "ace_rate": 9.0, "df_rate": 3.4, "first_serve_pct": 64.1, "first_serve_won": 72.9, "bp_save_pct": 62.1, "bp_convert_pct": 39.5}, {"player": "Popyrin", "full_name": "Alexei Popyrin", "rank": 24, "matches": 138, "ace_rate": 11.2, "df_rate": 3.8, "first_serve_pct": 61.9, "first_serve_won": 75.3, "bp_save_pct": 65.8, "bp_convert_pct": 32.7}, {"player": "Machac", "full_name": "Tomas Machac", "rank": 25, "matches": 81, "ace_rate": 6.5, "df_rate": 3.2, "first_serve_pct": 63.8, "first_serve_won": 69.2, "bp_save_pct": 61.9, "bp_convert_pct": 41.4}], "surface": [{"player": "Zverev", "rank": 2, "surface": "Hard", "ace_rate": 12.6, "matches": 147}, {"player": "Zverev", "rank": 2, "surface": "Clay", "ace_rate": 9.4, "matches": 85}, {"player": "Zverev", "rank": 2, "surface": "Grass", "ace_rate": 15.8, "matches": 21}, {"player": "Djokovic", "rank": 7, "surface": "Hard", "ace_rate": 10.4, "matches": 102}, {"player": "Djokovic", "rank": 7, "surface": "Clay", "ace_rate": 6.0, "matches": 68}, {"player": "Djokovic", "rank": 7, "surface": "Grass", "ace_rate": 10.3, "matches": 27}, {"player": "Dimitrov", "rank": 10, "surface": "Hard", "ace_rate": 9.8, "matches": 136}, {"player": "Dimitrov", "rank": 10, "surface": "Clay", "ace_rate": 6.7, "matches": 46}, {"player": "Dimitrov", "rank": 10, "surface": "Grass", "ace_rate": 13.4, "matches": 18}, {"player": "Medvedev", "rank": 5, "surface": "Hard", "ace_rate": 11.0, "matches": 186}, {"player": "Medvedev", "rank": 5, "surface": "Clay", "ace_rate": 6.6, "matches": 40}, {"player": "Medvedev", "rank": 5, "surface": "Grass", "ace_rate": 11.5, "matches": 38}, {"player": "Khachanov", "rank": 19, "surface": "Hard", "ace_rate": 10.5, "matches": 137}, {"player": "Khachanov", "rank": 19, "surface": "Clay", "ace_rate": 6.4, "matches": 50}, {"player": "Khachanov", "rank": 19, "surface": "Grass", "ace_rate": 9.7, "matches": 18}, {"player": "Rublev", "rank": 8, "surface": "Hard", "ace_rate": 11.4, "matches": 174}, {"player": "Rublev", "rank": 8, "surface": "Clay", "ace_rate": 7.7, "matches": 65}, {"player": "Rublev", "rank": 8, "surface": "Grass", "ace_rate": 10.5, "matches": 22}, {"player": "Fritz", "rank": 4, "surface": "Hard", "ace_rate": 13.1, "matches": 167}, {"player": "Fritz", "rank": 4, "surface": "Clay", "ace_rate": 10.4, "matches": 51}, {"player": "Fritz", "rank": 4, "surface": "Grass", "ace_rate": 15.9, "matches": 33}, {"player": "Paul", "rank": 12, "surface": "Hard", "ace_rate": 7.1, "matches": 152}, {"player": "Paul", "rank": 12, "surface": "Clay", "ace_rate": 4.8, "matches": 38}, {"player": "Paul", "rank": 12, "surface": "Grass", "ace_rate": 7.4, "matches": 35}, {"player": "Tiafoe", "rank": 18, "surface": "Hard", "ace_rate": 10.3, "matches": 147}, {"player": "Tiafoe", "rank": 18, "surface": "Clay", "ace_rate": 8.2, "matches": 37}, {"player": "Tiafoe", "rank": 18, "surface": "Grass", "ace_rate": 9.0, "matches": 28}, {"player": "Tabilo", "rank": 23, "surface": "Hard", "ace_rate": 10.9, "matches": 47}, {"player": "Tabilo", "rank": 23, "surface": "Clay", "ace_rate": 6.7, "matches": 40}, {"player": "Tabilo", "rank": 23, "surface": "Grass", "ace_rate": 9.2, "matches": 14}, {"player": "Tsitsipas", "rank": 11, "surface": "Hard", "ace_rate": 10.7, "matches": 145}, {"player": "Tsitsipas", "rank": 11, "surface": "Clay", "ace_rate": 6.5, "matches": 87}, {"player": "Tsitsipas", "rank": 11, "surface": "Grass", "ace_rate": 11.6, "matches": 24}, {"player": "Hurkacz", "rank": 16, "surface": "Hard", "ace_rate": 17.1, "matches": 150}, {"player": "Hurkacz", "rank": 16, "surface": "Clay", "ace_rate": 12.6, "matches": 43}, {"player": "Hurkacz", "rank": 16, "surface": "Grass", "ace_rate": 16.3, "matches": 31}, {"player": "Ruud", "rank": 6, "surface": "Hard", "ace_rate": 8.5, "matches": 133}, {"player": "Ruud", "rank": 6, "surface": "Clay", "ace_rate": 5.5, "matches": 110}, {"player": "Ruud", "rank": 6, "surface": "Grass", "ace_rate": 8.3, "matches": 11}, {"player": "Humbert", "rank": 14, "surface": "Hard", "ace_rate": 8.7, "matches": 103}, {"player": "Humbert", "rank": 14, "surface": "Clay", "ace_rate": 5.1, "matches": 28}, {"player": "Humbert", "rank": 14, "surface": "Grass", "ace_rate": 9.4, "matches": 34}, {"player": "Minaur", "rank": 9, "surface": "Hard", "ace_rate": 5.6, "matches": 154}, {"player": "Minaur", "rank": 9, "surface": "Clay", "ace_rate": 3.0, "matches": 42}, {"player": "Minaur", "rank": 9, "surface": "Grass", "ace_rate": 5.0, "matches": 39}, {"player": "Popyrin", "rank": 24, "surface": "Hard", "ace_rate": 11.8, "matches": 91}, {"player": "Popyrin", "rank": 24, "surface": "Clay", "ace_rate": 8.9, "matches": 30}, {"player": "Popyrin", "rank": 24, "surface": "Grass", "ace_rate": 12.1, "matches": 17}, {"player": "Korda", "rank": 22, "surface": "Hard", "ace_rate": 10.4, "matches": 120}, {"player": "Korda", "rank": 22, "surface": "Clay", "ace_rate": 6.3, "matches": 36}, {"player": "Korda", "rank": 22, "surface": "Grass", "ace_rate": 10.1, "matches": 25}, {"player": "Sinner", "rank": 1, "surface": "Hard", "ace_rate": 9.2, "matches": 182}, {"player": "Sinner", "rank": 1, "surface": "Clay", "ace_rate": 5.0, "matches": 51}, {"player": "Sinner", "rank": 1, "surface": "Grass", "ace_rate": 10.0, "matches": 29}, {"player": "Musetti", "rank": 17, "surface": "Hard", "ace_rate": 5.7, "matches": 109}, {"player": "Musetti", "rank": 17, "surface": "Clay", "ace_rate": 3.0, "matches": 80}, {"player": "Musetti", "rank": 17, "surface": "Grass", "ace_rate": 5.8, "matches": 28}, {"player": "Draper", "rank": 15, "surface": "Hard", "ace_rate": 12.0, "matches": 87}, {"player": "Draper", "rank": 15, "surface": "Clay", "ace_rate": 7.7, "matches": 20}, {"player": "Draper", "rank": 15, "surface": "Grass", "ace_rate": 13.9, "matches": 22}, {"player": "Machac", "rank": 25, "surface": "Hard", "ace_rate": 7.1, "matches": 59}, {"player": "Machac", "rank": 25, "surface": "Clay", "ace_rate": 4.5, "matches": 18}, {"player": "Alcaraz", "rank": 3, "surface": "Hard", "ace_rate": 6.2, "matches": 130}, {"player": "Alcaraz", "rank": 3, "surface": "Clay", "ace_rate": 3.8, "matches": 89}, {"player": "Alcaraz", "rank": 3, "surface": "Grass", "ace_rate": 7.2, "matches": 27}, {"player": "Rune", "rank": 13, "surface": "Hard", "ace_rate": 8.3, "matches": 127}, {"player": "Rune", "rank": 13, "surface": "Clay", "ace_rate": 4.0, "matches": 66}, {"player": "Rune", "rank": 13, "surface": "Grass", "ace_rate": 9.1, "matches": 17}, {"player": "Fils", "rank": 20, "surface": "Hard", "ace_rate": 10.0, "matches": 64}, {"player": "Fils", "rank": 20, "surface": "Clay", "ace_rate": 5.9, "matches": 32}, {"player": "Fils", "rank": 20, "surface": "Grass", "ace_rate": 8.2, "matches": 11}, {"player": "Shelton", "rank": 21, "surface": "Hard", "ace_rate": 11.8, "matches": 89}, {"player": "Shelton", "rank": 21, "surface": "Clay", "ace_rate": 8.2, "matches": 21}, {"player": "Shelton", "rank": 21, "surface": "Grass", "ace_rate": 14.0, "matches": 13}], "tour_avg": {"aces_per_match": 13.1, "first_serve_in_pct": 63.5, "first_serve_won_pct": 77.7, "second_serve_won_pct": 56.9}, "surface_avg": [{"surface": "Hard", "aces_per_match": 14.1, "first_won_pct": 78.6}, {"surface": "Clay", "aces_per_match": 8.7, "first_won_pct": 74.9}, {"surface": "Grass", "aces_per_match": 17.7, "first_won_pct": 79.6}]}, "last_1_year": {"players": [], "surface": [], "tour_avg": {}, "surface_avg": []}}, "wta": {"all_time": {"players": [{"player": "Sabalenka", "full_name": "Aryna Sabalenka", "rank": 1, "matches": 440, "ace_rate": 7.0, "df_rate": 6.6, "first_serve_pct": 60.8, "first_serve_won": 70.2, "bp_save_pct": 59.8, "bp_convert_pct": 45.5}, {"player": "Swiatek", "full_name": "Iga Swiatek", "rank": 2, "matches": 324, "ace_rate": 3.5, "df_rate": 3.1, "first_serve_pct": 63.0, "first_serve_won": 69.2, "bp_save_pct": 58.9, "bp_convert_pct": 48.9}, {"player": "Gauff", "full_name": "Coco Gauff", "rank": 3, "matches": 279, "ace_rate": 6.0, "df_rate": 7.2, "first_serve_pct": 60.8, "first_serve_won": 69.4, "bp_save_pct": 57.9, "bp_convert_pct": 47.3}, {"player": "Paolini", "full_name": "Jasmine Paolini", "rank": 4, "matches": 235, "ace_rate": 1.5, "df_rate": 3.0, "first_serve_pct": 67.0, "first_serve_won": 60.1, "bp_save_pct": 55.1, "bp_convert_pct": 47.0}, {"player": "Zheng", "full_name": "Qinwen Zheng", "rank": 5, "matches": 163, "ace_rate": 9.5, "df_rate": 6.1, "first_serve_pct": 52.0, "first_serve_won": 75.6, "bp_save_pct": 59.9, "bp_convert_pct": 45.5}, {"player": "Rybakina", "full_name": "Elena Rybakina", "rank": 6, "matches": 297, "ace_rate": 9.0, "df_rate": 4.1, "first_serve_pct": 58.4, "first_serve_won": 72.5, "bp_save_pct": 61.0, "bp_convert_pct": 43.2}, {"player": "Pegula", "full_name": "Jessica Pegula", "rank": 7, "matches": 300, "ace_rate": 3.9, "df_rate": 3.8, "first_serve_pct": 59.4, "first_serve_won": 67.0, "bp_save_pct": 57.7, "bp_convert_pct": 47.2}, {"player": "Navarro", "full_name": "Emma Navarro", "rank": 8, "matches": 109, "ace_rate": 1.8, "df_rate": 3.6, "first_serve_pct": 63.6, "first_serve_won": 62.8, "bp_save_pct": 54.2, "bp_convert_pct": 47.8}, {"player": "Kasatkina", "full_name": "Daria Kasatkina", "rank": 9, "matches": 480, "ace_rate": 2.2, "df_rate": 5.7, "first_serve_pct": 67.6, "first_serve_won": 60.8, "bp_save_pct": 53.0, "bp_convert_pct": 48.7}, {"player": "Krejcikova", "full_name": "Barbora Krejcikova", "rank": 10, "matches": 224, "ace_rate": 5.0, "df_rate": 5.8, "first_serve_pct": 60.7, "first_serve_won": 68.8, "bp_save_pct": 59.0, "bp_convert_pct": 45.4}, {"player": "Collins", "full_name": "Danielle Collins", "rank": 11, "matches": 267, "ace_rate": 5.0, "df_rate": 6.0, "first_serve_pct": 57.1, "first_serve_won": 67.5, "bp_save_pct": 58.0, "bp_convert_pct": 48.0}, {"player": "Badosa", "full_name": "Paula Badosa", "rank": 12, "matches": 230, "ace_rate": 5.8, "df_rate": 6.8, "first_serve_pct": 60.4, "first_serve_won": 68.5, "bp_save_pct": 59.8, "bp_convert_pct": 46.6}, {"player": "Shnaider", "full_name": "Diana Shnaider", "rank": 13, "matches": 90, "ace_rate": 3.0, "df_rate": 3.7, "first_serve_pct": 63.6, "first_serve_won": 64.6, "bp_save_pct": 54.4, "bp_convert_pct": 48.1}, {"player": "Kalinskaya", "full_name": "Anna Kalinskaya", "rank": 14, "matches": 176, "ace_rate": 2.3, "df_rate": 5.6, "first_serve_pct": 63.9, "first_serve_won": 62.2, "bp_save_pct": 54.5, "bp_convert_pct": 43.3}, {"player": "Ostapenko", "full_name": "Jelena Ostapenko", "rank": 15, "matches": 435, "ace_rate": 4.5, "df_rate": 8.0, "first_serve_pct": 56.2, "first_serve_won": 65.5, "bp_save_pct": 53.0, "bp_convert_pct": 48.6}, {"player": "Andreeva", "full_name": "Mirra Andreeva", "rank": 16, "matches": 73, "ace_rate": 3.9, "df_rate": 3.4, "first_serve_pct": 64.0, "first_serve_won": 65.6, "bp_save_pct": 53.8, "bp_convert_pct": 50.0}, {"player": "Maia", "full_name": "Beatriz Haddad Maia", "rank": 17, "matches": 249, "ace_rate": 3.3, "df_rate": 5.0, "first_serve_pct": 66.4, "first_serve_won": 65.4, "bp_save_pct": 58.1, "bp_convert_pct": 43.9}, {"player": "Kostyuk", "full_name": "Marta Kostyuk", "rank": 18, "matches": 192, "ace_rate": 4.2, "df_rate": 7.6, "first_serve_pct": 59.3, "first_serve_won": 64.9, "bp_save_pct": 53.5, "bp_convert_pct": 44.3}, {"player": "Vekic", "full_name": "Donna Vekic", "rank": 19, "matches": 363, "ace_rate": 5.3, "df_rate": 7.2, "first_serve_pct": 56.2, "first_serve_won": 68.4, "bp_save_pct": 54.8, "bp_convert_pct": 45.9}, {"player": "Azarenka", "full_name": "Victoria Azarenka", "rank": 20, "matches": 331, "ace_rate": 3.9, "df_rate": 6.2, "first_serve_pct": 64.7, "first_serve_won": 66.8, "bp_save_pct": 57.0, "bp_convert_pct": 48.0}, {"player": "Keys", "full_name": "Madison Keys", "rank": 21, "matches": 379, "ace_rate": 7.4, "df_rate": 3.3, "first_serve_pct": 64.5, "first_serve_won": 69.4, "bp_save_pct": 59.5, "bp_convert_pct": 43.5}, {"player": "Muchova", "full_name": "Karolina Muchova", "rank": 22, "matches": 181, "ace_rate": 5.3, "df_rate": 3.1, "first_serve_pct": 63.6, "first_serve_won": 67.9, "bp_save_pct": 58.9, "bp_convert_pct": 44.8}, {"player": "Svitolina", "full_name": "Elina Svitolina", "rank": 23, "matches": 464, "ace_rate": 4.5, "df_rate": 3.7, "first_serve_pct": 61.5, "first_serve_won": 66.3, "bp_save_pct": 55.9, "bp_convert_pct": 47.0}, {"player": "Boulter", "full_name": "Katie Boulter", "rank": 24, "matches": 142, "ace_rate": 5.0, "df_rate": 6.4, "first_serve_pct": 57.2, "first_serve_won": 68.9, "bp_save_pct": 57.7, "bp_convert_pct": 44.1}, {"player": "Frech", "full_name": "Magdalena Frech", "rank": 25, "matches": 162, "ace_rate": 3.3, "df_rate": 3.1, "first_serve_pct": 62.3, "first_serve_won": 61.9, "bp_save_pct": 52.0, "bp_convert_pct": 41.7}], "surface": [{"player": "Azarenka", "rank": 20, "surface": "Hard", "ace_rate": 4.1, "matches": 227}, {"player": "Azarenka", "rank": 20, "surface": "Clay", "ace_rate": 2.7, "matches": 69}, {"player": "Azarenka", "rank": 20, "surface": "Grass", "ace_rate": 5.4, "matches": 35}, {"player": "Keys", "rank": 21, "surface": "Hard", "ace_rate": 7.7, "matches": 235}, {"player": "Keys", "rank": 21, "surface": "Clay", "ace_rate": 6.6, "matches": 102}, {"player": "Keys", "rank": 21, "surface": "Grass", "ace_rate": 7.6, "matches": 42}, {"player": "Pegula", "rank": 7, "surface": "Hard", "ace_rate": 4.0, "matches": 215}, {"player": "Pegula", "rank": 7, "surface": "Clay", "ace_rate": 3.4, "matches": 53}, {"player": "Pegula", "rank": 7, "surface": "Grass", "ace_rate": 3.9, "matches": 30}, {"player": "Svitolina", "rank": 23, "surface": "Hard", "ace_rate": 4.8, "matches": 311}, {"player": "Svitolina", "rank": 23, "surface": "Clay", "ace_rate": 3.7, "matches": 111}, {"player": "Svitolina", "rank": 23, "surface": "Grass", "ace_rate": 4.5, "matches": 40}, {"player": "Vekic", "rank": 19, "surface": "Hard", "ace_rate": 5.2, "matches": 231}, {"player": "Vekic", "rank": 19, "surface": "Clay", "ace_rate": 4.4, "matches": 66}, {"player": "Vekic", "rank": 19, "surface": "Grass", "ace_rate": 6.6, "matches": 66}, {"player": "Collins", "rank": 11, "surface": "Hard", "ace_rate": 5.3, "matches": 180}, {"player": "Collins", "rank": 11, "surface": "Clay", "ace_rate": 4.7, "matches": 69}, {"player": "Collins", "rank": 11, "surface": "Grass", "ace_rate": 3.1, "matches": 18}, {"player": "Maia", "rank": 17, "surface": "Hard", "ace_rate": 3.2, "matches": 152}, {"player": "Maia", "rank": 17, "surface": "Clay", "ace_rate": 2.9, "matches": 63}, {"player": "Maia", "rank": 17, "surface": "Grass", "ace_rate": 4.5, "matches": 32}, {"player": "Krejcikova", "rank": 10, "surface": "Hard", "ace_rate": 5.4, "matches": 136}, {"player": "Krejcikova", "rank": 10, "surface": "Clay", "ace_rate": 3.4, "matches": 62}, {"player": "Krejcikova", "rank": 10, "surface": "Grass", "ace_rate": 6.1, "matches": 26}, {"player": "Boulter", "rank": 24, "surface": "Hard", "ace_rate": 4.8, "matches": 91}, {"player": "Boulter", "rank": 24, "surface": "Grass", "ace_rate": 5.7, "matches": 45}, {"player": "Paolini", "rank": 4, "surface": "Hard", "ace_rate": 1.7, "matches": 139}, {"player": "Paolini", "rank": 4, "surface": "Clay", "ace_rate": 1.2, "matches": 81}, {"player": "Paolini", "rank": 4, "surface": "Grass", "ace_rate": 1.8, "matches": 15}, {"player": "Ostapenko", "rank": 15, "surface": "Hard", "ace_rate": 4.4, "matches": 278}, {"player": "Ostapenko", "rank": 15, "surface": "Clay", "ace_rate": 3.8, "matches": 87}, {"player": "Ostapenko", "rank": 15, "surface": "Grass", "ace_rate": 5.6, "matches": 70}, {"player": "Badosa", "rank": 12, "surface": "Hard", "ace_rate": 6.6, "matches": 127}, {"player": "Badosa", "rank": 12, "surface": "Clay", "ace_rate": 4.6, "matches": 78}, {"player": "Badosa", "rank": 12, "surface": "Grass", "ace_rate": 6.0, "matches": 25}, {"player": "Frech", "rank": 25, "surface": "Hard", "ace_rate": 3.4, "matches": 94}, {"player": "Frech", "rank": 25, "surface": "Clay", "ace_rate": 2.5, "matches": 43}, {"player": "Frech", "rank": 25, "surface": "Grass", "ace_rate": 4.8, "matches": 24}, {"player": "Kasatkina", "rank": 9, "surface": "Hard", "ace_rate": 2.3, "matches": 306}, {"player": "Kasatkina", "rank": 9, "surface": "Clay", "ace_rate": 1.6, "matches": 121}, {"player": "Kasatkina", "rank": 9, "surface": "Grass", "ace_rate": 2.9, "matches": 53}, {"player": "Muchova", "rank": 22, "surface": "Hard", "ace_rate": 5.7, "matches": 121}, {"player": "Muchova", "rank": 22, "surface": "Clay", "ace_rate": 3.7, "matches": 42}, {"player": "Muchova", "rank": 22, "surface": "Grass", "ace_rate": 7.0, "matches": 18}, {"player": "Sabalenka", "rank": 1, "surface": "Hard", "ace_rate": 7.3, "matches": 301}, {"player": "Sabalenka", "rank": 1, "surface": "Clay", "ace_rate": 5.6, "matches": 94}, {"player": "Sabalenka", "rank": 1, "surface": "Grass", "ace_rate": 7.5, "matches": 45}, {"player": "Kalinskaya", "rank": 14, "surface": "Hard", "ace_rate": 2.5, "matches": 122}, {"player": "Kalinskaya", "rank": 14, "surface": "Clay", "ace_rate": 1.7, "matches": 33}, {"player": "Kalinskaya", "rank": 14, "surface": "Grass", "ace_rate": 1.9, "matches": 21}, {"player": "Rybakina", "rank": 6, "surface": "Hard", "ace_rate": 9.2, "matches": 185}, {"player": "Rybakina", "rank": 6, "surface": "Clay", "ace_rate": 7.2, "matches": 72}, {"player": "Rybakina", "rank": 6, "surface": "Grass", "ace_rate": 11.0, "matches": 39}, {"player": "Navarro", "rank": 8, "surface": "Hard", "ace_rate": 1.6, "matches": 61}, {"player": "Navarro", "rank": 8, "surface": "Clay", "ace_rate": 1.9, "matches": 32}, {"player": "Navarro", "rank": 8, "surface": "Grass", "ace_rate": 1.9, "matches": 15}, {"player": "Kostyuk", "rank": 18, "surface": "Hard", "ace_rate": 4.8, "matches": 129}, {"player": "Kostyuk", "rank": 18, "surface": "Clay", "ace_rate": 2.9, "matches": 41}, {"player": "Kostyuk", "rank": 18, "surface": "Grass", "ace_rate": 3.8, "matches": 22}, {"player": "Swiatek", "rank": 2, "surface": "Hard", "ace_rate": 4.0, "matches": 200}, {"player": "Swiatek", "rank": 2, "surface": "Clay", "ace_rate": 2.5, "matches": 100}, {"player": "Swiatek", "rank": 2, "surface": "Grass", "ace_rate": 4.4, "matches": 22}, {"player": "Zheng", "rank": 5, "surface": "Hard", "ace_rate": 10.6, "matches": 107}, {"player": "Zheng", "rank": 5, "surface": "Clay", "ace_rate": 6.9, "matches": 45}, {"player": "Zheng", "rank": 5, "surface": "Grass", "ace_rate": 9.1, "matches": 11}, {"player": "Gauff", "rank": 3, "surface": "Hard", "ace_rate": 6.3, "matches": 181}, {"player": "Gauff", "rank": 3, "surface": "Clay", "ace_rate": 4.3, "matches": 67}, {"player": "Gauff", "rank": 3, "surface": "Grass", "ace_rate": 8.2, "matches": 31}, {"player": "Shnaider", "rank": 13, "surface": "Hard", "ace_rate": 3.0, "matches": 54}, {"player": "Shnaider", "rank": 13, "surface": "Clay", "ace_rate": 2.3, "matches": 24}, {"player": "Shnaider", "rank": 13, "surface": "Grass", "ace_rate": 4.3, "matches": 12}, {"player": "Andreeva", "rank": 16, "surface": "Hard", "ace_rate": 4.4, "matches": 37}, {"player": "Andreeva", "rank": 16, "surface": "Clay", "ace_rate": 3.2, "matches": 30}], "tour_avg": {"aces_per_match": 6.0, "first_serve_in_pct": 62.1, "first_serve_won_pct": 70.8, "second_serve_won_pct": 51.0}, "surface_avg": [{"surface": "Hard", "aces_per_match": 6.2, "first_won_pct": 71.2}, {"surface": "Clay", "aces_per_match": 4.8, "first_won_pct": 68.8}, {"surface": "Grass", "aces_per_match": 7.0, "first_won_pct": 72.8}]}, "last_5_years": {"players": [{"player": "Sabalenka", "full_name": "Aryna Sabalenka", "rank": 1, "matches": 222, "ace_rate": 7.7, "df_rate": 6.6, "first_serve_pct": 61.1, "first_serve_won": 71.4, "bp_save_pct": 59.3, "bp_convert_pct": 46.3}, {"player": "Swiatek", "full_name": "Iga Swiatek", "rank": 2, "matches": 256, "ace_rate": 3.2, "df_rate": 2.8, "first_serve_pct": 64.7, "first_serve_won": 70.0, "bp_save_pct": 60.1, "bp_convert_pct": 50.2}, {"player": "Gauff", "full_name": "Coco Gauff", "rank": 3, "matches": 225, "ace_rate": 6.3, "df_rate": 6.9, "first_serve_pct": 60.5, "first_serve_won": 70.0, "bp_save_pct": 59.0, "bp_convert_pct": 47.2}, {"player": "Paolini", "full_name": "Jasmine Paolini", "rank": 4, "matches": 182, "ace_rate": 1.6, "df_rate": 2.7, "first_serve_pct": 67.5, "first_serve_won": 61.0, "bp_save_pct": 54.4, "bp_convert_pct": 46.6}, {"player": "Zheng", "full_name": "Qinwen Zheng", "rank": 5, "matches": 163, "ace_rate": 9.5, "df_rate": 6.1, "first_serve_pct": 52.0, "first_serve_won": 75.6, "bp_save_pct": 59.9, "bp_convert_pct": 45.5}, {"player": "Rybakina", "full_name": "Elena Rybakina", "rank": 6, "matches": 202, "ace_rate": 10.3, "df_rate": 4.0, "first_serve_pct": 57.9, "first_serve_won": 74.1, "bp_save_pct": 61.8, "bp_convert_pct": 42.2}, {"player": "Pegula", "full_name": "Jessica Pegula", "rank": 7, "matches": 223, "ace_rate": 4.0, "df_rate": 3.9, "first_serve_pct": 58.8, "first_serve_won": 68.1, "bp_save_pct": 58.1, "bp_convert_pct": 47.5}, {"player": "Navarro", "full_name": "Emma Navarro", "rank": 8, "matches": 103, "ace_rate": 1.8, "df_rate": 3.5, "first_serve_pct": 63.8, "first_serve_won": 63.2, "bp_save_pct": 53.5, "bp_convert_pct": 48.1}, {"player": "Kasatkina", "full_name": "Daria Kasatkina", "rank": 9, "matches": 222, "ace_rate": 2.3, "df_rate": 5.7, "first_serve_pct": 69.1, "first_serve_won": 61.7, "bp_save_pct": 54.6, "bp_convert_pct": 49.5}, {"player": "Krejcikova", "full_name": "Barbora Krejcikova", "rank": 10, "matches": 168, "ace_rate": 5.3, "df_rate": 6.2, "first_serve_pct": 60.4, "first_serve_won": 69.9, "bp_save_pct": 58.9, "bp_convert_pct": 47.1}, {"player": "Collins", "full_name": "Danielle Collins", "rank": 11, "matches": 163, "ace_rate": 5.5, "df_rate": 7.0, "first_serve_pct": 56.0, "first_serve_won": 70.2, "bp_save_pct": 59.6, "bp_convert_pct": 48.0}, {"player": "Badosa", "full_name": "Paula Badosa", "rank": 12, "matches": 170, "ace_rate": 6.1, "df_rate": 6.8, "first_serve_pct": 59.9, "first_serve_won": 69.1, "bp_save_pct": 60.4, "bp_convert_pct": 45.9}, {"player": "Shnaider", "full_name": "Diana Shnaider", "rank": 13, "matches": 90, "ace_rate": 3.0, "df_rate": 3.7, "first_serve_pct": 63.6, "first_serve_won": 64.6, "bp_save_pct": 54.4, "bp_convert_pct": 48.1}, {"player": "Kalinskaya", "full_name": "Anna Kalinskaya", "rank": 14, "matches": 127, "ace_rate": 2.3, "df_rate": 5.4, "first_serve_pct": 64.3, "first_serve_won": 63.3, "bp_save_pct": 56.5, "bp_convert_pct": 44.2}, {"player": "Ostapenko", "full_name": "Jelena Ostapenko", "rank": 15, "matches": 187, "ace_rate": 4.9, "df_rate": 6.4, "first_serve_pct": 58.4, "first_serve_won": 66.7, "bp_save_pct": 54.7, "bp_convert_pct": 48.4}, {"player": "Andreeva", "full_name": "Mirra Andreeva", "rank": 16, "matches": 73, "ace_rate": 3.9, "df_rate": 3.4, "first_serve_pct": 64.0, "first_serve_won": 65.6, "bp_save_pct": 53.8, "bp_convert_pct": 50.0}, {"player": "Maia", "full_name": "Beatriz Haddad Maia", "rank": 17, "matches": 179, "ace_rate": 3.4, "df_rate": 4.9, "first_serve_pct": 66.1, "first_serve_won": 65.6, "bp_save_pct": 58.5, "bp_convert_pct": 44.9}, {"player": "Kostyuk", "full_name": "Marta Kostyuk", "rank": 18, "matches": 154, "ace_rate": 4.3, "df_rate": 7.6, "first_serve_pct": 58.7, "first_serve_won": 65.3, "bp_save_pct": 54.0, "bp_convert_pct": 43.8}, {"player": "Vekic", "full_name": "Donna Vekic", "rank": 19, "matches": 150, "ace_rate": 5.8, "df_rate": 7.1, "first_serve_pct": 56.8, "first_serve_won": 69.9, "bp_save_pct": 56.6, "bp_convert_pct": 45.4}, {"player": "Azarenka", "full_name": "Victoria Azarenka", "rank": 20, "matches": 154, "ace_rate": 4.0, "df_rate": 6.2, "first_serve_pct": 62.8, "first_serve_won": 67.5, "bp_save_pct": 57.6, "bp_convert_pct": 46.4}, {"player": "Keys", "full_name": "Madison Keys", "rank": 21, "matches": 151, "ace_rate": 6.2, "df_rate": 3.6, "first_serve_pct": 66.3, "first_serve_won": 67.9, "bp_save_pct": 59.6, "bp_convert_pct": 43.2}, {"player": "Muchova", "full_name": "Karolina Muchova", "rank": 22, "matches": 107, "ace_rate": 5.3, "df_rate": 3.1, "first_serve_pct": 63.2, "first_serve_won": 68.1, "bp_save_pct": 59.7, "bp_convert_pct": 46.0}, {"player": "Svitolina", "full_name": "Elina Svitolina", "rank": 23, "matches": 116, "ace_rate": 4.5, "df_rate": 3.7, "first_serve_pct": 61.6, "first_serve_won": 66.1, "bp_save_pct": 56.8, "bp_convert_pct": 47.5}, {"player": "Boulter", "full_name": "Katie Boulter", "rank": 24, "matches": 103, "ace_rate": 4.8, "df_rate": 7.0, "first_serve_pct": 57.5, "first_serve_won": 69.4, "bp_save_pct": 58.9, "bp_convert_pct": 43.7}, {"player": "Frech", "full_name": "Magdalena Frech", "rank": 25, "matches": 125, "ace_rate": 3.5, "df_rate": 2.7, "first_serve_pct": 63.3, "first_serve_won": 62.1, "bp_save_pct": 52.9, "bp_convert_pct": 41.1}], "surface": [{"player": "Azarenka", "rank": 20, "surface": "Hard", "ace_rate": 4.2, "matches": 105}, {"player": "Azarenka", "rank": 20, "surface": "Clay", "ace_rate": 2.2, "matches": 29}, {"player": "Azarenka", "rank": 20, "surface": "Grass", "ace_rate": 5.5, "matches": 20}, {"player": "Keys", "rank": 21, "surface": "Hard", "ace_rate": 6.3, "matches": 88}, {"player": "Keys", "rank": 21, "surface": "Clay", "ace_rate": 5.4, "matches": 38}, {"player": "Keys", "rank": 21, "surface": "Grass", "ace_rate": 7.0, "matches": 25}, {"player": "Pegula", "rank": 7, "surface": "Hard", "ace_rate": 4.1, "matches": 153}, {"player": "Pegula", "rank": 7, "surface": "Clay", "ace_rate": 3.6, "matches": 41}, {"player": "Pegula", "rank": 7, "surface": "Grass", "ace_rate": 4.0, "matches": 27}, {"player": "Svitolina", "rank": 23, "surface": "Hard", "ace_rate": 4.7, "matches": 63}, {"player": "Svitolina", "rank": 23, "surface": "Clay", "ace_rate": 3.8, "matches": 33}, {"player": "Svitolina", "rank": 23, "surface": "Grass", "ace_rate": 5.8, "matches": 18}, {"player": "Vekic", "rank": 19, "surface": "Hard", "ace_rate": 5.8, "matches": 85}, {"player": "Vekic", "rank": 19, "surface": "Clay", "ace_rate": 4.4, "matches": 27}, {"player": "Vekic", "rank": 19, "surface": "Grass", "ace_rate": 6.7, "matches": 38}, {"player": "Collins", "rank": 11, "surface": "Hard", "ace_rate": 5.7, "matches": 107}, {"player": "Collins", "rank": 11, "surface": "Clay", "ace_rate": 5.3, "matches": 47}, {"player": "Maia", "rank": 17, "surface": "Hard", "ace_rate": 3.4, "matches": 118}, {"player": "Maia", "rank": 17, "surface": "Clay", "ace_rate": 2.6, "matches": 32}, {"player": "Maia", "rank": 17, "surface": "Grass", "ace_rate": 4.4, "matches": 27}, {"player": "Krejcikova", "rank": 10, "surface": "Hard", "ace_rate": 5.6, "matches": 106}, {"player": "Krejcikova", "rank": 10, "surface": "Clay", "ace_rate": 4.0, "matches": 36}, {"player": "Krejcikova", "rank": 10, "surface": "Grass", "ace_rate": 6.1, "matches": 26}, {"player": "Boulter", "rank": 24, "surface": "Hard", "ace_rate": 4.8, "matches": 59}, {"player": "Boulter", "rank": 24, "surface": "Grass", "ace_rate": 5.2, "matches": 38}, {"player": "Paolini", "rank": 4, "surface": "Hard", "ace_rate": 1.7, "matches": 117}, {"player": "Paolini", "rank": 4, "surface": "Clay", "ace_rate": 1.4, "matches": 50}, {"player": "Paolini", "rank": 4, "surface": "Grass", "ace_rate": 1.8, "matches": 15}, {"player": "Ostapenko", "rank": 15, "surface": "Hard", "ace_rate": 4.7, "matches": 117}, {"player": "Ostapenko", "rank": 15, "surface": "Clay", "ace_rate": 4.4, "matches": 31}, {"player": "Ostapenko", "rank": 15, "surface": "Grass", "ace_rate": 6.2, "matches": 39}, {"player": "Badosa", "rank": 12, "surface": "Hard", "ace_rate": 6.9, "matches": 102}, {"player": "Badosa", "rank": 12, "surface": "Clay", "ace_rate": 4.3, "matches": 49}, {"player": "Badosa", "rank": 12, "surface": "Grass", "ace_rate": 6.2, "matches": 19}, {"player": "Frech", "rank": 25, "surface": "Hard", "ace_rate": 3.4, "matches": 73}, {"player": "Frech", "rank": 25, "surface": "Clay", "ace_rate": 2.4, "matches": 30}, {"player": "Frech", "rank": 25, "surface": "Grass", "ace_rate": 5.2, "matches": 21}, {"player": "Kasatkina", "rank": 9, "surface": "Hard", "ace_rate": 2.4, "matches": 134}, {"player": "Kasatkina", "rank": 9, "surface": "Clay", "ace_rate": 1.5, "matches": 53}, {"player": "Kasatkina", "rank": 9, "surface": "Grass", "ace_rate": 3.0, "matches": 35}, {"player": "Muchova", "rank": 22, "surface": "Hard", "ace_rate": 5.7, "matches": 67}, {"player": "Muchova", "rank": 22, "surface": "Clay", "ace_rate": 3.6, "matches": 28}, {"player": "Muchova", "rank": 22, "surface": "Grass", "ace_rate": 7.1, "matches": 12}, {"player": "Sabalenka", "rank": 1, "surface": "Hard", "ace_rate": 7.9, "matches": 141}, {"player": "Sabalenka", "rank": 1, "surface": "Clay", "ace_rate": 6.2, "matches": 55}, {"player": "Sabalenka", "rank": 1, "surface": "Grass", "ace_rate": 10.0, "matches": 26}, {"player": "Kalinskaya", "rank": 14, "surface": "Hard", "ace_rate": 2.5, "matches": 87}, {"player": "Kalinskaya", "rank": 14, "surface": "Clay", "ace_rate": 1.6, "matches": 24}, {"player": "Kalinskaya", "rank": 14, "surface": "Grass", "ace_rate": 1.9, "matches": 16}, {"player": "Rybakina", "rank": 6, "surface": "Hard", "ace_rate": 10.7, "matches": 122}, {"player": "Rybakina", "rank": 6, "surface": "Clay", "ace_rate": 8.4, "matches": 44}, {"player": "Rybakina", "rank": 6, "surface": "Grass", "ace_rate": 11.7, "matches": 35}, {"player": "Navarro", "rank": 8, "surface": "Hard", "ace_rate": 1.6, "matches": 60}, {"player": "Navarro", "rank": 8, "surface": "Clay", "ace_rate": 2.0, "matches": 27}, {"player": "Navarro", "rank": 8, "surface": "Grass", "ace_rate": 1.9, "matches": 15}, {"player": "Kostyuk", "rank": 18, "surface": "Hard", "ace_rate": 4.9, "matches": 108}, {"player": "Kostyuk", "rank": 18, "surface": "Clay", "ace_rate": 2.4, "matches": 27}, {"player": "Kostyuk", "rank": 18, "surface": "Grass", "ace_rate": 3.8, "matches": 19}, {"player": "Swiatek", "rank": 2, "surface": "Hard", "ace_rate": 3.6, "matches": 155}, {"player": "Swiatek", "rank": 2, "surface": "Clay", "ace_rate": 2.3, "matches": 79}, {"player": "Swiatek", "rank": 2, "surface": "Grass", "ace_rate": 4.1, "matches": 20}, {"player": "Zheng", "rank": 5, "surface": "Hard", "ace_rate": 10.6, "matches": 107}, {"player": "Zheng", "rank": 5, "surface": "Clay", "ace_rate": 6.9, "matches": 45}, {"player": "Zheng", "rank": 5, "surface": "Grass", "ace_rate": 9.1, "matches": 11}, {"player": "Gauff", "rank": 3, "surface": "Hard", "ace_rate": 6.7, "matches": 140}, {"player": "Gauff", "rank": 3, "surface": "Clay", "ace_rate": 4.2, "matches": 58}, {"player": "Gauff", "rank": 3, "surface": "Grass", "ace_rate": 8.9, "matches": 27}, {"player": "Shnaider", "rank": 13, "surface": "Hard", "ace_rate": 3.0, "matches": 54}, {"player": "Shnaider", "rank": 13, "surface": "Clay", "ace_rate": 2.3, "matches": 24}, {"player": "Shnaider", "rank": 13, "surface": "Grass", "ace_rate": 4.3, "matches": 12}, {"player": "Andreeva", "rank": 16, "surface": "Hard", "ace_rate": 4.4, "matches": 37}, {"player": "Andreeva", "rank": 16, "surface": "Clay", "ace_rate": 3.2, "matches": 30}], "tour_avg": {"aces_per_match": 6.0, "first_serve_in_pct": 62.0, "first_serve_won_pct": 71.4, "second_serve_won_pct": 51.2}, "surface_avg": [{"surface": "Hard", "aces_per_match": 6.3, "first_won_pct": 71.8}, {"surface": "Clay", "aces_per_match": 4.6, "first_won_pct": 69.1}, {"surface": "Grass", "aces_per_match": 7.1, "first_won_pct": 73.3}]}, "last_1_year": {"players": [], "surface": [], "tour_avg": {}, "surface_avg": []}}}}]}</script>
 </div>
 </div>
 <section id="interactive-dashboard" class="level2">
@@ -814,7 +986,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\nviewof tour = Inputs.radio([\"ATP\", \"WTA\"], {value: \"ATP\", label: \"Tour\"})\n\nviewof period = Inputs.select(\n  [\"all_time\", \"last_5_years\", \"last_1_year\"],\n  {\n    value: \"all_time\",\n    label: \"Time Period\",\n    format: x => ({\n      \"all_time\": \"All Time\",\n      \"last_5_years\": \"Last 5 Years\",\n      \"last_1_year\": \"Last 1 Year\"\n    })[x]\n  }\n)\n\n// Get available players for selected tour/period\navailablePlayers = {\n  const tourKey = tour.toLowerCase();\n  const data = tennis_data[tourKey][period];\n  return data.players.map(p => p.player);\n}\n\nviewof playerFilter = Inputs.select(\n  [\"Top 5\", \"Top 10\", \"All Players\"],\n  {value: \"Top 5\", label: \"Player Filter\"}\n)\n\n// Calculate default selected players based on filter\ndefaultPlayers = {\n  const n = playerFilter === \"Top 5\" ? 5 : playerFilter === \"Top 10\" ? 10 : availablePlayers.length;\n  return availablePlayers.slice(0, n);\n}\n\nviewof selectedPlayers = Inputs.checkbox(\n  availablePlayers,\n  {value: defaultPlayers, label: \"Select Players\"}\n)\n\nviewof highlightPlayer = Inputs.select(\n  [\"None\", ...selectedPlayers],\n  {value: \"None\", label: \"Highlight Player\"}\n)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n// Get data for selected tour and period\ncurrentData = {\n  const tourKey = tour.toLowerCase();\n  return tennis_data[tourKey][period];\n}\n\n// Filter players based on selection\nfilteredPlayers = currentData.players.filter(p => selectedPlayers.includes(p.player))\n\n// Calculate averages for the filtered group\ngroupAverages = {\n  const players = filteredPlayers;\n  if (players.length === 0) return {};\n\n  return {\n    ace_rate: d3.mean(players, d => d.ace_rate),\n    df_rate: d3.mean(players, d => d.df_rate),\n    first_serve_pct: d3.mean(players, d => d.first_serve_pct),\n    first_serve_won: d3.mean(players, d => d.first_serve_won),\n    bp_save_pct: d3.mean(players.filter(d => d.bp_save_pct), d => d.bp_save_pct),\n    bp_convert_pct: d3.mean(players.filter(d => d.bp_convert_pct), d => d.bp_convert_pct),\n  };\n}\n\n// Surface data filtered by selected players\nfilteredSurface = currentData.surface.filter(s => selectedPlayers.includes(s.player))\n\n// Colors\ntourColor = tour === \"ATP\" ? \"#1f77b4\" : \"#e377c2\"\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"\nhtml`<div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;\">\n  <div style=\"background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;\">\n    <div style=\"font-size: 2rem; font-weight: bold;\">${currentData.tour_avg.aces_per_match}</div>\n    <div style=\"font-size: 0.9rem; opacity: 0.9;\">Aces/Match</div>\n  </div>\n  <div style=\"background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;\">\n    <div style=\"font-size: 2rem; font-weight: bold;\">${currentData.tour_avg.first_serve_in_pct}%</div>\n    <div style=\"font-size: 0.9rem; opacity: 0.9;\">1st Serve In</div>\n  </div>\n  <div style=\"background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;\">\n    <div style=\"font-size: 2rem; font-weight: bold;\">${currentData.tour_avg.first_serve_won_pct}%</div>\n    <div style=\"font-size: 0.9rem; opacity: 0.9;\">1st Serve Won</div>\n  </div>\n  <div style=\"background: linear-gradient(135deg, ${tour === 'ATP' ? '#667eea' : '#e377c2'} 0%, ${tour === 'ATP' ? '#764ba2' : '#c44569'} 100%); padding: 1rem; border-radius: 10px; color: white; text-align: center;\">\n    <div style=\"font-size: 2rem; font-weight: bold;\">${currentData.tour_avg.second_serve_won_pct}%</div>\n    <div style=\"font-size: 0.9rem; opacity: 0.9;\">2nd Serve Won</div>\n  </div>\n</div>`\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"\nPlot.plot({\n  width: 800,\n  height: 450,\n  marginRight: 60,\n  grid: true,\n  x: {label: \"Ace Rate %\", domain: [0, d3.max(filteredPlayers, d => d.ace_rate) * 1.1]},\n  y: {label: \"Double Fault Rate %\", domain: [0, d3.max(filteredPlayers, d => d.df_rate) * 1.1]},\n  marks: [\n    // Average reference lines\n    Plot.ruleX([groupAverages.ace_rate], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    Plot.ruleY([groupAverages.df_rate], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    // Points\n    Plot.dot(filteredPlayers, {\n      x: \"ace_rate\",\n      y: \"df_rate\",\n      r: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 8,\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"gold\" : tourColor,\n      stroke: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"white\",\n      strokeWidth: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 3 : 1,\n      title: d => `${d.player} (#${d.rank})\\nAce Rate: ${d.ace_rate}%\\nDF Rate: ${d.df_rate}%\\nMatches: ${d.matches}`,\n    }),\n    // Labels\n    Plot.text(filteredPlayers, {\n      x: \"ace_rate\",\n      y: \"df_rate\",\n      text: \"player\",\n      dy: -12,\n      fontSize: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 10,\n      fontWeight: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"bold\" : \"normal\",\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"black\",\n    }),\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"\nPlot.plot({\n  width: 800,\n  height: 450,\n  marginRight: 60,\n  grid: true,\n  x: {label: \"1st Serve In %\", domain: [d3.min(filteredPlayers, d => d.first_serve_pct) * 0.95, d3.max(filteredPlayers, d => d.first_serve_pct) * 1.02]},\n  y: {label: \"1st Serve Won %\", domain: [d3.min(filteredPlayers, d => d.first_serve_won) * 0.95, d3.max(filteredPlayers, d => d.first_serve_won) * 1.02]},\n  marks: [\n    // Average reference lines\n    Plot.ruleX([groupAverages.first_serve_pct], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    Plot.ruleY([groupAverages.first_serve_won], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    // Points\n    Plot.dot(filteredPlayers, {\n      x: \"first_serve_pct\",\n      y: \"first_serve_won\",\n      r: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 8,\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"gold\" : tourColor,\n      stroke: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"white\",\n      strokeWidth: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 3 : 1,\n      title: d => `${d.player} (#${d.rank})\\n1st Serve In: ${d.first_serve_pct}%\\n1st Serve Won: ${d.first_serve_won}%`,\n    }),\n    // Labels\n    Plot.text(filteredPlayers, {\n      x: \"first_serve_pct\",\n      y: \"first_serve_won\",\n      text: \"player\",\n      dy: -12,\n      fontSize: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 10,\n      fontWeight: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"bold\" : \"normal\",\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"black\",\n    }),\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"\n// Filter to players with BP data\nbpPlayers = filteredPlayers.filter(p => p.bp_save_pct && p.bp_convert_pct)\n\nPlot.plot({\n  width: 800,\n  height: 450,\n  marginRight: 60,\n  grid: true,\n  x: {label: \"BP Save %\", domain: [d3.min(bpPlayers, d => d.bp_save_pct) * 0.95, d3.max(bpPlayers, d => d.bp_save_pct) * 1.02]},\n  y: {label: \"BP Convert %\", domain: [d3.min(bpPlayers, d => d.bp_convert_pct) * 0.95, d3.max(bpPlayers, d => d.bp_convert_pct) * 1.02]},\n  marks: [\n    // Average reference lines\n    Plot.ruleX([groupAverages.bp_save_pct], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    Plot.ruleY([groupAverages.bp_convert_pct], {stroke: \"gray\", strokeDasharray: \"4,4\", strokeOpacity: 0.5}),\n    // Points\n    Plot.dot(bpPlayers, {\n      x: \"bp_save_pct\",\n      y: \"bp_convert_pct\",\n      r: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 8,\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"gold\" : tourColor,\n      stroke: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"white\",\n      strokeWidth: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 3 : 1,\n      title: d => `${d.player} (#${d.rank})\\nBP Save: ${d.bp_save_pct}%\\nBP Convert: ${d.bp_convert_pct}%`,\n    }),\n    // Labels\n    Plot.text(bpPlayers, {\n      x: \"bp_save_pct\",\n      y: \"bp_convert_pct\",\n      text: \"player\",\n      dy: -12,\n      fontSize: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? 12 : 10,\n      fontWeight: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"bold\" : \"normal\",\n      fill: d => highlightPlayer !== \"None\" && d.player === highlightPlayer ? \"darkred\" : \"black\",\n    }),\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"\n// Surface averages bar chart\nsurfaceColors = ({Hard: \"#1f77b4\", Clay: \"#d62728\", Grass: \"#2ca02c\"})\n\nPlot.plot({\n  width: 700,\n  height: 350,\n  marginBottom: 40,\n  x: {label: \"Surface\", padding: 0.3},\n  y: {label: \"Aces per Match\", domain: [0, d3.max(currentData.surface_avg, d => d.aces_per_match) * 1.2]},\n  marks: [\n    Plot.barY(currentData.surface_avg, {\n      x: \"surface\",\n      y: \"aces_per_match\",\n      fill: d => surfaceColors[d.surface],\n      title: d => `${d.surface}\\nAces/Match: ${d.aces_per_match}\\n1st Won: ${d.first_won_pct}%`\n    }),\n    Plot.text(currentData.surface_avg, {\n      x: \"surface\",\n      y: \"aces_per_match\",\n      text: d => d.aces_per_match,\n      dy: -8,\n      fontSize: 14,\n      fontWeight: \"bold\"\n    })\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"\n// Pivot surface data for heatmap\nsurfacePivot = {\n  const players = [...new Set(filteredSurface.map(d => d.player))];\n  const surfaces = [\"Hard\", \"Clay\", \"Grass\"];\n\n  // Create pivot with player/rank pairs\n  const result = [];\n  for (const player of players) {\n    const playerData = filteredSurface.filter(d => d.player === player);\n    if (playerData.length > 0) {\n      const row = {\n        player: player,\n        rank: playerData[0].rank\n      };\n      for (const surface of surfaces) {\n        const surfData = playerData.find(d => d.surface === surface);\n        row[surface] = surfData ? surfData.ace_rate : null;\n      }\n      result.push(row);\n    }\n  }\n\n  // Sort by rank and take top 12\n  return result.sort((a, b) => a.rank - b.rank).slice(0, 12);\n}\n\n// Flatten for heatmap\nheatmapData = {\n  const data = [];\n  const surfaces = [\"Hard\", \"Clay\", \"Grass\"];\n  for (const row of surfacePivot) {\n    for (const surface of surfaces) {\n      if (row[surface] !== null) {\n        data.push({\n          player: row.player,\n          surface: surface,\n          ace_rate: row[surface]\n        });\n      }\n    }\n  }\n  return data;\n}\n\nPlot.plot({\n  width: 600,\n  height: 400,\n  marginLeft: 80,\n  marginBottom: 40,\n  color: {\n    scheme: tour === \"ATP\" ? \"blues\" : \"RdPu\",\n    legend: true,\n    label: \"Ace Rate %\"\n  },\n  x: {label: \"Surface\", padding: 0.1},\n  y: {label: null, padding: 0.1},\n  marks: [\n    Plot.cell(heatmapData, {\n      x: \"surface\",\n      y: \"player\",\n      fill: \"ace_rate\",\n      title: d => `${d.player}\\n${d.surface}: ${d.ace_rate}%`\n    }),\n    Plot.text(heatmapData, {\n      x: \"surface\",\n      y: \"player\",\n      text: d => d.ace_rate ? `${d.ace_rate}%` : \"\",\n      fill: d => d.ace_rate > 8 ? \"white\" : \"black\",\n      fontSize: 11\n    })\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"\nhighlightedStats = {\n  if (highlightPlayer === \"None\") return null;\n  return filteredPlayers.find(p => p.player === highlightPlayer);\n}\n\nhtml`${highlightPlayer !== \"None\" && highlightedStats ? html`\n<div style=\"background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;\">\n  <h4 style=\"margin-top: 0;\">${highlightedStats.full_name} (#${highlightedStats.rank}) vs Selected Players</h4>\n  <div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;\">\n    <div style=\"background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.ace_rate > groupAverages.ace_rate ? 'green' : 'red'};\">\n      <div style=\"font-size: 0.75rem; color: #666;\">Ace Rate</div>\n      <div style=\"font-size: 1.4rem; font-weight: bold;\">${highlightedStats.ace_rate}%</div>\n      <div style=\"font-size: 0.8rem; color: ${highlightedStats.ace_rate > groupAverages.ace_rate ? 'green' : 'red'};\">\n        ${(highlightedStats.ace_rate - groupAverages.ace_rate).toFixed(1)}% vs avg (${groupAverages.ace_rate.toFixed(1)}%)\n      </div>\n    </div>\n    <div style=\"background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.first_serve_won > groupAverages.first_serve_won ? 'green' : 'red'};\">\n      <div style=\"font-size: 0.75rem; color: #666;\">1st Serve Won</div>\n      <div style=\"font-size: 1.4rem; font-weight: bold;\">${highlightedStats.first_serve_won}%</div>\n      <div style=\"font-size: 0.8rem; color: ${highlightedStats.first_serve_won > groupAverages.first_serve_won ? 'green' : 'red'};\">\n        ${(highlightedStats.first_serve_won - groupAverages.first_serve_won).toFixed(1)}% vs avg (${groupAverages.first_serve_won.toFixed(1)}%)\n      </div>\n    </div>\n    <div style=\"background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid ${highlightedStats.bp_save_pct > groupAverages.bp_save_pct ? 'green' : 'red'};\">\n      <div style=\"font-size: 0.75rem; color: #666;\">BP Save</div>\n      <div style=\"font-size: 1.4rem; font-weight: bold;\">${highlightedStats.bp_save_pct}%</div>\n      <div style=\"font-size: 0.8rem; color: ${highlightedStats.bp_save_pct > groupAverages.bp_save_pct ? 'green' : 'red'};\">\n        ${(highlightedStats.bp_save_pct - groupAverages.bp_save_pct).toFixed(1)}% vs avg (${groupAverages.bp_save_pct.toFixed(1)}%)\n      </div>\n    </div>\n  </div>\n</div>\n` : html`<p style=\"color: #666; font-style: italic;\">Select a player to highlight from the sidebar to see detailed comparison.</p>`}`\n"},{"methodName":"interpretQuiet","source":"shinyInput('tour')"},{"methodName":"interpretQuiet","source":"shinyInput('period')"},{"methodName":"interpretQuiet","source":"shinyInput('playerFilter')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPlayers')"},{"methodName":"interpretQuiet","source":"shinyInput('highlightPlayer')"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIHRvdXIgPSBJbnB1dHMucmFkaW8oW1wiQVRQXCIsIFwiV1RBXCJdLCB7dmFsdWU6IFwiQVRQXCIsIGxhYmVsOiBcIlRvdXJcIn0pXG5cbnZpZXdvZiBwZXJpb2QgPSBJbnB1dHMuc2VsZWN0KFxuICBbXCJhbGxfdGltZVwiLCBcImxhc3RfNV95ZWFyc1wiLCBcImxhc3RfMV95ZWFyXCJdLFxuICB7XG4gICAgdmFsdWU6IFwiYWxsX3RpbWVcIixcbiAgICBsYWJlbDogXCJUaW1lIFBlcmlvZFwiLFxuICAgIGZvcm1hdDogeCA9PiAoe1xuICAgICAgXCJhbGxfdGltZVwiOiBcIkFsbCBUaW1lXCIsXG4gICAgICBcImxhc3RfNV95ZWFyc1wiOiBcIkxhc3QgNSBZZWFyc1wiLFxuICAgICAgXCJsYXN0XzFfeWVhclwiOiBcIkxhc3QgMSBZZWFyXCJcbiAgICB9KVt4XVxuICB9XG4pXG5cbi8vIEdldCBhdmFpbGFibGUgcGxheWVycyBmb3Igc2VsZWN0ZWQgdG91ci9wZXJpb2RcbmF2YWlsYWJsZVBsYXllcnMgPSB7XG4gIGNvbnN0IHRvdXJLZXkgPSB0b3VyLnRvTG93ZXJDYXNlKCk7XG4gIGNvbnN0IGRhdGEgPSB0ZW5uaXNfZGF0YVt0b3VyS2V5XVtwZXJpb2RdO1xuICByZXR1cm4gZGF0YS5wbGF5ZXJzLm1hcChwID0+IHAucGxheWVyKTtcbn1cblxudmlld29mIHBsYXllckZpbHRlciA9IElucHV0cy5zZWxlY3QoXG4gIFtcIlRvcCA1XCIsIFwiVG9wIDEwXCIsIFwiQWxsIFBsYXllcnNcIl0sXG4gIHt2YWx1ZTogXCJUb3AgNVwiLCBsYWJlbDogXCJQbGF5ZXIgRmlsdGVyXCJ9XG4pXG5cbi8vIENhbGN1bGF0ZSBkZWZhdWx0IHNlbGVjdGVkIHBsYXllcnMgYmFzZWQgb24gZmlsdGVyXG5kZWZhdWx0UGxheWVycyA9IHtcbiAgY29uc3QgbiA9IHBsYXllckZpbHRlciA9PT0gXCJUb3AgNVwiID8gNSA6IHBsYXllckZpbHRlciA9PT0gXCJUb3AgMTBcIiA/IDEwIDogYXZhaWxhYmxlUGxheWVycy5sZW5ndGg7XG4gIHJldHVybiBhdmFpbGFibGVQbGF5ZXJzLnNsaWNlKDAsIG4pO1xufVxuXG52aWV3b2Ygc2VsZWN0ZWRQbGF5ZXJzID0gSW5wdXRzLmNoZWNrYm94KFxuICBhdmFpbGFibGVQbGF5ZXJzLFxuICB7dmFsdWU6IGRlZmF1bHRQbGF5ZXJzLCBsYWJlbDogXCJTZWxlY3QgUGxheWVyc1wifVxuKVxuXG52aWV3b2YgaGlnaGxpZ2h0UGxheWVyID0gSW5wdXRzLnNlbGVjdChcbiAgW1wiTm9uZVwiLCAuLi5zZWxlY3RlZFBsYXllcnNdLFxuICB7dmFsdWU6IFwiTm9uZVwiLCBsYWJlbDogXCJIaWdobGlnaHQgUGxheWVyXCJ9XG4pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIEdldCBkYXRhIGZvciBzZWxlY3RlZCB0b3VyIGFuZCBwZXJpb2RcbmN1cnJlbnREYXRhID0ge1xuICBjb25zdCB0b3VyS2V5ID0gdG91ci50b0xvd2VyQ2FzZSgpO1xuICByZXR1cm4gdGVubmlzX2RhdGFbdG91cktleV1bcGVyaW9kXTtcbn1cblxuLy8gRmlsdGVyIHBsYXllcnMgYmFzZWQgb24gc2VsZWN0aW9uXG5maWx0ZXJlZFBsYXllcnMgPSBjdXJyZW50RGF0YS5wbGF5ZXJzLmZpbHRlcihwID0+IHNlbGVjdGVkUGxheWVycy5pbmNsdWRlcyhwLnBsYXllcikpXG5cbi8vIENhbGN1bGF0ZSBhdmVyYWdlcyBmb3IgdGhlIGZpbHRlcmVkIGdyb3VwXG5ncm91cEF2ZXJhZ2VzID0ge1xuICBjb25zdCBwbGF5ZXJzID0gZmlsdGVyZWRQbGF5ZXJzO1xuICBpZiAocGxheWVycy5sZW5ndGggPT09IDApIHJldHVybiB7fTtcblxuICByZXR1cm4ge1xuICAgIGFjZV9yYXRlOiBkMy5tZWFuKHBsYXllcnMsIGQgPT4gZC5hY2VfcmF0ZSksXG4gICAgZGZfcmF0ZTogZDMubWVhbihwbGF5ZXJzLCBkID0+IGQuZGZfcmF0ZSksXG4gICAgZmlyc3Rfc2VydmVfcGN0OiBkMy5tZWFuKHBsYXllcnMsIGQgPT4gZC5maXJzdF9zZXJ2ZV9wY3QpLFxuICAgIGZpcnN0X3NlcnZlX3dvbjogZDMubWVhbihwbGF5ZXJzLCBkID0+IGQuZmlyc3Rfc2VydmVfd29uKSxcbiAgICBicF9zYXZlX3BjdDogZDMubWVhbihwbGF5ZXJzLmZpbHRlcihkID0+IGQuYnBfc2F2ZV9wY3QpLCBkID0+IGQuYnBfc2F2ZV9wY3QpLFxuICAgIGJwX2NvbnZlcnRfcGN0OiBkMy5tZWFuKHBsYXllcnMuZmlsdGVyKGQgPT4gZC5icF9jb252ZXJ0X3BjdCksIGQgPT4gZC5icF9jb252ZXJ0X3BjdCksXG4gIH07XG59XG5cbi8vIFN1cmZhY2UgZGF0YSBmaWx0ZXJlZCBieSBzZWxlY3RlZCBwbGF5ZXJzXG5maWx0ZXJlZFN1cmZhY2UgPSBjdXJyZW50RGF0YS5zdXJmYWNlLmZpbHRlcihzID0+IHNlbGVjdGVkUGxheWVycy5pbmNsdWRlcyhzLnBsYXllcikpXG5cbi8vIENvbG9yc1xudG91ckNvbG9yID0gdG91ciA9PT0gXCJBVFBcIiA/IFwiIzFmNzdiNFwiIDogXCIjZTM3N2MyXCJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuaHRtbGA8ZGl2IHN0eWxlPVwiZGlzcGxheTogZ3JpZDsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoNCwgMWZyKTsgZ2FwOiAxcmVtOyBtYXJnaW4tYm90dG9tOiAycmVtO1wiPlxuICA8ZGl2IHN0eWxlPVwiYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDEzNWRlZywgJHt0b3VyID09PSAnQVRQJyA/ICcjNjY3ZWVhJyA6ICcjZTM3N2MyJ30gMCUsICR7dG91ciA9PT0gJ0FUUCcgPyAnIzc2NGJhMicgOiAnI2M0NDU2OSd9IDEwMCUpOyBwYWRkaW5nOiAxcmVtOyBib3JkZXItcmFkaXVzOiAxMHB4OyBjb2xvcjogd2hpdGU7IHRleHQtYWxpZ246IGNlbnRlcjtcIj5cbiAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAycmVtOyBmb250LXdlaWdodDogYm9sZDtcIj4ke2N1cnJlbnREYXRhLnRvdXJfYXZnLmFjZXNfcGVyX21hdGNofTwvZGl2PlxuICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuOXJlbTsgb3BhY2l0eTogMC45O1wiPkFjZXMvTWF0Y2g8L2Rpdj5cbiAgPC9kaXY+XG4gIDxkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAke3RvdXIgPT09ICdBVFAnID8gJyM2NjdlZWEnIDogJyNlMzc3YzInfSAwJSwgJHt0b3VyID09PSAnQVRQJyA/ICcjNzY0YmEyJyA6ICcjYzQ0NTY5J30gMTAwJSk7IHBhZGRpbmc6IDFyZW07IGJvcmRlci1yYWRpdXM6IDEwcHg7IGNvbG9yOiB3aGl0ZTsgdGV4dC1hbGlnbjogY2VudGVyO1wiPlxuICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDJyZW07IGZvbnQtd2VpZ2h0OiBib2xkO1wiPiR7Y3VycmVudERhdGEudG91cl9hdmcuZmlyc3Rfc2VydmVfaW5fcGN0fSU8L2Rpdj5cbiAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjlyZW07IG9wYWNpdHk6IDAuOTtcIj4xc3QgU2VydmUgSW48L2Rpdj5cbiAgPC9kaXY+XG4gIDxkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAke3RvdXIgPT09ICdBVFAnID8gJyM2NjdlZWEnIDogJyNlMzc3YzInfSAwJSwgJHt0b3VyID09PSAnQVRQJyA/ICcjNzY0YmEyJyA6ICcjYzQ0NTY5J30gMTAwJSk7IHBhZGRpbmc6IDFyZW07IGJvcmRlci1yYWRpdXM6IDEwcHg7IGNvbG9yOiB3aGl0ZTsgdGV4dC1hbGlnbjogY2VudGVyO1wiPlxuICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDJyZW07IGZvbnQtd2VpZ2h0OiBib2xkO1wiPiR7Y3VycmVudERhdGEudG91cl9hdmcuZmlyc3Rfc2VydmVfd29uX3BjdH0lPC9kaXY+XG4gICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC45cmVtOyBvcGFjaXR5OiAwLjk7XCI+MXN0IFNlcnZlIFdvbjwvZGl2PlxuICA8L2Rpdj5cbiAgPGRpdiBzdHlsZT1cImJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsICR7dG91ciA9PT0gJ0FUUCcgPyAnIzY2N2VlYScgOiAnI2UzNzdjMid9IDAlLCAke3RvdXIgPT09ICdBVFAnID8gJyM3NjRiYTInIDogJyNjNDQ1NjknfSAxMDAlKTsgcGFkZGluZzogMXJlbTsgYm9yZGVyLXJhZGl1czogMTBweDsgY29sb3I6IHdoaXRlOyB0ZXh0LWFsaWduOiBjZW50ZXI7XCI+XG4gICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMnJlbTsgZm9udC13ZWlnaHQ6IGJvbGQ7XCI+JHtjdXJyZW50RGF0YS50b3VyX2F2Zy5zZWNvbmRfc2VydmVfd29uX3BjdH0lPC9kaXY+XG4gICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC45cmVtOyBvcGFjaXR5OiAwLjk7XCI+Mm5kIFNlcnZlIFdvbjwvZGl2PlxuICA8L2Rpdj5cbjwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IDgwMCxcbiAgaGVpZ2h0OiA0NTAsXG4gIG1hcmdpblJpZ2h0OiA2MCxcbiAgZ3JpZDogdHJ1ZSxcbiAgeDoge2xhYmVsOiBcIkFjZSBSYXRlICVcIiwgZG9tYWluOiBbMCwgZDMubWF4KGZpbHRlcmVkUGxheWVycywgZCA9PiBkLmFjZV9yYXRlKSAqIDEuMV19LFxuICB5OiB7bGFiZWw6IFwiRG91YmxlIEZhdWx0IFJhdGUgJVwiLCBkb21haW46IFswLCBkMy5tYXgoZmlsdGVyZWRQbGF5ZXJzLCBkID0+IGQuZGZfcmF0ZSkgKiAxLjFdfSxcbiAgbWFya3M6IFtcbiAgICAvLyBBdmVyYWdlIHJlZmVyZW5jZSBsaW5lc1xuICAgIFBsb3QucnVsZVgoW2dyb3VwQXZlcmFnZXMuYWNlX3JhdGVdLCB7c3Ryb2tlOiBcImdyYXlcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsNFwiLCBzdHJva2VPcGFjaXR5OiAwLjV9KSxcbiAgICBQbG90LnJ1bGVZKFtncm91cEF2ZXJhZ2VzLmRmX3JhdGVdLCB7c3Ryb2tlOiBcImdyYXlcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsNFwiLCBzdHJva2VPcGFjaXR5OiAwLjV9KSxcbiAgICAvLyBQb2ludHNcbiAgICBQbG90LmRvdChmaWx0ZXJlZFBsYXllcnMsIHtcbiAgICAgIHg6IFwiYWNlX3JhdGVcIixcbiAgICAgIHk6IFwiZGZfcmF0ZVwiLFxuICAgICAgcjogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyAxMiA6IDgsXG4gICAgICBmaWxsOiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IFwiZ29sZFwiIDogdG91ckNvbG9yLFxuICAgICAgc3Ryb2tlOiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IFwiZGFya3JlZFwiIDogXCJ3aGl0ZVwiLFxuICAgICAgc3Ryb2tlV2lkdGg6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gMyA6IDEsXG4gICAgICB0aXRsZTogZCA9PiBgJHtkLnBsYXllcn0gKCMke2QucmFua30pXFxuQWNlIFJhdGU6ICR7ZC5hY2VfcmF0ZX0lXFxuREYgUmF0ZTogJHtkLmRmX3JhdGV9JVxcbk1hdGNoZXM6ICR7ZC5tYXRjaGVzfWAsXG4gICAgfSksXG4gICAgLy8gTGFiZWxzXG4gICAgUGxvdC50ZXh0KGZpbHRlcmVkUGxheWVycywge1xuICAgICAgeDogXCJhY2VfcmF0ZVwiLFxuICAgICAgeTogXCJkZl9yYXRlXCIsXG4gICAgICB0ZXh0OiBcInBsYXllclwiLFxuICAgICAgZHk6IC0xMixcbiAgICAgIGZvbnRTaXplOiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IDEyIDogMTAsXG4gICAgICBmb250V2VpZ2h0OiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IFwiYm9sZFwiIDogXCJub3JtYWxcIixcbiAgICAgIGZpbGw6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gXCJkYXJrcmVkXCIgOiBcImJsYWNrXCIsXG4gICAgfSksXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcblBsb3QucGxvdCh7XG4gIHdpZHRoOiA4MDAsXG4gIGhlaWdodDogNDUwLFxuICBtYXJnaW5SaWdodDogNjAsXG4gIGdyaWQ6IHRydWUsXG4gIHg6IHtsYWJlbDogXCIxc3QgU2VydmUgSW4gJVwiLCBkb21haW46IFtkMy5taW4oZmlsdGVyZWRQbGF5ZXJzLCBkID0+IGQuZmlyc3Rfc2VydmVfcGN0KSAqIDAuOTUsIGQzLm1heChmaWx0ZXJlZFBsYXllcnMsIGQgPT4gZC5maXJzdF9zZXJ2ZV9wY3QpICogMS4wMl19LFxuICB5OiB7bGFiZWw6IFwiMXN0IFNlcnZlIFdvbiAlXCIsIGRvbWFpbjogW2QzLm1pbihmaWx0ZXJlZFBsYXllcnMsIGQgPT4gZC5maXJzdF9zZXJ2ZV93b24pICogMC45NSwgZDMubWF4KGZpbHRlcmVkUGxheWVycywgZCA9PiBkLmZpcnN0X3NlcnZlX3dvbikgKiAxLjAyXX0sXG4gIG1hcmtzOiBbXG4gICAgLy8gQXZlcmFnZSByZWZlcmVuY2UgbGluZXNcbiAgICBQbG90LnJ1bGVYKFtncm91cEF2ZXJhZ2VzLmZpcnN0X3NlcnZlX3BjdF0sIHtzdHJva2U6IFwiZ3JheVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCw0XCIsIHN0cm9rZU9wYWNpdHk6IDAuNX0pLFxuICAgIFBsb3QucnVsZVkoW2dyb3VwQXZlcmFnZXMuZmlyc3Rfc2VydmVfd29uXSwge3N0cm9rZTogXCJncmF5XCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDRcIiwgc3Ryb2tlT3BhY2l0eTogMC41fSksXG4gICAgLy8gUG9pbnRzXG4gICAgUGxvdC5kb3QoZmlsdGVyZWRQbGF5ZXJzLCB7XG4gICAgICB4OiBcImZpcnN0X3NlcnZlX3BjdFwiLFxuICAgICAgeTogXCJmaXJzdF9zZXJ2ZV93b25cIixcbiAgICAgIHI6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gMTIgOiA4LFxuICAgICAgZmlsbDogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImdvbGRcIiA6IHRvdXJDb2xvcixcbiAgICAgIHN0cm9rZTogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImRhcmtyZWRcIiA6IFwid2hpdGVcIixcbiAgICAgIHN0cm9rZVdpZHRoOiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IDMgOiAxLFxuICAgICAgdGl0bGU6IGQgPT4gYCR7ZC5wbGF5ZXJ9ICgjJHtkLnJhbmt9KVxcbjFzdCBTZXJ2ZSBJbjogJHtkLmZpcnN0X3NlcnZlX3BjdH0lXFxuMXN0IFNlcnZlIFdvbjogJHtkLmZpcnN0X3NlcnZlX3dvbn0lYCxcbiAgICB9KSxcbiAgICAvLyBMYWJlbHNcbiAgICBQbG90LnRleHQoZmlsdGVyZWRQbGF5ZXJzLCB7XG4gICAgICB4OiBcImZpcnN0X3NlcnZlX3BjdFwiLFxuICAgICAgeTogXCJmaXJzdF9zZXJ2ZV93b25cIixcbiAgICAgIHRleHQ6IFwicGxheWVyXCIsXG4gICAgICBkeTogLTEyLFxuICAgICAgZm9udFNpemU6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gMTIgOiAxMCxcbiAgICAgIGZvbnRXZWlnaHQ6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gXCJib2xkXCIgOiBcIm5vcm1hbFwiLFxuICAgICAgZmlsbDogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImRhcmtyZWRcIiA6IFwiYmxhY2tcIixcbiAgICB9KSxcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gRmlsdGVyIHRvIHBsYXllcnMgd2l0aCBCUCBkYXRhXG5icFBsYXllcnMgPSBmaWx0ZXJlZFBsYXllcnMuZmlsdGVyKHAgPT4gcC5icF9zYXZlX3BjdCAmJiBwLmJwX2NvbnZlcnRfcGN0KVxuXG5QbG90LnBsb3Qoe1xuICB3aWR0aDogODAwLFxuICBoZWlnaHQ6IDQ1MCxcbiAgbWFyZ2luUmlnaHQ6IDYwLFxuICBncmlkOiB0cnVlLFxuICB4OiB7bGFiZWw6IFwiQlAgU2F2ZSAlXCIsIGRvbWFpbjogW2QzLm1pbihicFBsYXllcnMsIGQgPT4gZC5icF9zYXZlX3BjdCkgKiAwLjk1LCBkMy5tYXgoYnBQbGF5ZXJzLCBkID0+IGQuYnBfc2F2ZV9wY3QpICogMS4wMl19LFxuICB5OiB7bGFiZWw6IFwiQlAgQ29udmVydCAlXCIsIGRvbWFpbjogW2QzLm1pbihicFBsYXllcnMsIGQgPT4gZC5icF9jb252ZXJ0X3BjdCkgKiAwLjk1LCBkMy5tYXgoYnBQbGF5ZXJzLCBkID0+IGQuYnBfY29udmVydF9wY3QpICogMS4wMl19LFxuICBtYXJrczogW1xuICAgIC8vIEF2ZXJhZ2UgcmVmZXJlbmNlIGxpbmVzXG4gICAgUGxvdC5ydWxlWChbZ3JvdXBBdmVyYWdlcy5icF9zYXZlX3BjdF0sIHtzdHJva2U6IFwiZ3JheVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCw0XCIsIHN0cm9rZU9wYWNpdHk6IDAuNX0pLFxuICAgIFBsb3QucnVsZVkoW2dyb3VwQXZlcmFnZXMuYnBfY29udmVydF9wY3RdLCB7c3Ryb2tlOiBcImdyYXlcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsNFwiLCBzdHJva2VPcGFjaXR5OiAwLjV9KSxcbiAgICAvLyBQb2ludHNcbiAgICBQbG90LmRvdChicFBsYXllcnMsIHtcbiAgICAgIHg6IFwiYnBfc2F2ZV9wY3RcIixcbiAgICAgIHk6IFwiYnBfY29udmVydF9wY3RcIixcbiAgICAgIHI6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gMTIgOiA4LFxuICAgICAgZmlsbDogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImdvbGRcIiA6IHRvdXJDb2xvcixcbiAgICAgIHN0cm9rZTogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImRhcmtyZWRcIiA6IFwid2hpdGVcIixcbiAgICAgIHN0cm9rZVdpZHRoOiBkID0+IGhpZ2hsaWdodFBsYXllciAhPT0gXCJOb25lXCIgJiYgZC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllciA/IDMgOiAxLFxuICAgICAgdGl0bGU6IGQgPT4gYCR7ZC5wbGF5ZXJ9ICgjJHtkLnJhbmt9KVxcbkJQIFNhdmU6ICR7ZC5icF9zYXZlX3BjdH0lXFxuQlAgQ29udmVydDogJHtkLmJwX2NvbnZlcnRfcGN0fSVgLFxuICAgIH0pLFxuICAgIC8vIExhYmVsc1xuICAgIFBsb3QudGV4dChicFBsYXllcnMsIHtcbiAgICAgIHg6IFwiYnBfc2F2ZV9wY3RcIixcbiAgICAgIHk6IFwiYnBfY29udmVydF9wY3RcIixcbiAgICAgIHRleHQ6IFwicGxheWVyXCIsXG4gICAgICBkeTogLTEyLFxuICAgICAgZm9udFNpemU6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gMTIgOiAxMCxcbiAgICAgIGZvbnRXZWlnaHQ6IGQgPT4gaGlnaGxpZ2h0UGxheWVyICE9PSBcIk5vbmVcIiAmJiBkLnBsYXllciA9PT0gaGlnaGxpZ2h0UGxheWVyID8gXCJib2xkXCIgOiBcIm5vcm1hbFwiLFxuICAgICAgZmlsbDogZCA9PiBoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGQucGxheWVyID09PSBoaWdobGlnaHRQbGF5ZXIgPyBcImRhcmtyZWRcIiA6IFwiYmxhY2tcIixcbiAgICB9KSxcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gU3VyZmFjZSBhdmVyYWdlcyBiYXIgY2hhcnRcbnN1cmZhY2VDb2xvcnMgPSAoe0hhcmQ6IFwiIzFmNzdiNFwiLCBDbGF5OiBcIiNkNjI3MjhcIiwgR3Jhc3M6IFwiIzJjYTAyY1wifSlcblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IDcwMCxcbiAgaGVpZ2h0OiAzNTAsXG4gIG1hcmdpbkJvdHRvbTogNDAsXG4gIHg6IHtsYWJlbDogXCJTdXJmYWNlXCIsIHBhZGRpbmc6IDAuM30sXG4gIHk6IHtsYWJlbDogXCJBY2VzIHBlciBNYXRjaFwiLCBkb21haW46IFswLCBkMy5tYXgoY3VycmVudERhdGEuc3VyZmFjZV9hdmcsIGQgPT4gZC5hY2VzX3Blcl9tYXRjaCkgKiAxLjJdfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkoY3VycmVudERhdGEuc3VyZmFjZV9hdmcsIHtcbiAgICAgIHg6IFwic3VyZmFjZVwiLFxuICAgICAgeTogXCJhY2VzX3Blcl9tYXRjaFwiLFxuICAgICAgZmlsbDogZCA9PiBzdXJmYWNlQ29sb3JzW2Quc3VyZmFjZV0sXG4gICAgICB0aXRsZTogZCA9PiBgJHtkLnN1cmZhY2V9XFxuQWNlcy9NYXRjaDogJHtkLmFjZXNfcGVyX21hdGNofVxcbjFzdCBXb246ICR7ZC5maXJzdF93b25fcGN0fSVgXG4gICAgfSksXG4gICAgUGxvdC50ZXh0KGN1cnJlbnREYXRhLnN1cmZhY2VfYXZnLCB7XG4gICAgICB4OiBcInN1cmZhY2VcIixcbiAgICAgIHk6IFwiYWNlc19wZXJfbWF0Y2hcIixcbiAgICAgIHRleHQ6IGQgPT4gZC5hY2VzX3Blcl9tYXRjaCxcbiAgICAgIGR5OiAtOCxcbiAgICAgIGZvbnRTaXplOiAxNCxcbiAgICAgIGZvbnRXZWlnaHQ6IFwiYm9sZFwiXG4gICAgfSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGl2b3Qgc3VyZmFjZSBkYXRhIGZvciBoZWF0bWFwXG5zdXJmYWNlUGl2b3QgPSB7XG4gIGNvbnN0IHBsYXllcnMgPSBbLi4ubmV3IFNldChmaWx0ZXJlZFN1cmZhY2UubWFwKGQgPT4gZC5wbGF5ZXIpKV07XG4gIGNvbnN0IHN1cmZhY2VzID0gW1wiSGFyZFwiLCBcIkNsYXlcIiwgXCJHcmFzc1wiXTtcblxuICAvLyBDcmVhdGUgcGl2b3Qgd2l0aCBwbGF5ZXIvcmFuayBwYWlyc1xuICBjb25zdCByZXN1bHQgPSBbXTtcbiAgZm9yIChjb25zdCBwbGF5ZXIgb2YgcGxheWVycykge1xuICAgIGNvbnN0IHBsYXllckRhdGEgPSBmaWx0ZXJlZFN1cmZhY2UuZmlsdGVyKGQgPT4gZC5wbGF5ZXIgPT09IHBsYXllcik7XG4gICAgaWYgKHBsYXllckRhdGEubGVuZ3RoID4gMCkge1xuICAgICAgY29uc3Qgcm93ID0ge1xuICAgICAgICBwbGF5ZXI6IHBsYXllcixcbiAgICAgICAgcmFuazogcGxheWVyRGF0YVswXS5yYW5rXG4gICAgICB9O1xuICAgICAgZm9yIChjb25zdCBzdXJmYWNlIG9mIHN1cmZhY2VzKSB7XG4gICAgICAgIGNvbnN0IHN1cmZEYXRhID0gcGxheWVyRGF0YS5maW5kKGQgPT4gZC5zdXJmYWNlID09PSBzdXJmYWNlKTtcbiAgICAgICAgcm93W3N1cmZhY2VdID0gc3VyZkRhdGEgPyBzdXJmRGF0YS5hY2VfcmF0ZSA6IG51bGw7XG4gICAgICB9XG4gICAgICByZXN1bHQucHVzaChyb3cpO1xuICAgIH1cbiAgfVxuXG4gIC8vIFNvcnQgYnkgcmFuayBhbmQgdGFrZSB0b3AgMTJcbiAgcmV0dXJuIHJlc3VsdC5zb3J0KChhLCBiKSA9PiBhLnJhbmsgLSBiLnJhbmspLnNsaWNlKDAsIDEyKTtcbn1cblxuLy8gRmxhdHRlbiBmb3IgaGVhdG1hcFxuaGVhdG1hcERhdGEgPSB7XG4gIGNvbnN0IGRhdGEgPSBbXTtcbiAgY29uc3Qgc3VyZmFjZXMgPSBbXCJIYXJkXCIsIFwiQ2xheVwiLCBcIkdyYXNzXCJdO1xuICBmb3IgKGNvbnN0IHJvdyBvZiBzdXJmYWNlUGl2b3QpIHtcbiAgICBmb3IgKGNvbnN0IHN1cmZhY2Ugb2Ygc3VyZmFjZXMpIHtcbiAgICAgIGlmIChyb3dbc3VyZmFjZV0gIT09IG51bGwpIHtcbiAgICAgICAgZGF0YS5wdXNoKHtcbiAgICAgICAgICBwbGF5ZXI6IHJvdy5wbGF5ZXIsXG4gICAgICAgICAgc3VyZmFjZTogc3VyZmFjZSxcbiAgICAgICAgICBhY2VfcmF0ZTogcm93W3N1cmZhY2VdXG4gICAgICAgIH0pO1xuICAgICAgfVxuICAgIH1cbiAgfVxuICByZXR1cm4gZGF0YTtcbn1cblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IDYwMCxcbiAgaGVpZ2h0OiA0MDAsXG4gIG1hcmdpbkxlZnQ6IDgwLFxuICBtYXJnaW5Cb3R0b206IDQwLFxuICBjb2xvcjoge1xuICAgIHNjaGVtZTogdG91ciA9PT0gXCJBVFBcIiA/IFwiYmx1ZXNcIiA6IFwiUmRQdVwiLFxuICAgIGxlZ2VuZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJBY2UgUmF0ZSAlXCJcbiAgfSxcbiAgeDoge2xhYmVsOiBcIlN1cmZhY2VcIiwgcGFkZGluZzogMC4xfSxcbiAgeToge2xhYmVsOiBudWxsLCBwYWRkaW5nOiAwLjF9LFxuICBtYXJrczogW1xuICAgIFBsb3QuY2VsbChoZWF0bWFwRGF0YSwge1xuICAgICAgeDogXCJzdXJmYWNlXCIsXG4gICAgICB5OiBcInBsYXllclwiLFxuICAgICAgZmlsbDogXCJhY2VfcmF0ZVwiLFxuICAgICAgdGl0bGU6IGQgPT4gYCR7ZC5wbGF5ZXJ9XFxuJHtkLnN1cmZhY2V9OiAke2QuYWNlX3JhdGV9JWBcbiAgICB9KSxcbiAgICBQbG90LnRleHQoaGVhdG1hcERhdGEsIHtcbiAgICAgIHg6IFwic3VyZmFjZVwiLFxuICAgICAgeTogXCJwbGF5ZXJcIixcbiAgICAgIHRleHQ6IGQgPT4gZC5hY2VfcmF0ZSA/IGAke2QuYWNlX3JhdGV9JWAgOiBcIlwiLFxuICAgICAgZmlsbDogZCA9PiBkLmFjZV9yYXRlID4gOCA/IFwid2hpdGVcIiA6IFwiYmxhY2tcIixcbiAgICAgIGZvbnRTaXplOiAxMVxuICAgIH0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTkiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbmhpZ2hsaWdodGVkU3RhdHMgPSB7XG4gIGlmIChoaWdobGlnaHRQbGF5ZXIgPT09IFwiTm9uZVwiKSByZXR1cm4gbnVsbDtcbiAgcmV0dXJuIGZpbHRlcmVkUGxheWVycy5maW5kKHAgPT4gcC5wbGF5ZXIgPT09IGhpZ2hsaWdodFBsYXllcik7XG59XG5cbmh0bWxgJHtoaWdobGlnaHRQbGF5ZXIgIT09IFwiTm9uZVwiICYmIGhpZ2hsaWdodGVkU3RhdHMgPyBodG1sYFxuPGRpdiBzdHlsZT1cImJhY2tncm91bmQ6ICNmOGY5ZmE7IHBhZGRpbmc6IDEuNXJlbTsgYm9yZGVyLXJhZGl1czogMTBweDsgbWFyZ2luOiAxcmVtIDA7XCI+XG4gIDxoNCBzdHlsZT1cIm1hcmdpbi10b3A6IDA7XCI+JHtoaWdobGlnaHRlZFN0YXRzLmZ1bGxfbmFtZX0gKCMke2hpZ2hsaWdodGVkU3RhdHMucmFua30pIHZzIFNlbGVjdGVkIFBsYXllcnM8L2g0PlxuICA8ZGl2IHN0eWxlPVwiZGlzcGxheTogZ3JpZDsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoMywgMWZyKTsgZ2FwOiAxcmVtO1wiPlxuICAgIDxkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiB3aGl0ZTsgcGFkZGluZzogMXJlbTsgYm9yZGVyLXJhZGl1czogOHB4OyBib3JkZXItbGVmdDogNHB4IHNvbGlkICR7aGlnaGxpZ2h0ZWRTdGF0cy5hY2VfcmF0ZSA+IGdyb3VwQXZlcmFnZXMuYWNlX3JhdGUgPyAnZ3JlZW4nIDogJ3JlZCd9O1wiPlxuICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC43NXJlbTsgY29sb3I6ICM2NjY7XCI+QWNlIFJhdGU8L2Rpdj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDEuNHJlbTsgZm9udC13ZWlnaHQ6IGJvbGQ7XCI+JHtoaWdobGlnaHRlZFN0YXRzLmFjZV9yYXRlfSU8L2Rpdj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuOHJlbTsgY29sb3I6ICR7aGlnaGxpZ2h0ZWRTdGF0cy5hY2VfcmF0ZSA+IGdyb3VwQXZlcmFnZXMuYWNlX3JhdGUgPyAnZ3JlZW4nIDogJ3JlZCd9O1wiPlxuICAgICAgICAkeyhoaWdobGlnaHRlZFN0YXRzLmFjZV9yYXRlIC0gZ3JvdXBBdmVyYWdlcy5hY2VfcmF0ZSkudG9GaXhlZCgxKX0lIHZzIGF2ZyAoJHtncm91cEF2ZXJhZ2VzLmFjZV9yYXRlLnRvRml4ZWQoMSl9JSlcbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiB3aGl0ZTsgcGFkZGluZzogMXJlbTsgYm9yZGVyLXJhZGl1czogOHB4OyBib3JkZXItbGVmdDogNHB4IHNvbGlkICR7aGlnaGxpZ2h0ZWRTdGF0cy5maXJzdF9zZXJ2ZV93b24gPiBncm91cEF2ZXJhZ2VzLmZpcnN0X3NlcnZlX3dvbiA/ICdncmVlbicgOiAncmVkJ307XCI+XG4gICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjc1cmVtOyBjb2xvcjogIzY2NjtcIj4xc3QgU2VydmUgV29uPC9kaXY+XG4gICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAxLjRyZW07IGZvbnQtd2VpZ2h0OiBib2xkO1wiPiR7aGlnaGxpZ2h0ZWRTdGF0cy5maXJzdF9zZXJ2ZV93b259JTwvZGl2PlxuICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC44cmVtOyBjb2xvcjogJHtoaWdobGlnaHRlZFN0YXRzLmZpcnN0X3NlcnZlX3dvbiA+IGdyb3VwQXZlcmFnZXMuZmlyc3Rfc2VydmVfd29uID8gJ2dyZWVuJyA6ICdyZWQnfTtcIj5cbiAgICAgICAgJHsoaGlnaGxpZ2h0ZWRTdGF0cy5maXJzdF9zZXJ2ZV93b24gLSBncm91cEF2ZXJhZ2VzLmZpcnN0X3NlcnZlX3dvbikudG9GaXhlZCgxKX0lIHZzIGF2ZyAoJHtncm91cEF2ZXJhZ2VzLmZpcnN0X3NlcnZlX3dvbi50b0ZpeGVkKDEpfSUpXG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IHN0eWxlPVwiYmFja2dyb3VuZDogd2hpdGU7IHBhZGRpbmc6IDFyZW07IGJvcmRlci1yYWRpdXM6IDhweDsgYm9yZGVyLWxlZnQ6IDRweCBzb2xpZCAke2hpZ2hsaWdodGVkU3RhdHMuYnBfc2F2ZV9wY3QgPiBncm91cEF2ZXJhZ2VzLmJwX3NhdmVfcGN0ID8gJ2dyZWVuJyA6ICdyZWQnfTtcIj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuNzVyZW07IGNvbG9yOiAjNjY2O1wiPkJQIFNhdmU8L2Rpdj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDEuNHJlbTsgZm9udC13ZWlnaHQ6IGJvbGQ7XCI+JHtoaWdobGlnaHRlZFN0YXRzLmJwX3NhdmVfcGN0fSU8L2Rpdj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuOHJlbTsgY29sb3I6ICR7aGlnaGxpZ2h0ZWRTdGF0cy5icF9zYXZlX3BjdCA+IGdyb3VwQXZlcmFnZXMuYnBfc2F2ZV9wY3QgPyAnZ3JlZW4nIDogJ3JlZCd9O1wiPlxuICAgICAgICAkeyhoaWdobGlnaHRlZFN0YXRzLmJwX3NhdmVfcGN0IC0gZ3JvdXBBdmVyYWdlcy5icF9zYXZlX3BjdCkudG9GaXhlZCgxKX0lIHZzIGF2ZyAoJHtncm91cEF2ZXJhZ2VzLmJwX3NhdmVfcGN0LnRvRml4ZWQoMSl9JSlcbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cbjwvZGl2PlxuYCA6IGh0bWxgPHAgc3R5bGU9XCJjb2xvcjogIzY2NjsgZm9udC1zdHlsZTogaXRhbGljO1wiPlNlbGVjdCBhIHBsYXllciB0byBoaWdobGlnaHQgZnJvbSB0aGUgc2lkZWJhciB0byBzZWUgZGV0YWlsZWQgY29tcGFyaXNvbi48L3A+YH1gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3RvdXInKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncGVyaW9kJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3BsYXllckZpbHRlcicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZFBsYXllcnMnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnaGlnaGxpZ2h0UGxheWVyJykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -825,363 +997,432 @@ window._ojs.selfContained = false;
 window._ojs.runtime.interpretFromScriptTags();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  let localAlternateSentinel = 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
         }
-      }
-      return codeEl.innerText;
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
     }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/azaidi06\.github\.io\/az-website");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2026 Ali Zaidi</div>   
+    <div class="nav-footer-left">
+<p>© 2026 Ali Zaidi · azaidi06@gmail.com</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Powered by Quarto</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
+
 
 
 

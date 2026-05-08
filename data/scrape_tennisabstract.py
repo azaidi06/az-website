@@ -49,7 +49,7 @@ ATP_TOP_25 = [
     (126094, "CasperRuud", "Casper Ruud"),
     (200282, "AndreyRublev", "Andrey Rublev"),
     (105777, "GrigorDimitrov", "Grigor Dimitrov"),
-    (126774, "TommyPaul", "Tommy Paul"),
+    (126205, "TommyPaul", "Tommy Paul"),
     (126205, "FrancesTiafoe", "Frances Tiafoe"),
     (208029, "HolgerRune", "Holger Rune"),
     (200005, "LorenzoMusetti", "Lorenzo Musetti"),

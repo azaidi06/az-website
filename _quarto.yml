@@ -3,20 +3,18 @@ project:
   output-dir: _site
 
 website:
-  title: "Ali Zaidi"
+  title: "AZ"
   favicon: images/favicon.svg
   navbar:
     right:
-      - text: "About Me"
+      - text: "about"
         href: about.qmd
-      - text: "Blog"
+      - text: "writing"
         href: blog.qmd
-      - text: "Portfolio"
+      - text: "work"
         href: portfolio.qmd
-      - text: "Resume"
+      - text: "cv"
         href: resume.qmd
-      - text: "Brutal Design"
-        href: brutal.qmd
       - icon: github
         href: https://github.com/azaidi06
       - icon: twitter
@@ -24,20 +22,22 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/azaidi06
   page-footer:
-    right: "Powered by Quarto"
-    left: "© 2026 Ali Zaidi"
+    left: "© 2026 Ali Zaidi · azaidi06@gmail.com"
+    right: ""
   open-graph: true
   twitter-card:
     card-style: summary_large_image
   site-url: https://azaidi06.github.io/az-website
-  description: "Personal portfolio of Ali Zaidi — Applied Data Scientist, Software Engineer, and Product Leader."
+  description: "Personal site of Ali Zaidi — applied data scientist, software engineer, product leader."
 
 format:
   html:
     theme:
       light: cosmo
       dark: darkly
-    css: styles.css
+    css:
+      - styles.css
+      - redesign.css
     toc: false
     code-copy: true
     smooth-scroll: true

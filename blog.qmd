@@ -1,9 +1,11 @@
 ---
+title: ""
+pagetitle: "Writing — Ali Zaidi"
 sidebar: false
-toc: true
+toc: false
 format:
   html:
-    page-layout: article
+    page-layout: full
     body-classes: blog-page
 listing:
   contents:
@@ -11,12 +13,16 @@ listing:
     - "posts/*/*.{qmd,ipynb}"
     - "!posts/tennis-analysis-CLAUDE.md"
   sort: "date desc"
-  type: grid
+  type: default
   categories: false
   sort-ui: false
   filter-ui: false
-  fields: [image, date, title, reading-time, description]
+  fields: [date, title, reading-time, description]
 ---
 
-## Blog
-
+```{=html}
+<header class="section-head" style="border-top: none; padding-top: clamp(72px, 12vh, 160px);">
+  <div class="eyebrow">writing · archive</div>
+  <h2>Notes, tutorials, and longer pieces &mdash; sorted newest first.</h2>
+</header>
+```
