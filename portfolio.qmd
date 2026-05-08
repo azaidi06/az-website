@@ -11,7 +11,7 @@ format:
 <div class="grid portfolio-grid">
 
 <div class="g-col-12 g-col-md-6">
-<a href="http://options-dashboard.duckdns.org/Stock_Analysis" target="_blank" class="portfolio-project-card">
+<a href="https://options-dashboard.duckdns.org/" target="_blank" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-graph-up-arrow"></i></div>
 <div class="portfolio-project-body">
 <h4>Options Analysis Dashboard</h4>
