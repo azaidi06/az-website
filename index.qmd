@@ -40,82 +40,41 @@ format:
   </figure>
 </section>
 
-<header class="section-head">
-  <div class="eyebrow">№ 01 — selected work</div>
-  <h2>Things I&rsquo;ve built or written that I&rsquo;d show you first.</h2>
-</header>
+<div class="home-cards">
+  <a href="about.html" class="home-card">
+    <div class="card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </div>
+    <h3>About</h3>
+    <p>Background, skills, and expertise.</p>
+    <span class="card-arrow">→</span>
+  </a>
 
-<div class="hairline-rail">
-  <a class="row-link" href="posts/serve-analysis/serve-analysis.html">
-    <span class="num">№ 01</span>
-    <span>
-      <span class="title">Serve analysis on the ATP tour</span>
-      <span class="desc">An interactive look at first-serve location, speed, and what actually correlates with holding.</span>
-    </span>
-    <span class="meta">interactive · 2025</span>
-    <span class="arrow">→</span>
+  <a href="blog.html" class="home-card">
+    <div class="card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+    </div>
+    <h3>Blog</h3>
+    <p>Notes, tutorials, and longer pieces.</p>
+    <span class="card-arrow">→</span>
   </a>
-  <a class="row-link" href="posts/opponent-quality/opponent-quality.html">
-    <span class="num">№ 02</span>
-    <span>
-      <span class="title">Opponent-quality adjusted win rates</span>
-      <span class="desc">Win percentages lie. Here&rsquo;s how to weight them by who you actually played.</span>
-    </span>
-    <span class="meta">analysis · 2025</span>
-    <span class="arrow">→</span>
-  </a>
-  <a class="row-link" href="https://arxiv.org/abs/2511.02936">
-    <span class="num">№ 03</span>
-    <span>
-      <span class="title">Zero-shot data citation classification with LLMs</span>
-      <span class="desc">A paper out of LBNL on using transformer models to classify how scientific papers cite data.</span>
-    </span>
-    <span class="meta">paper · arxiv 2025</span>
-    <span class="arrow">→</span>
-  </a>
-</div>
 
-<header class="section-head">
-  <div class="eyebrow">№ 02 — recent writing</div>
-  <h2>Notes, tutorials, and longer pieces.</h2>
-</header>
+  <a href="portfolio.html" class="home-card">
+    <div class="card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </div>
+    <h3>Work</h3>
+    <p>Projects and interactive analyses.</p>
+    <span class="card-arrow">→</span>
+  </a>
 
-<div class="hairline-rail">
-  <a class="row-link" href="posts/gpu_tricks/index.html">
-    <span class="num">№ 04</span>
-    <span>
-      <span class="title">3× faster ML inference using hardware you already pay for</span>
-      <span class="desc">A practical pipeline of video-compiler optimizations from architecture to bitrate.</span>
-    </span>
-    <span class="meta">notes · 2026</span>
-    <span class="arrow">→</span>
-  </a>
-  <a class="row-link" href="posts/golf_keyframe_extraction/docs/index.html">
-    <span class="num">№ 05</span>
-    <span>
-      <span class="title">Finding swing landmarks from wrist keypoints</span>
-      <span class="desc">A small idea for keyframing golf swings using inverse acceleration and a contact prior.</span>
-    </span>
-    <span class="meta">notes · 2026</span>
-    <span class="arrow">→</span>
-  </a>
-  <a class="row-link" href="posts/scraping-tutorial/scraping-tutorial.html">
-    <span class="num">№ 06</span>
-    <span>
-      <span class="title">Web scraping serve data with Playwright</span>
-      <span class="desc">A concise guide to scraping dynamic websites with Python and Playwright, including async patterns.</span>
-    </span>
-    <span class="meta">tutorial · 2025</span>
-    <span class="arrow">→</span>
-  </a>
-  <a class="row-link" href="blog.html">
-    <span class="num">→</span>
-    <span>
-      <span class="title">All writing</span>
-      <span class="desc">The full archive — twelve+ pieces, sorted newest first.</span>
-    </span>
-    <span class="meta">archive</span>
-    <span class="arrow">→</span>
+  <a href="resume.html" class="home-card">
+    <div class="card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    </div>
+    <h3>CV</h3>
+    <p>Experience and qualifications.</p>
+    <span class="card-arrow">→</span>
   </a>
 </div>
 
@@ -142,7 +101,7 @@ format:
       }
     }
   }, { threshold: 0.12 });
-  document.querySelectorAll('.section-head, .row-link, .now-block').forEach((el, i) => {
+  document.querySelectorAll('.home-card, .now-block').forEach((el, i) => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(8px)';
     el.style.transition = `opacity 480ms cubic-bezier(0.2,0.7,0.1,1) ${i * 30}ms, transform 480ms cubic-bezier(0.2,0.7,0.1,1) ${i * 30}ms`;
