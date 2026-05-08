@@ -13,7 +13,7 @@ format:
 <section class="hero hero--horizontal">
   <div class="hero-text">
     <div class="hero-eyebrow">
-      <span><span class="dot">●</span> applied data scientist</span>
+      <span>applied data scientist</span>
       <span>software engineer</span>
       <span>product leader</span>
     </div>

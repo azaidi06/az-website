@@ -518,9 +518,13 @@ main.content > .full-bleed { max-width: none; padding: 0; }
   text-transform: uppercase;
   color: var(--ink-mute);
   margin-bottom: 28px;
-  display: flex; gap: 18px; flex-wrap: wrap;
+  display: flex; gap: 8px; white-space: nowrap;
 }
-.hero-eyebrow .dot { color: var(--accent); }
+.hero-eyebrow span:not(:last-child)::after {
+  content: " / ";
+  color: var(--ink-mute);
+  opacity: 0.5;
+}
 .hero-title {
   font-family: var(--serif);
   font-weight: 400;
