@@ -27,7 +27,7 @@ format:
     <div class="hero-status">
       <span><span class="label">currently</span> Founding Engineer + Researcher</span>
       <span><span class="label">previously</span> Systems Engineer <a href="https://www.lbl.gov">@ Berkeley Lab</a></span>
-      <span><span class="label">building</span> Find Your Swing</span>
+      <span><span class="label">building</span> <a href="https://www.findyourswing.com">Find Your Swing</a></span>
     </div>
   </div>
 
