@@ -10,35 +10,37 @@ format:
 ---
 
 ```{=html}
-<section class="hero hero--tight">
-  <div class="hero-eyebrow">
-    <span><span class="dot">●</span> applied data scientist</span>
-    <span>software engineer</span>
-    <span>product leader</span>
+<section class="hero hero--horizontal">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span><span class="dot">●</span> applied data scientist</span>
+      <span>software engineer</span>
+      <span>product leader</span>
+    </div>
+
+    <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
+
+    <p class="hero-tagline">
+      Building production ML systems and writing about tennis data.
+      Currently cofounding <strong>EagleSwing</strong> &mdash; computer vision for golf &mdash;
+      and previously at Lawrence Berkeley National Laboratory.
+    </p>
+
+    <div class="hero-status">
+      <span><span class="label">currently</span> ML at EagleSwing &middot; Berkeley, CA</span>
+      <span><span class="label">writing</span> serve-quality on the ATP tour</span>
+      <span class="caret"><span class="label">last shipped</span> nov 2025 &mdash; arxiv:2511.02936</span>
+    </div>
   </div>
 
-  <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
-
-  <p class="hero-tagline">
-    Building production ML systems and writing about tennis data.
-    Currently cofounding <strong>EagleSwing</strong> &mdash; computer vision for golf &mdash;
-    and previously at Lawrence Berkeley National Laboratory.
-  </p>
-
-  <div class="hero-status">
-    <span><span class="label">currently</span> ML at EagleSwing &middot; Berkeley, CA</span>
-    <span><span class="label">writing</span> serve-quality on the ATP tour</span>
-    <span class="caret"><span class="label">last shipped</span> nov 2025 &mdash; arxiv:2511.02936</span>
-  </div>
+  <figure class="hero-photo-side">
+    <img src="images/wide_maroc.jpg" alt="Volubilis, Morocco" loading="eager" />
+    <figcaption>
+      <span><em>volubilis</em> &middot; morocco</span>
+      <span>april 2025</span>
+    </figcaption>
+  </figure>
 </section>
-
-<figure class="hero-strip">
-  <img src="images/wide_maroc.jpg" alt="Volubilis, Morocco" loading="eager" />
-</figure>
-<div class="hero-strip-caption">
-  <span><em>volubilis</em> &middot; morocco &middot; april 2025</span>
-  <span>fujifilm x-t5 &middot; 1/640</span>
-</div>
 
 <header class="section-head">
   <div class="eyebrow">№ 01 — selected work</div>

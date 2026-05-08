@@ -134,6 +134,7 @@ main.content > * { max-width: 1200px; margin-left: auto; margin-right: auto; pad
 main.content > .hero,
 main.content > .hero--tight,
 main.content > .hero--hybrid,
+main.content > .hero--horizontal,
 main.content > .hero-strip,
 main.content > .hero-strip-caption,
 main.content > .section-head,
@@ -264,7 +265,7 @@ main.content > .full-bleed { max-width: none; padding: 0; }
 .hero--horizontal {
   max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(120px, 18vh, 200px) var(--pad-x) clamp(72px, 10vh, 120px);
+  padding: clamp(96px, 14vh, 160px) var(--pad-x) clamp(48px, 7vh, 80px);
   border-bottom: 1px solid var(--hairline);
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
