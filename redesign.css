@@ -521,7 +521,7 @@ main.content > .full-bleed { max-width: none; padding: 0; }
   display: flex; gap: 8px; white-space: nowrap;
 }
 .hero-eyebrow span:not(:last-child)::after {
-  content: " / ";
+  content: " | ";
   color: var(--ink-mute);
   opacity: 0.5;
 }
