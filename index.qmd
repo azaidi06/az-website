@@ -27,9 +27,9 @@ format:
     </p>
 
     <div class="hero-status">
-      <span><span class="label">currently</span> ML at EagleSwing &middot; Berkeley, CA</span>
-      <span><span class="label">writing</span> serve-quality on the ATP tour</span>
-      <span class="caret"><span class="label">last shipped</span> nov 2025 &mdash; arxiv:2511.02936</span>
+      <span><span class="label">currently</span> Founding Engineer + Researcher</span>
+      <span><span class="label">building</span> <a href="https://www.findyourswing.com">Find Your Swing</a></span>
+      <span><span class="label">writing</span> Washington, DC</span>
     </div>
   </div>
 
