@@ -21,15 +21,13 @@ format:
     <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
 
     <p class="hero-tagline">
-      Building production ML systems and writing about tennis data.
-      Currently cofounding <strong>EagleSwing</strong> &mdash; computer vision for golf &mdash;
-      and previously at Lawrence Berkeley National Laboratory.
+      Building user ready ML systems. Previously worked in Research, Technology and Pharma.
     </p>
 
     <div class="hero-status">
       <span><span class="label">currently</span> Founding Engineer + Researcher</span>
-      <span><span class="label">building</span> <a href="https://www.findyourswing.com">Find Your Swing</a></span>
-      <span><span class="label">writing</span> Washington, DC</span>
+      <span><span class="label">previously</span> Systems Engineer <a href="https://www.lbl.gov">@ Berkeley Lab</a></span>
+      <span><span class="label">building</span> Find Your Swing</span>
     </div>
   </div>
 
