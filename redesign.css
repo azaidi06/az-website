@@ -85,9 +85,12 @@ button, input, select, textarea { font-family: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* ---- Navbar override ---- */
+/* Quarto pins data-bs-theme="dark" on <nav>, which would force all var() inside
+   to resolve to dark-theme values. We bypass that by driving navbar colors from
+   the body class so they follow the actual page theme. */
 .navbar {
   background: transparent !important;
-  border-bottom: 1px solid var(--hairline) !important;
+  border-bottom: 1px solid #D9D5CC !important;
   padding: 18px var(--pad-x) !important;
   font-family: var(--mono);
   font-size: 13px;
@@ -95,7 +98,8 @@ button, input, select, textarea { font-family: inherit; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
-.navbar.fixed-top { background: color-mix(in oklab, var(--paper) 86%, transparent) !important; }
+header.fixed-top .navbar { background: rgba(250, 248, 244, 0.86) !important; }
+
 .navbar-brand,
 .navbar .navbar-brand-container,
 .navbar-title {
@@ -104,19 +108,52 @@ button, input, select, textarea { font-family: inherit; }
   font-size: 13px !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase;
-  color: var(--ink) !important;
 }
 .navbar .nav-link {
-  color: var(--ink) !important;
   text-transform: lowercase;
   font-weight: 400 !important;
   padding: 6px 14px !important;
   border-bottom: 1px solid transparent;
   border-radius: 0 !important;
 }
+
+/* Light page → dark navbar text */
+body.quarto-light .navbar,
+body.quarto-light .navbar .navbar-brand,
+body.quarto-light .navbar .navbar-title,
+body.quarto-light .navbar .nav-link,
+body.quarto-light .navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: #15171A !important;
+}
+body.quarto-light header.fixed-top .navbar {
+  background: rgba(250, 248, 244, 0.86) !important;
+  border-bottom-color: #D9D5CC !important;
+}
+
+/* Dark page → light navbar text */
+body.quarto-dark .navbar,
+body.quarto-dark .navbar .navbar-brand,
+body.quarto-dark .navbar .navbar-title,
+body.quarto-dark .navbar .nav-link,
+body.quarto-dark .navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: #ECEAE3 !important;
+}
+body.quarto-dark header.fixed-top .navbar {
+  background: rgba(16, 17, 19, 0.86) !important;
+  border-bottom-color: #26272B !important;
+}
+
 .navbar .nav-link.active,
-.navbar .nav-link:hover { color: var(--accent) !important; background: transparent !important; border-bottom-color: var(--accent); }
-.navbar .quarto-navbar-tools .quarto-navigation-tool { color: var(--ink) !important; }
+.navbar .nav-link:hover {
+  color: #B0431F !important;
+  background: transparent !important;
+  border-bottom-color: #B0431F;
+}
+body.quarto-dark .navbar .nav-link.active,
+body.quarto-dark .navbar .nav-link:hover {
+  color: #E8945A !important;
+  border-bottom-color: #E8945A;
+}
 
 /* ---- Page container ---- */
 main.content,
@@ -139,8 +176,7 @@ main.content > .hero-strip,
 main.content > .hero-strip-caption,
 main.content > .section-head,
 main.content > .hairline-rail,
-main.content > .about-hero,
-main.content > .about-prose,
+main.content > .about-grid,
 main.content > .now-block,
 main.content > .full-bleed { max-width: none; padding: 0; }
 
@@ -632,79 +668,106 @@ main.content > .full-bleed { max-width: none; padding: 0; }
 }
 
 /* ---- About ---- */
-.about-page main.content { padding-top: 0; }
+/* ---- About page: single-screen two-column layout ---- */
+.about-page main.content { padding: 0; }
 .about-page header.quarto-title-block.default { display: none; }
-.about-hero {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 56px;
-  align-items: start;
-  max-width: 1100px;
-  margin: 0 auto 64px;
-  padding: clamp(140px, 18vh, 220px) var(--pad-x) 0 !important;
+
+.about-page section.about-grid,
+.about-page .about-grid {
+  display: grid !important;
+  grid-template-columns: 280px minmax(0, 1fr) !important;
+  column-gap: 56px !important;
+  row-gap: 0 !important;
+  align-items: start !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 64px var(--pad-x) 20px !important;
+  grid-template-rows: auto !important;
 }
-.about-hero .about-photo { width: 220px; }
-.about-hero .about-photo img {
-  width: 100%; aspect-ratio: 1/1; object-fit: cover;
-  filter: grayscale(0.05) contrast(1.02);
+.about-page .about-grid > * { grid-column: auto !important; }
+
+.about-left { display: flex; flex-direction: column; gap: 14px; }
+.about-photo { margin: 0; }
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
   border: 1px solid var(--hairline);
+  filter: grayscale(0.04) contrast(1.02);
 }
-.about-hero .about-links {
-  display: flex; gap: 18px; margin-top: 18px;
-  font-family: var(--mono); font-size: 14px;
-}
-.about-hero .about-links a { color: var(--ink-mute); border: none; }
-.about-hero .about-links a:hover { color: var(--accent); }
-.about-hero .about-text .about-lead {
+.about-lead-eyebrow {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-mute);
-  margin: 4px 0 18px;
+  color: var(--accent);
+  margin-bottom: 6px;
 }
-.about-hero .about-text .about-lead strong { color: var(--accent); font-weight: 500; }
-.about-hero .about-text p {
-  font-size: 22px;
-  line-height: 1.55;
+.about-lead p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.4;
   font-weight: 400;
-  letter-spacing: -0.005em;
-  max-width: 32ch;
+  margin: 0;
+  max-width: 36ch;
 }
 
-.about-prose {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
-  font-size: 19px;
-  line-height: 1.7;
+/* Right column: 2-col subgrid for the prose, full-width glance below */
+.about-right {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  row-gap: 18px;
 }
-.about-prose h2 {
-  font-size: 22px;
+.about-block { min-width: 0; }
+.about-block-glance { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.about-right h2 {
+  font-family: var(--serif);
   font-weight: 500;
+  font-size: 19px;
   letter-spacing: -0.005em;
-  margin: 56px 0 16px;
-  padding-top: 32px;
-  border-top: 1px solid var(--hairline);
+  margin: 0 0 8px;
 }
-.about-prose .meta-eyebrow {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+.about-right p {
+  font-size: 14.5px;
+  line-height: 1.5;
   margin: 0 0 6px;
+  max-width: 56ch;
 }
-.about-prose ul {
-  list-style: none; padding: 0; margin: 0 0 24px;
-  display: grid; grid-template-columns: max-content 1fr; column-gap: 24px; row-gap: 8px;
-  font-family: var(--mono); font-size: 14px;
-}
-.about-prose ul li:nth-child(odd) { color: var(--ink-mute); }
-.about-prose ul li:nth-child(even) { color: var(--ink); }
+.about-right p:last-child { margin-bottom: 0; }
 
-/* Disable old icon-card grid */
-.about-grid, .about-card { display: none !important; }
+.about-glance {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content 1fr;
+  column-gap: 20px;
+  row-gap: 4px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.about-glance li:nth-child(odd) {
+  color: var(--ink-mute);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+.about-glance li:nth-child(even) { color: var(--ink); }
+.about-glance a { color: var(--ink); border-bottom: 1px solid var(--hairline); }
+.about-glance a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+    padding: clamp(72px, 10vh, 110px) var(--pad-x) 32px;
+  }
+  .about-left { flex-direction: row; gap: 20px; align-items: flex-start; }
+  .about-photo { width: 140px; flex-shrink: 0; }
+  .about-lead p { font-size: 17px; }
+}
 
 /* ---- Blog listing override ---- */
 .blog-page main.content { padding-top: 0; }
@@ -1013,9 +1076,6 @@ body:not(.brutal-page) .card-link { display: none !important; }
   .section-head { grid-template-columns: 1fr; gap: 8px; padding: 56px var(--pad-x) 16px; }
   .row-link { grid-template-columns: 56px 1fr; gap: 14px; padding: 22px 0; }
   .row-link .meta, .row-link .arrow { display: none; }
-  .about-hero { grid-template-columns: 1fr; gap: 24px; }
-  .about-hero .about-photo { width: 160px; }
-  .about-hero .about-text p { font-size: 19px; max-width: none; }
   .now-block { grid-template-columns: 1fr; gap: 12px; }
   .blog-page .listing-item,
   .blog-page .quarto-grid-item,

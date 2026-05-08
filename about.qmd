@@ -9,39 +9,43 @@ format:
 ---
 
 ```{=html}
-<div class="about-hero">
-  <div class="about-photo">
-    <img src="images/clipped_bright_headshot.webp" alt="Ali Zaidi" />
+<section class="about-grid">
+
+  <div class="about-left">
+    <figure class="about-photo">
+      <img src="images/clipped_bright_headshot.webp" alt="Ali Zaidi" />
+    </figure>
+    <div class="about-lead">
+      <div class="about-lead-eyebrow">product leader · applied data scientist</div>
+      <p>I bridge product vision and production ML &mdash; from defining roadmaps and architecting pipelines to shipping features that hold up at scale.</p>
+    </div>
   </div>
-  <div class="about-text">
-    <p class="about-lead"><strong>Product leader · applied data scientist</strong></p>
-    <p>I bridge product vision and production ML &mdash; from defining roadmaps and architecting pipelines, to shipping features that hold up at scale. Previously at Lawrence Berkeley National Laboratory; currently cofounding a computer-vision-for-golf startup.</p>
+
+  <div class="about-right">
+
+    <section class="about-block">
+      <h2>Background</h2>
+      <p>I started in pharmaceutics &mdash; managing FDA submissions and regulatory operations &mdash; before pivoting into engineering. Comfortable across the stack: training transformers on SLURM at LBNL, standing up cost-optimized inference on AWS, writing the occasional tennis-data essay.</p>
+      <p>The constant: wanting to ship work that compounds &mdash; tools other people use, papers that get cited, analyses that change how someone thinks.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>How I work</h2>
+      <p>Strong opinions, weakly held. Scrappy first prototypes over architecture diagrams. The right tool is the one your team can maintain in eighteen months.</p>
+      <p>Read papers in the morning, instrument production at night &mdash; the two halves keep each other honest.</p>
+    </section>
+
+    <section class="about-block about-block-glance">
+      <h2>At a glance</h2>
+      <ul class="about-glance">
+        <li>currently</li><li>Head of Data Science, EagleSwing</li>
+        <li>previously</li><li>Engineer II, LBNL</li>
+        <li>living</li><li>Berkeley, CA</li>
+        <li>working in</li><li>Python · PyTorch · AWS</li>
+        <li>open to</li><li><a href="mailto:azaidi06@gmail.com">say hi</a></li>
+      </ul>
+    </section>
+
   </div>
-</div>
-
-<section class="about-prose">
-
-<h2>Background</h2>
-
-<p>I started in pharmaceutics &mdash; managing FDA submissions and regulatory operations &mdash; before pivoting hard into engineering. Six years on, I&rsquo;m comfortable across the stack: from training transformers on multi-node SLURM clusters at LBNL, to standing up cost-optimized inference pipelines on AWS, to writing the occasional tennis-data essay.</p>
-
-<p>The constant has been wanting to ship work that compounds: tools that other people use, papers that get cited, and analyses that change how someone thinks about a problem.</p>
-
-<h2 class="meta-eyebrow">At a glance</h2>
-<ul>
-  <li>Currently</li><li>Cofounder & Head of Data Science, EagleSwing</li>
-  <li>Previously</li><li>Computer Systems Engineer II, Lawrence Berkeley National Lab</li>
-  <li>Living</li><li>Berkeley, CA</li>
-  <li>Working in</li><li>Python · PyTorch · CUDA · AWS · SLURM · Plotly · Quarto</li>
-  <li>Interested in</li><li>Computer vision, applied LLMs, sports analytics, instrumented decision-making</li>
-  <li>Open to</li><li>Interesting collaborations and conversations &mdash; <a href="mailto:azaidi06@gmail.com">say hi</a></li>
-</ul>
-
-<h2>How I work</h2>
-
-<p>Strong opinions, weakly held. I prefer scrappy first prototypes over architecture diagrams, and I will fight for the simplest thing that could possibly work. The right tool is the one your team can maintain in eighteen months.</p>
-
-<p>I read papers in the morning and instrument production at night. The two halves keep each other honest.</p>
-
 </section>
 ```
