@@ -12,12 +12,6 @@ format:
 <div class="about-hero">
   <div class="about-photo">
     <img src="images/clipped_bright_headshot.webp" alt="Ali Zaidi" />
-    <div class="about-links">
-      <a href="https://linkedin.com/in/azaidi06/" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-      <a href="https://github.com/azaidi06" title="GitHub"><i class="bi bi-github"></i></a>
-      <a href="https://x.com/aloysious_zaidi" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-      <a href="mailto:azaidi06@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
-    </div>
   </div>
   <div class="about-text">
     <p class="about-lead"><strong>Product leader · applied data scientist</strong></p>

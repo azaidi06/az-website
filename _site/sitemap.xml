@@ -9,64 +9,80 @@
     <lastmod>2026-02-17T22:44:23.712Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/index.html</loc>
-    <lastmod>2026-05-08T20:41:48.297Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/about.html</loc>
+    <lastmod>2026-05-08T21:04:44.339Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/gpu_tricks/index.html</loc>
-    <lastmod>2026-02-25T16:44:53.908Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/blog.html</loc>
+    <lastmod>2026-05-08T20:39:14.236Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/nb_tutorial/nb_tutorial.html</loc>
-    <lastmod>2026-02-05T05:37:35.771Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/koala-series/koala.html</loc>
+    <lastmod>2026-02-05T05:37:35.767Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/opponent-quality/opponent-quality.html</loc>
-    <lastmod>2026-02-12T15:22:08.074Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/scraping-tutorial/scraping-tutorial.html</loc>
+    <lastmod>2026-02-05T05:37:35.775Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/index.html</loc>
-    <lastmod>2026-02-07T04:17:47.936Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/quarto_tutorial/blog_tutorial.html</loc>
+    <lastmod>2026-02-05T05:37:35.775Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/filters.html</loc>
-    <lastmod>2026-02-07T04:17:23.938Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/tennis-eda/tennis-eda.html</loc>
+    <lastmod>2026-02-12T15:22:05.338Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/run_batch.html</loc>
-    <lastmod>2026-02-07T03:49:12.340Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/contact.html</loc>
+    <lastmod>2026-02-07T04:17:27.611Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/signal.html</loc>
-    <lastmod>2026-02-07T04:17:18.301Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/visualize.html</loc>
+    <lastmod>2026-02-07T03:49:10.844Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/pipeline.html</loc>
-    <lastmod>2026-02-07T04:17:30.773Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/io.html</loc>
+    <lastmod>2026-02-07T04:17:15.336Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/index.html</loc>
-    <lastmod>2026-02-07T04:17:10.707Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/config.html</loc>
+    <lastmod>2026-02-07T03:49:08.887Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/cats-series/cats.html</loc>
-    <lastmod>2026-02-05T05:37:35.759Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/peaks.html</loc>
+    <lastmod>2026-02-07T04:17:21.126Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/testing_new_ui/logs/02_iter01.html</loc>
-    <lastmod>2026-05-08T20:39:05.952Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/tennis-analysis-CLAUDE.html</loc>
+    <lastmod>2026-02-05T05:37:35.776Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/testing_new_ui/research/01_design_directions.html</loc>
-    <lastmod>2026-05-08T20:29:43.186Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/tennis-ojs/tennis-ojs.html</loc>
+    <lastmod>2026-02-12T15:22:10.574Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/old_index.html</loc>
-    <lastmod>2026-02-05T05:37:35.753Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/testing_new_ui/logs/03_iter02.html</loc>
+    <lastmod>2026-05-08T20:52:27.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://azaidi06.github.io/az-website/testing_new_ui/REPORT.html</loc>
+    <lastmod>2026-05-08T20:53:06.855Z</lastmod>
+  </url>
+  <url>
+    <loc>https://azaidi06.github.io/az-website/testing_new_ui/iterations/00_design_spec.html</loc>
+    <lastmod>2026-05-08T20:30:53.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://azaidi06.github.io/az-website/explore-b.html</loc>
+    <lastmod>2026-05-08T21:06:39.339Z</lastmod>
   </url>
   <url>
     <loc>https://azaidi06.github.io/az-website/old_index_backup.html</loc>
     <lastmod>2026-02-17T22:27:48.774Z</lastmod>
+  </url>
+  <url>
+    <loc>https://azaidi06.github.io/az-website/explore-a.html</loc>
+    <lastmod>2026-05-08T21:06:30.261Z</lastmod>
   </url>
   <url>
     <loc>https://azaidi06.github.io/az-website/brutal.html</loc>
@@ -81,64 +97,68 @@
     <lastmod>2026-02-12T14:27:04.728Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/testing_new_ui/iterations/00_design_spec.html</loc>
-    <lastmod>2026-05-08T20:30:53.657Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/old_index.html</loc>
+    <lastmod>2026-02-05T05:37:35.753Z</lastmod>
+  </url>
+  <url>
+    <loc>https://azaidi06.github.io/az-website/testing_new_ui/research/01_design_directions.html</loc>
+    <lastmod>2026-05-08T20:29:43.186Z</lastmod>
   </url>
   <url>
     <loc>https://azaidi06.github.io/az-website/testing_new_ui/logs/01_baseline_audit.html</loc>
     <lastmod>2026-05-08T20:29:59.373Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/tennis-ojs/tennis-ojs.html</loc>
-    <lastmod>2026-02-12T15:22:10.574Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/testing_new_ui/logs/02_iter01.html</loc>
+    <lastmod>2026-05-08T20:39:05.952Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/tennis-analysis-CLAUDE.html</loc>
-    <lastmod>2026-02-05T05:37:35.776Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/cats-series/cats.html</loc>
+    <lastmod>2026-02-05T05:37:35.759Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/peaks.html</loc>
-    <lastmod>2026-02-07T04:17:21.126Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/index.html</loc>
+    <lastmod>2026-02-07T04:17:10.707Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/config.html</loc>
-    <lastmod>2026-02-07T03:49:08.887Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/pipeline.html</loc>
+    <lastmod>2026-02-07T04:17:30.773Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/io.html</loc>
-    <lastmod>2026-02-07T04:17:15.336Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/signal.html</loc>
+    <lastmod>2026-02-07T04:17:18.301Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/visualize.html</loc>
-    <lastmod>2026-02-07T03:49:10.844Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/run_batch.html</loc>
+    <lastmod>2026-02-07T03:49:12.340Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/contact.html</loc>
-    <lastmod>2026-02-07T04:17:27.611Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/reference/filters.html</loc>
+    <lastmod>2026-02-07T04:17:23.938Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/tennis-eda/tennis-eda.html</loc>
-    <lastmod>2026-02-12T15:22:05.338Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/golf_keyframe_extraction/docs/index.html</loc>
+    <lastmod>2026-02-07T04:17:47.936Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/quarto_tutorial/blog_tutorial.html</loc>
-    <lastmod>2026-02-05T05:37:35.775Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/opponent-quality/opponent-quality.html</loc>
+    <lastmod>2026-02-12T15:22:08.074Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/scraping-tutorial/scraping-tutorial.html</loc>
-    <lastmod>2026-02-05T05:37:35.775Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/nb_tutorial/nb_tutorial.html</loc>
+    <lastmod>2026-02-05T05:37:35.771Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/posts/koala-series/koala.html</loc>
-    <lastmod>2026-02-05T05:37:35.767Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/posts/gpu_tricks/index.html</loc>
+    <lastmod>2026-02-25T16:44:53.908Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/blog.html</loc>
-    <lastmod>2026-05-08T20:39:14.236Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/index.html</loc>
+    <lastmod>2026-05-08T21:20:30.996Z</lastmod>
   </url>
   <url>
-    <loc>https://azaidi06.github.io/az-website/about.html</loc>
-    <lastmod>2026-05-08T20:46:51.370Z</lastmod>
+    <loc>https://azaidi06.github.io/az-website/explore-c.html</loc>
+    <lastmod>2026-05-08T21:06:48.940Z</lastmod>
   </url>
   <url>
     <loc>https://azaidi06.github.io/az-website/font/preview.html</loc>

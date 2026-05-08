@@ -10,26 +10,36 @@ format:
 ---
 
 ```{=html}
-<section class="hero">
-  <div class="hero-eyebrow">
-    <span><span class="dot">●</span> applied data scientist</span>
-    <span>software engineer</span>
-    <span>product leader</span>
+<section class="hero hero--hybrid">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span><span class="dot">●</span> applied data scientist</span>
+      <span>software engineer</span>
+      <span>product leader</span>
+    </div>
+
+    <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
+
+    <p class="hero-tagline">
+      Building production ML systems and writing about tennis data.
+      Currently cofounding <strong>EagleSwing</strong> &mdash; computer vision for golf &mdash;
+      and previously at Lawrence Berkeley National Laboratory.
+    </p>
+
+    <div class="hero-status">
+      <span><span class="label">currently</span> ML at EagleSwing &middot; Berkeley, CA</span>
+      <span><span class="label">writing</span> serve-quality on the ATP tour</span>
+      <span class="caret"><span class="label">last shipped</span> nov 2025 &mdash; arxiv:2511.02936</span>
+    </div>
   </div>
 
-  <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
-
-  <p class="hero-tagline">
-    Building production ML systems and writing about tennis data.
-    Currently cofounding <strong>EagleSwing</strong> — computer vision for golf —
-    and previously at Lawrence Berkeley National Laboratory.
-  </p>
-
-  <div class="hero-status">
-    <span><span class="label">currently</span> ML at EagleSwing · Berkeley, CA</span>
-    <span><span class="label">writing</span> serve-quality on the ATP tour</span>
-    <span class="caret"><span class="label">last shipped</span> nov 2025 — arxiv:2511.02936</span>
-  </div>
+  <figure class="hero-photo">
+    <img src="images/wide_maroc.jpg" alt="Volubilis, Morocco" loading="eager" />
+    <figcaption>
+      <span><em>volubilis</em> &middot; morocco &middot; april 2025</span>
+      <span class="hero-photo-exif">fujifilm x-t5 &middot; f/4 &middot; 1/640</span>
+    </figcaption>
+  </figure>
 </section>
 
 <header class="section-head">
