@@ -18,7 +18,7 @@ format:
       <span>product leader</span>
     </div>
 
-    <h1 class="hero-title">Ali <em>Zaidi</em>.</h1>
+    <h1 class="hero-title">Ali <em>Zaidi</em></h1>
 
     <p class="hero-tagline">
       Building user ready ML systems. Previously worked in Research, Technology and Pharma.
