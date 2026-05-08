@@ -1,13 +1,6 @@
 project:
   type: website
   output-dir: _site
-  exclude:
-    - old_index.qmd
-    - old_index_backup.qmd
-    - font/
-    - testing_new_ui/
-    - posts/golf_keyframe_extraction/
-    - README.md
 
 website:
   title: "Ali Zaidi"
