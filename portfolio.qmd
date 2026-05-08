@@ -27,15 +27,15 @@ format:
 </div>
 
 <div class="g-col-12 g-col-md-6">
-<a href="posts/scraping-tutorial/scraping-tutorial.html" class="portfolio-project-card">
-<div class="portfolio-project-icon"><i class="bi bi-code-square"></i></div>
+<a href="https://www.money4war.com" target="_blank" class="portfolio-project-card">
+<div class="portfolio-project-icon"><i class="bi bi-graph-up-arrow"></i></div>
 <div class="portfolio-project-body">
-<h4>Web Scraping Tutorial</h4>
-<p class="portfolio-project-desc">Step-by-step guide to scraping dynamic websites with Python and Playwright, including async patterns and retry logic.</p>
+<h4>Chaos &amp; Market</h4>
+<p class="portfolio-project-desc">Financial analysis and market insights platform.</p>
 <div class="portfolio-project-tags">
-<span class="portfolio-tag">Python</span>
-<span class="portfolio-tag">Web Scraping</span>
-<span class="portfolio-tag">Tutorial</span>
+<span class="portfolio-tag">Finance</span>
+<span class="portfolio-tag">Analytics</span>
+<span class="portfolio-tag">Product</span>
 </div>
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
