@@ -1078,18 +1078,18 @@ body:not(.brutal-page) .card-link { display: none !important; }
 .home-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 12px;
   max-width: 1200px;
-  margin: clamp(56px, 8vh, 96px) auto clamp(40px, 6vh, 72px);
+  margin: clamp(40px, 6vh, 64px) auto clamp(24px, 4vh, 48px);
   padding: 0 var(--pad-x);
 }
 
 .home-card {
   position: relative;
   display: block;
-  padding: 28px 24px 56px;
+  padding: 14px 12px 28px;
   border: 1px solid var(--hairline);
-  border-radius: 14px;
+  border-radius: 10px;
   background: var(--surface, transparent);
   text-decoration: none;
   color: inherit;
@@ -1100,19 +1100,19 @@ body:not(.brutal-page) .card-link { display: none !important; }
 }
 
 .home-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--ink, currentColor);
-  box-shadow: 0 12px 32px -16px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px -12px rgba(0,0,0,0.25);
 }
 
 .home-card .card-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 18px;
-  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 8px;
+  border-radius: 7px;
   border: 1px solid var(--hairline);
   color: inherit;
   transition: transform 320ms ease, border-color 320ms ease;
@@ -1125,27 +1125,27 @@ body:not(.brutal-page) .card-link { display: none !important; }
 
 .home-card h3 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
 .home-card p {
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.45;
+  font-size: 11px;
+  line-height: 1.4;
   margin: 0;
   opacity: 0.7;
 }
 
 .home-card .card-arrow {
   position: absolute;
-  bottom: 20px;
-  right: 24px;
-  font-size: 18px;
+  bottom: 10px;
+  right: 12px;
+  font-size: 12px;
   opacity: 0;
-  transform: translateX(-6px);
+  transform: translateX(-4px);
   transition: opacity 240ms ease, transform 240ms ease;
 }
 
