@@ -900,6 +900,8 @@ main.content > .full-bleed { max-width: none; padding: 0; }
 .blog-page #quarto-margin-sidebar,
 .blog-page .quarto-listing-category-title,
 .blog-page .quarto-listing-category { display: none !important; }
+.blog-page #quarto-content.page-columns { display: block !important; }
+.blog-page main.content { grid-column: 1 / -1 !important; max-width: none !important; }
 
 /* ---- Portfolio override ---- */
 .portfolio-page main.content { padding-top: clamp(60px, 9vh, 120px); }
@@ -1248,7 +1250,7 @@ body:not(.brutal-page) .card-link { display: none !important; }
   .now-block { grid-template-columns: 1fr; gap: 12px; }
   .blog-page .listing-item,
   .blog-page .quarto-grid-item,
-  .blog-page .quarto-post,
+  .blog-page .quarto-post { grid-template-columns: 1fr !important; gap: 6px !important; }
   .portfolio-page .portfolio-project-card { grid-template-columns: 56px 1fr !important; gap: 14px !important; }
   .blog-page .listing-date,
   .blog-page .listing-reading-time,
