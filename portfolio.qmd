@@ -30,7 +30,7 @@ format:
 <a href="https://www.money4war.com" target="_blank" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-graph-up-arrow"></i></div>
 <div class="portfolio-project-body">
-<h4>Chaos &amp; Market</h4>
+<h4>Chaos &amp; Markets</h4>
 <p class="portfolio-project-desc">Financial analysis and market insights platform.</p>
 <div class="portfolio-project-tags">
 <span class="portfolio-tag">Finance</span>
@@ -59,15 +59,15 @@ format:
 </div>
 
 <div class="g-col-12 g-col-md-6">
-<a href="posts/opponent-quality/opponent-quality.html" class="portfolio-project-card">
-<div class="portfolio-project-icon"><i class="bi bi-people"></i></div>
+<a href="https://arxiv.org/abs/2511.02936" target="_blank" class="portfolio-project-card">
+<div class="portfolio-project-icon"><i class="bi bi-journal-text"></i></div>
 <div class="portfolio-project-body">
-<h4>Opponent Quality Analysis</h4>
-<p class="portfolio-project-desc">Analyzing win rates against top-ranked opponents to measure true competitive strength.</p>
+<h4>Zero-shot Data Citation Classification</h4>
+<p class="portfolio-project-desc">Published paper on applying Transformer-based LLMs to scientific document analysis. Here's something trivial I was a part of — instead of getting a frivolous PhD.</p>
 <div class="portfolio-project-tags">
-<span class="portfolio-tag">Tennis</span>
-<span class="portfolio-tag">Analytics</span>
-<span class="portfolio-tag">Interactive</span>
+<span class="portfolio-tag">Research</span>
+<span class="portfolio-tag">LLM</span>
+<span class="portfolio-tag">arXiv</span>
 </div>
 </div>
 <div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
