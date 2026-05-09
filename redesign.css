@@ -116,6 +116,12 @@ header.fixed-top .navbar { background: rgba(250, 248, 244, 0.86) !important; }
   letter-spacing: 0.06em !important;
   text-transform: uppercase;
 }
+/* Separator between brand and page tabs */
+.navbar .navbar-brand-container + .page-tabs {
+  margin-left: 24px;
+  padding-left: 20px;
+  border-left: 1px solid var(--hairline);
+}
 .navbar .nav-link {
   text-transform: lowercase;
   font-weight: 400 !important;
@@ -1019,14 +1025,18 @@ main.content li { margin-bottom: 6px; font-size: 16px; line-height: 1.6; }
 .page-tabs {
   display: flex;
   gap: 0;
-  margin-left: 20px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
 }
 .page-tabs a {
   font-family: var(--mono) !important;
   font-size: 13px !important;
   letter-spacing: 0.02em !important;
   text-transform: lowercase !important;
-  color: var(--ink-mute, #8C8C8C) !important;
+  color: var(--ink-mute) !important;
   text-decoration: none;
   padding: 6px 14px !important;
   border-bottom: 1px solid transparent;
@@ -1034,14 +1044,17 @@ main.content li { margin-bottom: 6px; font-size: 16px; line-height: 1.6; }
   transition: color 200ms ease, border-color 200ms ease;
 }
 .page-tabs a:hover {
-  color: inherit !important;
+  color: var(--ink) !important;
 }
 .page-tabs a.active {
   color: #B0431F !important;
   border-bottom-color: #B0431F;
 }
+body.quarto-dark .page-tabs a:hover {
+  color: var(--ink) !important;
+}
 body.quarto-dark .page-tabs a {
-  color: var(--ink-mute, #7A7A7E) !important;
+  color: var(--ink-mute) !important;
 }
 body.quarto-dark .page-tabs a.active {
   color: #E8945A !important;

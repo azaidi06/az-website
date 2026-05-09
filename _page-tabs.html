@@ -10,5 +10,20 @@
     document.querySelectorAll('.page-tabs a').forEach(function(l){
       if(l.href === location.href.replace(/\/$/,'')) l.classList.add('active');
     });
+
+    /* Insert tabs into the navbar, between brand and tools */
+    var tabs = document.querySelector('.page-tabs');
+    if (tabs) {
+      var navbar = document.querySelector('header.fixed-top .navbar');
+      if (navbar) {
+        var brand = navbar.querySelector('.navbar-brand-container');
+        if (brand) {
+          brand.parentNode.insertBefore(tabs, brand.nextSibling);
+        } else {
+          /* fallback: append to navbar start */
+          navbar.insertBefore(tabs, navbar.firstChild);
+        }
+      }
+    }
   })();
 </script>
