@@ -63,7 +63,8 @@ format:
 <div class="portfolio-project-icon"><i class="bi bi-journal-text"></i></div>
 <div class="portfolio-project-body">
 <h4>Zero-shot Data Citation Classification</h4>
-<p class="portfolio-project-desc">Published paper on applying Transformer-based LLMs to scientific document analysis. Here's something trivial I was a part of — instead of getting a frivolous PhD.</p>
+<p class="portfolio-project-desc">Published paper on applying LLMs to scientific document analysis and metadata creation.
+Just something trivial that I worked on in a half decade of research, instead of getting a frivolous PhD.</p>
 <div class="portfolio-project-tags">
 <span class="portfolio-tag">Research</span>
 <span class="portfolio-tag">LLM</span>
