@@ -26,24 +26,12 @@ format:
     <section class="about-block">
       <h2>Background</h2>
       <p>I started in pharmaceutics &mdash; managing FDA submissions and regulatory operations &mdash; before pivoting into engineering. Comfortable across the stack: training transformers on SLURM at LBNL, standing up cost-optimized inference on AWS, writing the occasional tennis-data essay.</p>
-      <p>The constant: wanting to ship work that compounds &mdash; tools other people use, papers that get cited, analyses that change how someone thinks.</p>
     </section>
 
     <section class="about-block">
       <h2>How I work</h2>
       <p>Strong opinions, weakly held. Scrappy first prototypes over architecture diagrams. The right tool is the one your team can maintain in eighteen months.</p>
       <p>Read papers in the morning, instrument production at night &mdash; the two halves keep each other honest.</p>
-    </section>
-
-    <section class="about-block about-block-glance">
-      <h2>At a glance</h2>
-      <ul class="about-glance">
-        <li>currently</li><li>Head of Data Science, EagleSwing</li>
-        <li>previously</li><li>Engineer II, LBNL</li>
-        <li>living</li><li>Berkeley, CA</li>
-        <li>working in</li><li>Python · PyTorch · AWS</li>
-        <li>open to</li><li><a href="mailto:azaidi06@gmail.com">say hi</a></li>
-      </ul>
     </section>
 
   </div>

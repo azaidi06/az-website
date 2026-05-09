@@ -10,7 +10,7 @@ css: cv.css
 # Ali Zaidi {.unnumbered .unlisted}
 **Product Leader & Applied AI Engineer**
 
-[azaidi06@gmail.com](mailto:azaidi06@gmail.com) | [linkedin.com/in/azaidi06](https://www.linkedin.com/in/azaidi06/) | [github.com/azaidi06](https://github.com/azaidi06)
+[azaidi06@gmail.com](mailto:azaidi06@gmail.com) | [linkedin.com/in/azaidi06](https://www.linkedin.com/in/azaidi06/)
 :::
 
 ## Work Experience
