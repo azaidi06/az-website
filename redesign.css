@@ -329,11 +329,11 @@ main.content > .full-bleed { max-width: none; padding: 0; }
 .hero--horizontal {
   max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(96px, 14vh, 160px) var(--pad-x) clamp(48px, 7vh, 80px);
+  padding: clamp(72px, 12vh, 160px) var(--pad-x) clamp(40px, 6vh, 80px);
   border-bottom: 1px solid var(--hairline);
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 56px;
+  gap: clamp(20px, 4vw, 56px);
   align-items: end;
 }
 .hero--horizontal .hero-text { min-width: 0; }
@@ -362,8 +362,9 @@ main.content > .full-bleed { max-width: none; padding: 0; }
   display: flex; justify-content: space-between; gap: 12px;
 }
 .hero--horizontal .hero-photo-side em { font-style: normal; color: var(--accent); }
-@media (max-width: 900px) {
-  .hero--horizontal { grid-template-columns: 1fr; gap: 32px; }
+@media (max-width: 560px) {
+  .hero--horizontal { grid-template-columns: 1fr; gap: 28px; }
+  .hero--horizontal .hero-photo-side { max-width: 360px; margin: 0 auto; width: 100%; }
 }
 
 /* ---- Hero hybrid: split (B) on desktop, plate (C-style) on mobile ---- */
