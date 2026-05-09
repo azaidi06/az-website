@@ -116,18 +116,32 @@ header.fixed-top .navbar { background: rgba(250, 248, 244, 0.86) !important; }
   letter-spacing: 0.06em !important;
   text-transform: uppercase;
 }
-/* Separator between brand and page tabs */
-.navbar .navbar-brand-container + .page-tabs {
+/* Keep brand pinned to the left so tab placement is identical on every page */
+.navbar .navbar-brand-container.mx-auto {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* Separator between brand and nav links */
+.navbar .navbar-brand-container + .collapse .navbar-nav,
+.navbar .navbar-brand-container + #navbarCollapse .navbar-nav {
   margin-left: 24px;
   padding-left: 20px;
   border-left: 1px solid var(--hairline);
 }
+.navbar .navbar-nav {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
 .navbar .nav-link {
-  text-transform: lowercase;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  letter-spacing: 0.02em !important;
+  text-transform: lowercase !important;
   font-weight: 400 !important;
   padding: 6px 14px !important;
   border-bottom: 1px solid transparent;
   border-radius: 0 !important;
+  color: var(--ink-mute) !important;
 }
 
 /* Light page → dark navbar text */
@@ -1060,7 +1074,9 @@ body.quarto-dark .page-tabs a.active {
   color: #E8945A !important;
   border-bottom-color: #E8945A;
 }
-body.home-page .page-tabs {
+body.home-page .page-tabs,
+body.home-page .navbar .navbar-nav,
+body.home-page .navbar .navbar-collapse {
   display: none !important;
 }
 

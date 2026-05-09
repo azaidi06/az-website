@@ -6,7 +6,16 @@ website:
   title: "Ali Zaidi"
   favicon: images/favicon.svg
   navbar:
-    right: []
+    pinned: true
+    left:
+      - text: "about"
+        href: about.html
+      - text: "blog"
+        href: blog.html
+      - text: "work"
+        href: portfolio.html
+      - text: "cv"
+        href: resume.html
   page-footer:
     left: "© 2026 Ali Zaidi · azaidi06@gmail.com"
     right: ""
@@ -28,5 +37,4 @@ format:
     code-copy: true
     smooth-scroll: true
     highlight-style: github
-    include-before-body: _page-tabs.html
     include-after-body: _navbar-scroll.html
