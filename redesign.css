@@ -838,7 +838,7 @@ main.content > .full-bleed { max-width: none; padding: 0; }
 .blog-page .quarto-post,
 .blog-page .quarto-grid-item {
   display: grid !important;
-  grid-template-columns: 90px 1fr auto !important;
+  grid-template-columns: 1fr auto !important;
   align-items: baseline !important;
   gap: 32px !important;
   padding: 26px 0 !important;
@@ -896,21 +896,6 @@ main.content > .full-bleed { max-width: none; padding: 0; }
   color: var(--ink-mute) !important;
 }
 .blog-page .listing-categories { font-family: var(--mono) !important; }
-
-/* number column on blog list — generated via CSS counter */
-.blog-page .list,
-.blog-page .quarto-listing-default,
-.blog-page .quarto-grid-container { counter-reset: post; }
-.blog-page .listing-item::before,
-.blog-page .quarto-grid-item::before,
-.blog-page .quarto-post::before {
-  counter-increment: post;
-  content: "№ " counter(post, decimal-leading-zero);
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--ink-mute);
-  letter-spacing: 0.04em;
-}
 
 /* ---- Portfolio override ---- */
 .portfolio-page main.content { padding-top: clamp(60px, 9vh, 120px); }
