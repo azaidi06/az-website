@@ -1033,7 +1033,7 @@ footer.footer {
   text-transform: lowercase !important;
   color: var(--ink-mute) !important;
   padding: 24px var(--pad-x) !important;
-  margin-top: 24px !important;
+  margin-top: 0px !important;
 }
 .nav-footer a { color: var(--ink-mute) !important; }
 .nav-footer a:hover { color: var(--accent) !important; }
@@ -1080,7 +1080,7 @@ body:not(.brutal-page) .card-link { display: none !important; }
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   max-width: 1200px;
-  margin: clamp(40px, 6vh, 64px) auto 12px;
+  margin: clamp(30px, 4.5vh, 48px) auto 8px;
   padding: 0 var(--pad-x);
 }
 
