@@ -23,12 +23,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   letter-spacing: -0.03em; /* Tight tracking for modern feel */
 }
 
-/* Hero text - ensure visibility in both light and dark modes */
-.hero-title,
-.hero-subtitle {
-  color: #ffffff;
-}
-
 h1.title {
   font-weight: 800;
 }

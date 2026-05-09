@@ -1147,9 +1147,14 @@ body:not(.brutal-page) .card-link { display: none !important; }
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   max-width: 1200px;
-  margin: clamp(30px, 4.5vh, 48px) auto 8px;
+  margin: clamp(30px, 4.5vh, 48px) auto 0;
   padding: 0 var(--pad-x);
 }
+body.home-page main.content { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+body.home-page main.content > .home-cards { margin-bottom: 0 !important; }
+body.home-page #quarto-content.page-columns { display: block !important; padding-bottom: 0 !important; }
+body.home-page header.quarto-title-block.default,
+body.home-page main.content > header.quarto-title-block { display: none !important; }
 
 .home-card {
   position: relative;
