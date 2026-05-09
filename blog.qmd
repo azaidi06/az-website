@@ -14,8 +14,8 @@ listing:
     - "!posts/tennis-analysis-CLAUDE.md"
   sort: "date desc"
   type: default
-  categories: false
-  sort-ui: false
-  filter-ui: false
-  fields: [date, title, reading-time, description]
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, title, reading-time, description, categories]
 ---
