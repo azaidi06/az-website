@@ -6,15 +6,7 @@ website:
   title: "Ali Zaidi"
   favicon: images/favicon.svg
   navbar:
-    right:
-      - text: "about"
-        href: about.qmd
-      - text: "writing"
-        href: blog.qmd
-      - text: "work"
-        href: portfolio.qmd
-      - text: "cv"
-        href: resume.qmd
+    right: []
   page-footer:
     left: "© 2026 Ali Zaidi · azaidi06@gmail.com"
     right: ""

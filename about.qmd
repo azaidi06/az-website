@@ -9,6 +9,16 @@ format:
 ---
 
 ```{=html}
+<div class="page-tabs">
+  <a href="about.html" class="active">about</a>
+  <a href="blog.html">blog</a>
+  <a href="portfolio.html">work</a>
+  <a href="resume.html">cv</a>
+</div>
+<script>
+  (function(){ document.querySelectorAll('.page-tabs a').forEach(function(l){ if(l.href===location.href.replace(/\/$/,'')) l.classList.add('active'); }); })();
+</script>
+
 <section class="about-grid">
 
   <div class="about-left">

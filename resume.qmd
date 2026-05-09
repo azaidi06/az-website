@@ -5,6 +5,19 @@ format:
 css: cv.css
 ---
 
+```{=html}
+<div class="page-tabs">
+  <a href="about.html">about</a>
+  <a href="blog.html">blog</a>
+  <a href="portfolio.html">work</a>
+  <a href="resume.html" class="active">cv</a>
+</div>
+<script>
+  (function(){ document.querySelectorAll('.page-tabs a').forEach(function(l){ if(l.href===location.href.replace(/\/$/,'')) l.classList.add('active'); }); })();
+</script>
+```
+
+
 ::: {.cv-header}
 # Ali Zaidi {.unnumbered .unlisted}
 **Product Leader & Applied AI Engineer**

@@ -1008,6 +1008,47 @@ main.content h3 em { font-style: italic; color: var(--accent); }
 main.content ul { padding-left: 1.2em; }
 main.content li { margin-bottom: 6px; font-size: 16px; line-height: 1.6; }
 
+/* ---- Page tabs (sub-pages only) ---- */
+.page-tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--hairline, #D9D5CC);
+}
+body.quarto-dark .page-tabs {
+  border-bottom-color: #26272B;
+}
+.page-tabs a {
+  display: inline-block;
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--ink-mute, #8C8C8C);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.page-tabs a:hover {
+  color: var(--ink, currentColor);
+}
+.page-tabs a.active {
+  color: inherit !important;
+  border-bottom-color: var(--accent, #B0431F);
+}
+body.quarto-dark .page-tabs a.active {
+  border-bottom-color: var(--accent, #E8945A);
+}
+@media (max-width: 720px) {
+  .page-tabs a {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+}
+
 /* ---- TOC sidebar ---- */
 #TOC,
 nav.toc-active,
