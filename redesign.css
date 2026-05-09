@@ -105,6 +105,16 @@ button, input, select, textarea { font-family: inherit; }
 .navbar-toggler-icon {
   display: none !important;
 }
+/* Keep navbar tabs visible at all widths (Bootstrap collapses below lg by default) */
+.navbar .navbar-collapse,
+.navbar #navbarCollapse {
+  display: flex !important;
+  flex-basis: auto !important;
+}
+.navbar .navbar-nav {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+}
 header.fixed-top .navbar { background: rgba(250, 248, 244, 0.86) !important; }
 
 .navbar-brand,
