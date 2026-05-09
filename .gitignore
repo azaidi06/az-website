@@ -3,3 +3,33 @@ _site/
 extensions/
 .DS_Store
 .ipynb_checkpoints/
+
+# Quarto build artifacts
+_freeze/
+*.quarto_ipynb
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / IDE
+.idea
+.vscode
+
+# Tool / agent state
+.claude/
+.mcp.json
+.pi-chat-sessions/
+
+# Backups
+*.bak
+
+# Sandbox-mounted shell rc files
+.bash_profile
+.bashrc
+.gitconfig
+.gitmodules
+.profile
+.ripgreprc
+.zprofile
+.zshrc
