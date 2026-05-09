@@ -43,22 +43,6 @@ format:
 </div>
 
 <div class="g-col-12 g-col-md-6">
-<a href="posts/tennis-ojs/tennis-ojs.html" class="portfolio-project-card">
-<div class="portfolio-project-icon"><i class="bi bi-lightning"></i></div>
-<div class="portfolio-project-body">
-<h4>Serve Analysis Interactive</h4>
-<p class="portfolio-project-desc">Client-side interactive analysis of serve patterns using Observable JS for instant filtering.</p>
-<div class="portfolio-project-tags">
-<span class="portfolio-tag">Tennis</span>
-<span class="portfolio-tag">OJS</span>
-<span class="portfolio-tag">Interactive</span>
-</div>
-</div>
-<div class="portfolio-project-arrow"><i class="bi bi-arrow-right"></i></div>
-</a>
-</div>
-
-<div class="g-col-12 g-col-md-6">
 <a href="https://arxiv.org/abs/2511.02936" target="_blank" class="portfolio-project-card">
 <div class="portfolio-project-icon"><i class="bi bi-journal-text"></i></div>
 <div class="portfolio-project-body">
