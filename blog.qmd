@@ -1,7 +1,7 @@
 ---
 pagetitle: "Writing — Ali Zaidi"
 title: "Writing"
-subtitle: "Notes, tutorials, and longer pieces — sorted newest first."
+subtitle: "Meaningless Meandering of a Mediocre Mind"
 sidebar: false
 toc: false
 format:
